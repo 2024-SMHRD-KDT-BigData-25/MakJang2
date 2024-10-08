@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper">
+	
+	<select id = "getList" resultType="Board">
+		select * from myboard
+	</select>
+	
+	<insert id="write" parameterType="Board">
+		insert into myboard(title,content,writer,img)
+		values (#{title},#{content},#{writer},#{img})
+	</insert>
+	
+	<select id = "getBoard" parameterType="int" resultType="Board">
+		select * from myboard where idx = #{idx}
+	</select>
+	
+	<delete id = "delete">
+		delete from myboard where idx = #{idx}
+	</delete>
+</mapper>
