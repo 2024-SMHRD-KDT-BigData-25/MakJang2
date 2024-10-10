@@ -1,0 +1,65 @@
+*{
+    list-style : none;
+    text-decoration: none; /* a태그 밑줄 없애줌 */
+    border-collapse: collapse;
+    margin: 0px;
+    padding:0px;
+    color: #000;
+    }
+
+    /* intro */
+
+    .intro_bg{
+        background-image: url("");
+        width:1700px;
+        height: auto;
+        background: lightsalmon;
+    }
+    
+    .header{
+        display: flex;
+        width:100%;
+        margin : auto; /*가운데로 들어옴*/
+        height: 86px;
+        line-height: 86px;
+    }
+
+    .logo{
+        flex:1;
+        text-align: right;        
+    }
+
+    .logo > a{
+        color:#000;
+        font-weight: bold;
+    }
+
+    .nav{
+        flex: 5;
+        display:flex;
+        justify-content:flex-start;
+    }
+
+    .nav > li{
+        margin-left: 84px;
+    }
+    
+    .nav > li> a{
+        color:#000;
+        font-weight: bold;
+    }
+
+    .my_page{
+        flex:2;
+        display:flex;
+        justify-content:flex-start;
+    }
+
+    .my_page > li{
+        margin-right: 84px;
+    }
+    
+    .my_page > li> a{
+        color:#000;
+        font-weight: bold;
+    }

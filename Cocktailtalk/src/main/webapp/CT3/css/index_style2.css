@@ -1,0 +1,149 @@
+*{
+    list-style : none;
+    text-decoration: none; /* a태그 밑줄 없애줌 */
+    border-collapse: collapse;
+    margin: 0px;
+    padding:0px;
+    color: #000;
+    }
+
+    .px18{
+        font-size: 18px;
+        font-weight: 100;
+    }
+
+    /* intro */
+
+ 
+    
+    .header{
+        display: flex;
+        width: 1700px;
+        height: auto;
+        background-color: lightsalmon;
+        overflow: auto; /*자동 정렬*/
+    }
+    .header a{
+        padding:20px;
+        display: inline-block;
+        font-size: 18px;
+        text-decoration: none;
+        color: #fff;
+        float: left;
+    }
+
+    .header a:hover{
+        background-color: #000;
+    }
+
+    .header a.logo{
+        background-color: teal;
+    }
+
+    .nav { 
+        flex:4;        
+    }
+
+    .my_page {
+        flex:1;               
+    }
+
+ 
+
+
+    /* main */
+
+    .main_bg{
+        background-image: url("../image/test.png");
+        background-size : 400px 400px;
+        background-repeat : no-repeat;
+        background-position: center;
+        width:100%;
+        height: 400px;
+        margin: auto;
+    }
+
+    .main_text{
+        text-align: center;
+        margin: auto;
+    }
+
+    /* main_text1 */
+
+    .main_text1{
+        width: 100%;
+        height: 659px;
+        border-top: 1px solid #000;
+        margin-top: 50px;
+    }
+    
+    .main_text1 > h1{
+        padding-top : 50px;
+        text-align: center;
+    }
+    
+    .main_text1 .px24{
+        text-align: center;
+    }
+    
+    .service{
+        width:1280px;
+        display: flex;
+        margin: 49px auto;
+        height: 427px;
+    }
+    
+    .service > .cock_photo > img {
+        border-radius: 5%;
+        width:600px;        
+    }
+
+    .service > .px18{
+        flex: 1;
+        padding : 20px;
+        margin: auto;
+    }
+    
+    .service > .px18 > h2{
+        margin-bottom : 27px;
+    }
+
+    /* main_text2 */
+
+    .main_text2{
+        width: 100%;
+        height: 659px;
+        margin-top: 150px;
+        border-top: 1px solid #000;
+    }
+    
+    .main_text2 > h1{
+        padding-top : 50px;
+        text-align: center;
+    }
+    
+    .main_text2 .px24{
+        text-align: center;
+    }
+    
+    .ranking{
+        width:1280px;
+        display: flex;
+        margin: 49px auto;
+        height: 427px;
+    }
+    
+    .ranking > .rank > img {
+        border-radius: 5%;
+        width:600px;        
+    }
+
+    .ranking > .px18{
+        flex: 1;
+        padding : 20px;
+        margin: auto;
+    }
+    
+    .ranking > .px18 > h2{
+        margin-bottom : 27px;
+    }
