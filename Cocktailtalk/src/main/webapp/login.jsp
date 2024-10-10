@@ -113,7 +113,7 @@
 	            </tr>   
 	            <tr>
 	            	<td>
-	            		<a href="#" class="other_id">다른 이메일로 시작히기</a>
+	            		<a href="https://smhrd.or.kr/" class="other_id">스마트인재개발원</a>
 	            	</td>
 	            </tr>
 	        </table>
