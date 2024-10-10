@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+	
+	<!-- 이메일로 중복 체크해보기! -->
+	
+	<select id="countByEmail" resultType="int">
+    	SELECT COUNT(*) FROM TB_USER_INFO WHERE US_EMAIL = #{EMAIL}
+	</select>
+	
+	<!-- 회원가입(카카오톡) -->
+	
+	<insert id="join" parameterType="com.smhrd.model.MyMember">
+		insert into TB_USER_INFO values (#{US_EMAIL}, #{US_NAME}, #{US_NICK})
+	</insert>
+	
+	<!-- 닉네임 중복 체크해보기! -->
+	
+	<select id="countByNick" resultType="int">
+    	SELECT COUNT(*) FROM TB_USER_INFO WHERE US_NICK = #{us_nick}
+	</select>
+	
+	<!-- 회원정보수정(닉네임) -->
+	
+	<update id="update" parameterType="com.smhrd.model.MyMember">
+		update TB_USER_INFO set US_NICK=#{US_NICK} where US_EMAIL=#{US_EMAIL}
+	</update>
+	
+	<!-- 닉네임을 DB에서 조회하기 위함 -->
+	
+	<select id="getMemberByEmail" parameterType="String" resultType="com.smhrd.model.MyMember">
+	    SELECT US_EMAIL, US_NAME, US_NICK 
+	    FROM TB_USER_INFO 
+	    WHERE US_EMAIL = #{value}
+	</select>
+	
+	
+</mapper>
