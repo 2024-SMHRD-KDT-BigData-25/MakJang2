@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>칵테일톡</title>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    
     <script type="text/javascript">
         Kakao.init('a670a16eed4a7510584df4c98f1e3baa');
 
@@ -50,19 +51,73 @@
             });
         }
     </script>
+   <style>
+ 		
+ 		
+ 		
+	   .main_wrap{
+	   		background-color:#f1f1f1;
+	   		}
+	   		
+   		.main_container{
+   			background-color:white;
+   			border: 1px solid black;
+   			width: 350px;
+   			height: 600px;
+   			text-align: center;
+   			margin: 50px auto;
+   		}
+   		
+   		.main_container .main_img{
+   		
+			width: 200px; 
+			margin-top: 70px;
+			margin-bottom: -80px;  		
+   		}
+   		
+   		.kakao{
+   			margin: 50px 0;
+   		}
+   		
+   		.other_id{
+   			color: gray;
+   		}
+   </style>
+    
 </head>
 <body>
-    <fieldset>
-        <table align="center">
-            <tr><td><h1>로그인 화면</h1></td></tr>
-            <tr><td>
-                <div>
-                    <a href="javascript:kakaoLogin()">
-                        <img src="images/kakao_login_medium_narrow.png" alt="Kakao Login">
-                    </a>
-                </div>
-            </td></tr>
-        </table>
-    </fieldset>
+   	<div class=main_wrap>
+        <div class=main_container>
+        	<table align="center" class=main_table>
+	            <tr>
+	            	<td>
+	            		<img src="images/logo7.png" class=main_img>
+	            	</td>
+	            </tr>
+	            <tr>
+	            	<td>
+	            		<h3>간편하게 로그인하고 </h3>
+	            		<h3>다양한 서비스를 이용해보세요</h3>
+	            	</td>
+	            </tr>
+	            
+	            
+	            <tr>
+	            	<td>
+		                <div class="kakao">
+		                    <a href="javascript:kakaoLogin()">
+		                        <img src="images/kakao_login_medium_narrow.png" alt="Kakao Login">
+		                    </a>
+		                </div>
+	            	</td>
+	            </tr>   
+	            <tr>
+	            	<td>
+	            		<a href="#" class="other_id">다른 이메일로 시작히기</a>
+	            	</td>
+	            </tr>
+	        </table>
+        </div>
+	</div>
 </body>
 </html>
