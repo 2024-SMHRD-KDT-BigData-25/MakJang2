@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
 <!DOCTYPE html>
 <html lang="kr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>인증 게시판</title>
+    <title>창작 게시판</title>
     <link rel="stylesheet" href="../../css/css.css">
 </head>
 <body>
@@ -47,7 +46,7 @@
 
         <div class="board_wrap">
             <div class="board_title">
-                <Strong>인증 게시판</Strong>
+                <Strong>창작 게시판</Strong>
                 <p>취향이 맞는 다른 사람들과 함께 마시기 원한다면 방을 만들어보세요!</p>
             </div>
             <div class="board_list_wrap">
@@ -117,28 +116,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // DOM 요소 가져오기
-        const searchInput = document.getElementById('searchInput');
-        const searchButton = document.getElementById('searchButton');
-        const postItems = document.querySelectorAll('.post-item');
-
-        // 검색 버튼 클릭 시 게시물 필터링
-        searchButton.addEventListener('click', function() {
-            const searchValue = searchInput.value.toLowerCase();
-
-            postItems.forEach(item => {
-                const title = item.getAttribute('data-title').toLowerCase();
-                const writer = item.getAttribute('data-writer').toLowerCase();
-
-                if (title.includes(searchValue) || writer.includes(searchValue)) {
-                    item.style.display = 'flex'; // 검색 결과 일치 시 표시
-                } else {
-                    item.style.display = 'none'; // 일치하지 않으면 숨김
-                }
-            });
-        });
-    </script>
 </body>
 </html>

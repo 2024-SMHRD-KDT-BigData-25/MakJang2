@@ -67,9 +67,6 @@
 			        <input type="submit" value="메인페이지로 이동">
 			    </form>
     		</td>
-    		<td>
-    			<a href="logout.jsp"><button>로그아웃</button></a>
-    		</td>
     	</tr>
     </table>
 </fieldset>

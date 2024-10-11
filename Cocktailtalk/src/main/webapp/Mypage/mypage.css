@@ -1,0 +1,225 @@
+*{
+    list-style : none;
+    text-decoration: none; /* a태그 밑줄 없애줌 */
+    border-collapse: collapse;
+    margin: 0px;
+    padding:0px;
+    color: #000;
+    }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 20px;
+}
+
+mypage-wrap{
+    max-width: 1000px;
+    margin: 100px auto;
+}
+
+.mypage-container {
+    max-width: 1000px;
+    margin: 100px auto 50px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid gray;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+
+h1 {
+    text-align: center;
+    color: #333;
+    padding-bottom: 20px;
+}
+
+.profile-section {
+    padding: 0 20%;
+    max-width: 1000px;   
+}
+
+.profile-section > div {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+
+.profile-img {
+    display: block;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.email-section {
+    margin: 30px 0;
+}
+
+#email {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-width: 180px;
+    min-width: 40px;
+}
+
+.nickname-section {
+    margin-bottom: 30px 0;
+}
+
+#nickname {
+    padding: 8px;
+    margin-bottom:30px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-width: 180px;
+    min-width: 40px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: lightgray;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit{
+	padding: 10px 20px;
+    background-color: lightgray;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
+.account-deletion-section {
+    text-align: right;
+    margin-top: 20px;
+    margin-right: 30px;
+}
+
+#deleteAccount {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#deleteAccount:hover {
+    background-color: #c82333;
+}
+
+.deleteAccount-info{
+    padding-top: 10px;
+    font-size: 10px;
+    font-weight: bold;  
+}
+
+.jjim-container {
+    border: 1px solid gray;
+    max-width: 1000px;
+    margin: 50px auto; 
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.jjim-info{
+    margin: 10px 0;
+}
+
+.jjim-list{
+    margin: 10px 0;
+}
+
+
+
+/*찜한 상품들*/
+
+.cocktail-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.cocktail-item {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+}
+
+.cocktail-item h2 {
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.cocktail-item img{
+    touch-action: manipulation;
+    cursor: pointer;
+}
+
+.cocktail-item p {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+
+.ingredients {
+    margin-bottom: 10px;
+    font-style: italic;
+    color: #555;
+}
+
+.tags {
+    display: flex;
+    gap: 10px;
+}
+
+.tag {
+    background-color: #f1c40f;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/*찜 버튼*/
+
+.wishlist-button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.wishlist-button:hover {
+    position: absolute;
+    background-color: #ff4a4a;
+}
