@@ -36,12 +36,12 @@
 	                        <li><a href="#">먹고 싶어요 월드컵</a></li>
 	                    </ul>
 	                </li>
-	                <li><a href="#">행사</a></li>
+	                <li><a href="event.jsp">행사</a></li>
 	            </ul>
 	            <div>
 	                <ul class="my_page">
 	                    <li><a href="#">로그아웃</a></li>
-	                    <li><a href="#">마이페이지</a></li>
+	                    <li><a href="mypage.jsp">마이페이지</a></li>
 	                </ul>
 	            </div>
 	        </div>

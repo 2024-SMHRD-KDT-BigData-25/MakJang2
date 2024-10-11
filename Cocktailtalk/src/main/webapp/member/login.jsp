@@ -92,7 +92,7 @@
         	<table align="center" class=main_table>
 	            <tr>
 	            	<td>
-	            		<img src="images/logo7.png" class=main_img>
+	            		<img src="../images/logo7.png" class=main_img>
 	            	</td>
 	            </tr>
 	            <tr>
@@ -107,7 +107,7 @@
 	            	<td>
 		                <div class="kakao">
 		                    <a href="javascript:kakaoLogin()">
-		                        <img src="images/kakao_login_medium_narrow.png" alt="Kakao Login">
+		                        <img src="../images/kakao_login_medium_narrow.png" alt="Kakao Login">
 		                    </a>
 		                </div>
 	            	</td>
