@@ -76,7 +76,7 @@
                         ♡ 찜
                     </button>
                     <h2>마가리타</h2>
-                    <div class="clickable-div" data-title="상품 1" data-description="상품 1의 레시피입니다." data-history="상품 1의 역사입니다">
+                    <div class="clickable-div" data-title="상품 1"  data-recipe="상품 1의 레시피입니다." data-history="상품 1의 역사입니다." data-image="/hompage/image/icon1.svg">>
                     <img src="/hompage/image/icon1.svg">
                     <p>라임 주스와 테킬라가 어우러진 상큼한 칵테일</p>
                     <div class="ingredients">테킬라, 라임 주스, 삼각 설탕</div>
@@ -92,7 +92,7 @@
                         ♡ 찜
                     </button>
                     <h2>모히토</h2>
-                    <div class="clickable-div" data-title="상품 2" data-description="상품 2의 상세 설명입니다." data-history="상품 2의 역사입니다">
+                    <div class="clickable-div" data-title="상품 2"  data-recipe="상품 2의 레시피입니다." data-history="상품 2의 역사입니다." data-image="/hompage/image/icon2.svg">>
                     <img src="/hompage/image/icon2.svg">
                     <p>라임과 민트 잎이 들어간 상쾌한 칵테일</p>
                     <div class="ingredients">럼, 라임, 민트, 설탕, 탄산수</div>
@@ -107,8 +107,8 @@
                     <button class="wishlist-button">
                         ♡ 찜
                     </button>
-                    <h2>네그로니</h2>
-                    <div class="clickable-div" data-title="상품 3" data-description="상품 3의 상세 설명입니다." data-history="상품 3의 역사입니다">
+                    <h2 >네그로니</h2>
+                    <div class="clickable-div" data-title="상품 3"  data-recipe="상품 3의 레시피입니다." data-history="상품 3의 역사입니다." data-image="/hompage/image/icon0.svg">>
                     <img src="/hompage/image/icon0.svg">
                     <p>진, 캄파리, 베르무트가 들어간 클래식 칵테일</p>
                     <div class="ingredients">진, 캄파리, 스위트 베르무트</div>
@@ -124,11 +124,23 @@
             <div id="myModal" class="modal">
                 <span class="close">&times;</span>
                 <div class="modal-content">
-                    <h2 id="modalTitle"> 칵테일 이름 넣으세요</h2>
-                    <p id="modalDescription">레시피 작성해주세요</p>
-                    <p id="modalHistory">역사 작성해주세요</p>
+                    <div class="modal-title-recipe">
+                        <div class="modal-title-info">
+                            <h2 id="modalTitle"></h2>
+                            <img id="modalImage" src="" alt="상품 이미지" style="width: 100%; max-height: 300px; object-fit: contain;">
+                        </div>
+                        <div class="modal-recipe-info">
+                            <h3>레시피</h3>
+                            <p id="modalRecipe"></p>
+                        </div>
+                    </div>
+                    <div class="modal-history-info">
+                        <h3>역사</h3>
+                    <p id="modalHistory"></p>
+                    </div>
                 </div>
             </div>
+    </div>
         
         </div>
     </div>
@@ -202,7 +214,9 @@
         const modal = document.getElementById("myModal");
         const closeBtn = document.getElementsByClassName("close")[0];
         const modalTitle = document.getElementById("modalTitle");
-        const modalDescription = document.getElementById("modalDescription");
+        const modalRecipe = document.getElementById("modalRecipe");
+        const modalHistory = document.getElementById("modalHistory");
+        const modalImage = document.getElementById("modalImage");
 
         const clickableDivs = document.querySelectorAll(".clickable-div");
 
@@ -210,7 +224,10 @@
             div.onclick = function() {
                 modal.style.display = "block"; // 모달 표시
                 modalTitle.textContent = this.getAttribute("data-title"); // 제목 설정
-                modalDescription.textContent = this.getAttribute("data-description"); // 설명 설정
+                modalImage.src = this.getAttribute("data-image"); // 이미지 설정
+                modalRecipe.textContent = this.getAttribute("data-recipe"); // 레시피 설정
+                modalHistory.textContent = this.getAttribute("data-history"); // 역사 설정
+        
             }
         });
 

@@ -15,16 +15,17 @@ body {
 }
 
 .container {
-    width: 1000px;
+    max-width: 1000px;
     margin: 100px auto; 
 }
 
-.top { 
+.top {
+    max-width: 1000px; 
     border: 1px solid gray;
     margin-bottom: 50px;
     border-radius: 5px;
     padding: 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -78,25 +79,6 @@ input[type="text"] {
     position: relative;
 }
 
-/*찜 버튼*/
-
-.wishlist-button{
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #ff6b6b;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.wishlist-button:hover {
-    position: absolute;
-    background-color: #ff4a4a;
-}
 
 .cocktail-item h2 {
     margin-bottom: 10px;
@@ -169,6 +151,26 @@ input[type="text"] {
     padding: 5px;
 }
 
+/*찜 버튼*/
+
+.wishlist-button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.wishlist-button:hover {
+    position: absolute;
+    background-color: #ff4a4a;
+}
+
 /* 반응형 레이아웃 */
 @media (max-width: 768px) {
     .cocktail-item {
@@ -219,12 +221,42 @@ input[type="text"] {
 
 .modal-content {
     background-color: white;
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 20px;
     border-radius: 5px;
     width: 80%;
-    max-width: 500px;
+    max-width: 800px;
+    text-align: center;
+    overflow:hidden;
+	height:auto;
 }
+.modal-title-recipe{
+    display: flex;
+}
+
+.modal-title-info{
+    flex:1;
+    border : 1px solid #000;
+}
+
+.modal-recipe-info{
+    flex:1;
+    border : 1px solid #000;
+}
+
+.modal-recipe-info > h3{
+    border-bottom : 1px solid #000;
+}
+
+.modal-history-info{
+    border : 1px solid #000;
+}
+
+.modal-history-info > h3{
+    border-bottom : 1px solid #000;
+}
+
+
 
 .close {
     color: #aaa;
