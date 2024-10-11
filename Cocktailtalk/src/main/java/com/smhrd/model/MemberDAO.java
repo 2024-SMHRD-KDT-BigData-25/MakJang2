@@ -76,6 +76,14 @@ public class MemberDAO {
         return bookmarkList;
     }
     
+    // 찜 중복체크
+	public boolean isBookmarkDuplicate(String email, int cocktailNo) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int count = sqlSession.selectOne("MemberMapper.countBookmark", new Bookmark(email, cocktailNo));
+		sqlSession.close();
+		return count > 0;
+	}
+
     // 찜삭제
     public int deleteBookmark(int email) {
         SqlSession sqlSession = sqlSessionFactory.openSession(true);

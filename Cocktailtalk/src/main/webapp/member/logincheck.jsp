@@ -112,7 +112,7 @@
 	    	</div>
 	    	<div class="main">
 	    		<div>
-				    <form action="JoinController" class="form">
+				    <form action="../JoinController" class="form">
 				    	<input type="hidden" name="US_EMAIL" value="<%=US_EMAIL %>">
 				    	<input type="hidden" name="US_NAME" value="<%=US_NAME %>">
 				    	<input type="hidden" name="US_NICK" value="<%=US_NICK %>">
@@ -123,7 +123,7 @@
 	    </div>
 	</div>
 <div class="logincheck-image">
-	<img src="images/test.png" class="image">
+	<img src="../images/test.png" class="image">
 </div>
 </div>
 
