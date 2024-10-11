@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../css/index_style.css">
+    <link rel="stylesheet" type="text/css" href="../../Board/css/css.css">
 </head>
 <body>
     <div class="wrap">
@@ -48,6 +49,7 @@
                 <img src="../image/worldcup.jpg">
             </div>
         </div>
+        <%@include file="/Board/footer.jsp" %>
     </div>
 </body>
 </html>
