@@ -5,14 +5,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="css/css.css" rel="stylesheet" type="text/css">
+	<link href="header.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<header>
 	    <div class="intro_bg">
 	        <div class="header">
 	            <div class="logo">
-	                <a href="../html/index.jsp"><img src="logo8.png" alt="칵테일톡 로고" alt="Logo" class="logo-img"></a>
+	                <a href="../html/index.html"><img src="logo8.png" alt="칵테일톡 로고" alt="Logo" class="logo-img"></a>
 	            </div>
 	            <ul class="nav">
 	                <li><a href="#">칵테일 검색</a></li>

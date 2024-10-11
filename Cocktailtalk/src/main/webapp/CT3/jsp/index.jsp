@@ -10,8 +10,8 @@
 </head>
 <body>
     <div class="wrap">
-		<%@include file="/Board/header.jsp" %>
-        <!-- intro 끝 -->
+		<%@include file="header.jsp" %>
+        
         <div>
             <div class=main_bg>
             </div>
@@ -49,5 +49,6 @@
             </div>
         </div>
     </div>
+    <%@include file="footer.jsp" %>
 </body>
 </html>

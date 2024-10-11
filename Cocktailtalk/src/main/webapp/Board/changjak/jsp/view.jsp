@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../css/css.css">
 </head>
 <body>
+	<jsp:include page="../../header.jsp" />
     <div class="board_wrap">
         <div class="board_title">
             <Strong>작성자 입장 창작 게시글</Strong>
@@ -51,5 +52,6 @@
             </div>
         </div>
     </div>
+    <%@include file="../../../footer/footer.jsp" %>
 </body>
 </html>

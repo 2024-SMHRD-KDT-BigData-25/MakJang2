@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../css/css.css">
 </head>
 <body>
-	<%@include file="/Board/header.jsp" %>
+	<jsp:include page="../../header.jsp" />
     <div class="board_wrap">
         <div class="board_title">
             <Strong>인증 게시글 작성</Strong>
@@ -54,6 +54,6 @@
             </div>
         </div>
     </div>
-    <%@include file="/Board/footer.jsp" %>
+    <%@include file="../../../footer/footer.jsp" %>
 </body>
 </html>

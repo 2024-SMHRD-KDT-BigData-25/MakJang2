@@ -72,7 +72,8 @@
    		
 			width: 200px; 
 			margin-top: 70px;
-			margin-bottom: -80px;  		
+			margin-bottom: -80px; 
+			margin: 70px auto -80px auto; 		
    		}
    		
    		.kakao{
