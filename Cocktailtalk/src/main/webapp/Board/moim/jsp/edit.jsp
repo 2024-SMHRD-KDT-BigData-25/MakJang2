@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../css/css.css">
 </head>
 <body>
-	<jsp:include page="../../header.jsp" />
+	<jsp:include page="${contextPath }/header/header.jsp" />
     <div class="board_wrap">
         <div class="board_title">
             <Strong>모임 게시글 수정</Strong>
@@ -67,6 +67,6 @@
             </div>
         </div>
     </div>
-        <%@include file="../../../footer/footer.jsp" %>
+        <jsp:include page="${contextPath }/footer/footer.jsp" />
 </body>
 </html>

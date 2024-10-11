@@ -1,18 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="header.css" rel="stylesheet" type="text/css">
+	<link href="${contextPath }/header/header.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<header>
 	    <div class="intro_bg">
 	        <div class="header">
 	            <div class="logo">
-	                <a href="../html/index.html"><img src="logo8.png" alt="칵테일톡 로고" alt="Logo" class="logo-img"></a>
+	                <a href="../html/index.html"><img src="${contextPath }/header/logo8.png" alt="칵테일톡 로고" alt="Logo" class="logo-img"></a>
 	            </div>
 	            <ul class="nav">
 	                <li><a href="#">칵테일 검색</a></li>

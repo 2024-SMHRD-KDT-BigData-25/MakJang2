@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="wrap">
-		<%@include file="header.jsp" %>
+		<jsp:include page="${contextPath }/header/header.jsp" />
         
         <div>
             <div class=main_bg>
@@ -49,6 +49,6 @@
             </div>
         </div>
     </div>
-    <%@include file="footer.jsp" %>
+    <jsp:include page="${contextPath }/footer/footer.jsp" />
 </body>
 </html>
