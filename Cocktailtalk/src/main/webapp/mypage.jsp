@@ -2,6 +2,8 @@
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%@ page import="com.smhrd.model.MemberDAO" %>
 <%@ page import="com.smhrd.model.MyMember" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.smhrd.model.Cocktail_Info" %>
 
 <%
     response.setContentType("text/html; charset=UTF-8");
@@ -28,6 +30,9 @@
         response.sendRedirect("fail.jsp");
         return;
     }
+    
+	// 찜 목록을 가져오는 로직
+    List<Cocktail_Info> bookmarkList = dao.selectBookmarkByEmail(US_EMAIL);
 %>
 
 <link rel="stylesheet" href="Mypage/mypage.css">
@@ -165,5 +170,49 @@
             });
         });
     </script>
+
+<h1>찜 기능 테스트</h1>
+<!-- 찜하기 기능 -->
+    <form action="BM_InsertController" method="post">
+        <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
+        <input type="hidden" name="COCKTAIL_NO" value="2">
+        네그로니<input type="submit" value="찜하기">
+    </form>
+    
+    <form action="BM_InsertController" method="post">
+        <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
+        <input type="hidden" name="COCKTAIL_NO" value="3">
+        다이키리<input type="submit" value="찜하기">
+    </form>
+
+<h1>찜 삭제</h1>
+<!-- 찜취소 기능 -->
+	<form action="BM_DeleteController" method="post">
+		<input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
+		<input type="hidden" name="COCKTAIL_NO" value="2">
+		<input type="submit" value="찜취소">
+	</form>
+
+<!-- 찜 목록 출력 -->
+<div class="bookmark-section">
+    <h1>내가 한 찜</h1>
+    <%
+        if (bookmarkList != null && !bookmarkList.isEmpty()) {
+            for (Cocktail_Info cocktail : bookmarkList) {
+                %>
+                <div>
+                    <h3><%= cocktail.getCOCKTAIL_NAME() %></h3>
+                    <img src="<%= request.getContextPath() + "/CocokTail_Img/" + cocktail.getCOCKTAIL_IMG() %>" alt="<%= cocktail.getCOCKTAIL_NAME() %>" />
+                </div>
+                <%
+            }
+        } else {
+            %>
+            <p>찜한 칵테일이 없습니다.</p>
+            <%
+        }
+    %>
+</div>
+
 </body>
 </html>
