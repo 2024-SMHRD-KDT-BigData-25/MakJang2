@@ -26,20 +26,11 @@
       <version>4.13.1</version>
       <scope>test</scope>
     </dependency>
-       <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-	<dependency>
-    	<groupId>javax.servlet</groupId>
-    	<artifactId>javax.servlet-api</artifactId>
-    	<version>4.0.1</version>
-    	<scope>provided</scope>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 	<dependency>
     	<groupId>org.mybatis</groupId>
     	<artifactId>mybatis</artifactId>
     	<version>3.5.6</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 	<dependency>
     	<groupId>mysql</groupId>
     	<artifactId>mysql-connector-java</artifactId>
@@ -51,16 +42,6 @@
 		<version>1.18.34</version>
 		<scope>provided</scope>
 	</dependency>
-	<dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>jstl</artifactId>
-        <version>1.2</version>
-    </dependency>
-    <dependency>
-        <groupId>taglibs</groupId>
-        <artifactId>standard</artifactId>
-        <version>1.1.2</version>
-    </dependency>
     <!-- https://mvnrepository.com/artifact/servlets.com/cos -->
    	<dependency>
        	<groupId>servlets.com</groupId>
@@ -79,6 +60,26 @@
        <version>1.1</version>
        <scope>provided</scope>
     </dependency>
+    
+    <dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>servlet-api</artifactId>
+    	<version>2.5</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>javax.servlet.jsp</groupId>
+    	<artifactId>jsp-api</artifactId>
+    	<version>2.1</version>
+    	<scope>provided</scope>
+    </dependency>
+    
+    <dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>jstl</artifactId>
+    	<version>1.2</version>
+    </dependency>
+    
    <!-- oracle maven repository -->
    <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
 	<dependency>
