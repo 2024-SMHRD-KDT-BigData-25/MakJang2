@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보수정</title>
+
+<link rel="stylesheet" href="Mypage/mypage.css">
 </head>
 <body>
 <%	
@@ -31,18 +33,34 @@
 %>
     
 <h1>회원정보 수정</h1>
-이메일: <%=US_EMAIL %><br>
-아이디: <%=member.getUS_NAME() %><br>
 
-<form action="UpdateController" method="post">
-    <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL %>">
-    닉네임: <input type="text" name="US_NICK" value="<%=US_NICK %>"><br>
-    <input type="submit" value="변경하기">
-</form>
-
-<% if (errorMessage != null) { %>
-    <div style="color: red;"><%= errorMessage %></div>
-<% } %>
-
+<div class="mypage-wrap">
+    <div class="mypage-container">
+        <h1>마이페이지</h1>
+        
+        <!-- 프로필 영역 -->
+        <div class="profile-section">
+            <div>
+                <img src="0.png" alt="프로필 이미지" class="profile-img">
+                <div class="profile-info">
+                    <div class="email-section">
+                        <label for="email">이메일:</label>
+                        <input type="text" id=email disabled value="<%= US_EMAIL %>">
+                    </div>
+                     
+                    <form action="UpdateController" method="post">
+						<input type="hidden" name="US_EMAIL" value="<%=US_EMAIL %>">
+						닉네임: <input type="text" name="US_NICK" id="nickname" value="<%=US_NICK %>"><br>
+						<input type="submit" class="submit" value="변경하기">
+					</form>
+                        
+                    <% if (errorMessage != null) { %>
+						<div style="color: red;"><%= errorMessage %></div>
+					<% } %>
+                </div>
+            </div>
+        </div>    
+        
+ 
 </body>
 </html>
