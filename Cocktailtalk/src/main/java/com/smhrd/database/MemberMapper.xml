@@ -33,6 +33,11 @@
     <delete id="delete" parameterType="String">
         DELETE FROM TB_USER_INFO WHERE US_EMAIL=#{US_EMAIL}
     </delete>
+    
+    <!-- 회원탈퇴 전 북마크 삭제 -->
+    <delete id="deleteBookmarkByEmail">
+    	DELETE FROM TB_BOOKMARK WHERE US_EMAIL = #{email}
+	</delete>
 
     <!-- 찜 기능 -->
     <insert id="insertBookmark" parameterType="com.smhrd.model.Bookmark">

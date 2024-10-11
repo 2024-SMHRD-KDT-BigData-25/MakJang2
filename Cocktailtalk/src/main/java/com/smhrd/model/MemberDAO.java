@@ -52,6 +52,9 @@ public class MemberDAO {
     // 회원탈퇴
     public int delete(String email) {
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
+        // 북마크 삭제
+        sqlSession.delete("MemberMapper.deleteBookmarkByEmail", email);
+        // 회원 삭제
         int res = sqlSession.delete("MemberMapper.delete", email);
         sqlSession.close();
         return res;

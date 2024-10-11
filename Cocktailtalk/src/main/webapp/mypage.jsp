@@ -11,7 +11,7 @@
 
     // 현재 세션을 가져옴
     HttpSession userSession = request.getSession();
-    String US_EMAIL = (String) userSession.getAttribute("EMAIL");
+    String US_EMAIL = (String)userSession.getAttribute("EMAIL");
 
     // 로그인 정보가 없는 경우 오류 페이지로 리다이렉트
     if (US_EMAIL == null) {
@@ -34,6 +34,14 @@
 	// 찜 목록을 가져오는 로직
     List<Cocktail_Info> bookmarkList = dao.selectBookmarkByEmail(US_EMAIL);
 %>
+
+<script>
+	function confirmDelete() {
+		if(confirm("회원탈퇴를 하시겠습니까?")) {
+			window.location.href="DeleteController?US_EMAIL=<%=US_EMAIL %>";
+		}
+	}
+</script>
 
 <link rel="stylesheet" href="Mypage/mypage.css">
 
@@ -70,7 +78,7 @@
         
             <!-- 계정 탈퇴 버튼 -->
             <div class="account-deletion-section">
-                <button id="deleteAccount">계정 탈퇴</button>
+                <button id="deleteAccount" onclick="confirmDelete()">계정 탈퇴</button>
                 <div class="deleteAccount-info"> 계정 탈퇴시 모든 정보는 삭제됩니다</div>
             </div>
         </div>
