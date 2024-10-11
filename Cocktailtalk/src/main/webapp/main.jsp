@@ -1,6 +1,6 @@
 <%@page import="java.io.PrintWriter"%>
 <%@page import="com.smhrd.model.TB_SHOW_LIKES"%>
-<%@page import="com.smhrd.model.MemberPartyDAO"%>
+<%@page import="com.smhrd.model.MemberLikeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%@ page import="com.smhrd.model.MemberDAO" %>
@@ -44,7 +44,7 @@ response.setContentType("text/html; charset=UTF-8");
 </head>
 <body>
 <%
-MemberPartyDAO daoo = new MemberPartyDAO();
+MemberLikeDAO daoo = new MemberLikeDAO();
 int sh_no = 1;
 TB_SHOW_LIKES res = daoo.totallike(sh_no);
 TB_SHOW_LIKES ress = new TB_SHOW_LIKES(sh_no, email);
