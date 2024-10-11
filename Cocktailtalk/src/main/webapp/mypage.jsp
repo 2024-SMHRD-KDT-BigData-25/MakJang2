@@ -171,6 +171,8 @@
         });
     </script>
 
+<hr>
+
 <h1>찜 기능 테스트</h1>
 <!-- 찜하기 기능 -->
     <form action="BM_InsertController" method="post">
@@ -185,12 +187,18 @@
         다이키리<input type="submit" value="찜하기">
     </form>
 
-<h1>찜 삭제</h1>
+<h1>찜 취소</h1>
 <!-- 찜취소 기능 -->
 	<form action="BM_DeleteController" method="post">
 		<input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
 		<input type="hidden" name="COCKTAIL_NO" value="2">
-		<input type="submit" value="찜취소">
+		네그로니<input type="submit" value="찜취소">
+	</form>
+	
+	<form action="BM_DeleteController" method="post">
+		<input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
+		<input type="hidden" name="COCKTAIL_NO" value="3">
+		다이키리<input type="submit" value="찜취소">
 	</form>
 
 <!-- 찜 목록 출력 -->
