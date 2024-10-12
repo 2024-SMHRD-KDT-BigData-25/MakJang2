@@ -21,5 +21,6 @@
     <mapper resource="com/smhrd/database/MemberMapper.xml"/>
     <mapper resource="com/smhrd/database/likeMapper.xml"/>
     <mapper resource="com/smhrd/database/partyMapper.xml"/>
+    <mapper resource="com/smhrd/database/CockinfoMapper.xml"/>
   </mappers>
 </configuration>

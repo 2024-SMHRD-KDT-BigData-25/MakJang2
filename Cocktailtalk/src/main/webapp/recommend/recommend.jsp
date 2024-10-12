@@ -1,3 +1,6 @@
+<%@page import="com.smhrd.model.Cocktail_Info"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smhrd.model.CockDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,7 +30,9 @@
                 <button class="ingredient-button" data-ingredient="위스키">위스키</button>
                 <button class="ingredient-button" data-ingredient="진">진</button>
                 <button class="ingredient-button" data-ingredient="보드카">보드카</button>
-                <button class="ingredient-button" data-ingredient="테킬라">테킬라</button>
+                <button class="ingredient-button" data-ingredient="데킬라">테킬라</button>
+                <button class="ingredient-button" data-ingredient="포도주">포도주</button>
+                <button class="ingredient-button" data-ingredient="리큐르">리큐르</button>
             </div>
     
 
@@ -42,55 +47,32 @@
             </div>
         </div>
 
-        <div class="cocktail-list">
+		<% CockDAO dao = new CockDAO(); 
+		   List<Cocktail_Info> Info = dao.getCockinfo();
+		%>
+		
+ 	<div class="cocktail-list">
+		<%for(Cocktail_Info c:Info){ %>
             <div class="cocktail-item">
                     <button class="wishlist-button">
                         ♡ 찜
                     </button>
                     <h2>마가리타</h2>
-                    <div class="clickable-div" data-title="상품 1"  data-recipe="상품 1의 레시피입니다." data-history="상품 1의 역사입니다." data-image="/hompage/image/icon1.svg">>
-                    <img src="/hompage/image/icon1.svg">
-                    <p>라임 주스와 테킬라가 어우러진 상큼한 칵테일</p>
-                    <div class="ingredients">테킬라, 라임 주스, 삼각 설탕</div>
+                    <div class="clickable-div" data-title="<%=c.getCocktail_name() %>"  data-recipe="<%=c.getCocktail_recipe() %>" data-history="<%=c.getCocktail_his() %>" data-image="/hompage/image/<%=c.getCocktail_img() %>">>
+                    <img src="/hompage/image/<%=c.getCocktail_img() %>">
+                    <p><%=c.getCocktail_point() %></p>
+                    <div class="ingredients"><%=c.getCocktail_base() %></div>
                     <div class="tags">
-                        <span class="tag">상큼</span>
-                        <span class="tag">짭짤</span>
+                        <span class="tag"><%=c.getCocktail_tag_1() %></span>
+                    <%if(c.getCocktail_tag_2()!=null){ %>   
+                        <span class="tag"><%=c.getCocktail_tag_2() %></span>
+                       <%} %>
                     </div>
                 </div>
             </div>
-
-            <div class="cocktail-item">
-                    <button class="wishlist-button">
-                        ♡ 찜
-                    </button>
-                    <h2>모히토</h2>
-                    <div class="clickable-div" data-title="상품 2"  data-recipe="상품 2의 레시피입니다." data-history="상품 2의 역사입니다." data-image="/hompage/image/icon2.svg">>
-                    <img src="/hompage/image/icon2.svg">
-                    <p>라임과 민트 잎이 들어간 상쾌한 칵테일</p>
-                    <div class="ingredients">럼, 라임, 민트, 설탕, 탄산수</div>
-                    <div class="tags">
-                        <span class="tag">상쾌</span>
-                        <span class="tag">달콤</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cocktail-item">
-                    <button class="wishlist-button">
-                        ♡ 찜
-                    </button>
-                    <h2 >네그로니</h2>
-                    <div class="clickable-div" data-title="상품 3"  data-recipe="상품 3의 레시피입니다." data-history="상품 3의 역사입니다." data-image="/hompage/image/icon0.svg">>
-                    <img src="/hompage/image/icon0.svg">
-                    <p>진, 캄파리, 베르무트가 들어간 클래식 칵테일</p>
-                    <div class="ingredients">진, 캄파리, 스위트 베르무트</div>
-                    <div class="tags">
-                        <span class="tag">쌉싸름</span>
-                        <span class="tag">강렬</span>
-                    </div>
-                </div>
-            </div>
-
+         <%} %>
+   </div>
+           
             <!--모달-->
         
             <div id="myModal" class="modal">

@@ -11,20 +11,19 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Cocktail_Info {
 	
-	private int COCKTAIL_NO;
-	private String COCKTAIL_NAME;
-	private String COCKTAIL_RECIPE;
-	private String COCKTAIL_IMG;
-	private String COCKTAIL_HIS;
-	private String COCKTAIL_MAKING;
-	private String COCKTAIL_BASE;
-	private String COCKTAIL_POINT;
-	private String COCKTAIL_TAG_1;
-	private String COCKTAIL_TAG_2;
+	private int cocktail_no;
+	private String cocktail_name;
+	private String cocktail_recipe;
+	private String cocktail_img;
+	private String cocktail_his;
+	private String cocktail_making;
+	private String cocktail_base;
+	private String cocktail_point;
+	private String cocktail_tag_1;
+	private String cocktail_tag_2;
 	
-	public Cocktail_Info(int COCKTAIL_NO, String COCKTAIL_NAME, String COCKTAIL_IMG) {
-		this.COCKTAIL_NO = COCKTAIL_NO;
-		this.COCKTAIL_NAME = COCKTAIL_NAME;
-		this.COCKTAIL_IMG = COCKTAIL_IMG;
+	public Cocktail_Info(int cocktail_no, String cocktail_name) {
+		this.cocktail_no = cocktail_no;
+		this.cocktail_name = cocktail_name;
 	}
 }
