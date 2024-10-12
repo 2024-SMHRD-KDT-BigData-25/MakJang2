@@ -56,7 +56,7 @@
                     <button class="wishlist-button">
                         ♡ 찜
                     </button>
-                    <h2>마가리타</h2>
+                    <h2><%=c.getCOCKTAIL_NAME() %></h2>
                     <div class="clickable-div" data-title="<%=c.getCOCKTAIL_NAME() %>"  data-recipe="<%=c.getCOCKTAIL_RECIPE() %>" data-history="<%=c.getCOCKTAIL_HIS() %>" data-image="../CocokTail_Img/<%=c.getCOCKTAIL_IMG() %>">>
                     <img src="../CocokTail_Img/<%=c.getCOCKTAIL_IMG() %>">
                     <p><%=c.getCOCKTAILS_POINT() %></p>
@@ -107,8 +107,8 @@
         const subIngredientLists = document.querySelectorAll('.sub-ingredient-list');
         const subIngredientButtons = document.querySelectorAll('.sub-ingredient-button');
 
-        // 이름 검색 기능
-        document.querySelector('.search-bar button').addEventListener('click', function() {
+     // 이름 검색 기능
+        function searchCocktails() {
             const searchValue = nameSearchInput.value.toLowerCase();
 
             cocktailItems.forEach(item => {
@@ -119,6 +119,16 @@
                     item.style.display = 'none';
                 }
             });
+        }
+
+        // 버튼 클릭 시 검색
+        document.querySelector('.search-bar button').addEventListener('click', searchCocktails);
+
+        // 엔터 키를 눌렀을 때 검색
+        nameSearchInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                searchCocktails();
+            }
         });
 
         // 태그 버튼 클릭 시 필터링 기능
