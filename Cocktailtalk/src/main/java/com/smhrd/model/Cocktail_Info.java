@@ -27,4 +27,12 @@ public class Cocktail_Info {
 		this.COCKTAIL_NAME = COCKTAIL_NAME;
 		this.COCKTAIL_IMG = COCKTAIL_IMG;
 	}
+
+	public Cocktail_Info(int cOCKTAIL_NO, String cOCKTAIL_NAME) {
+		super();
+		COCKTAIL_NO = cOCKTAIL_NO;
+		COCKTAIL_NAME = cOCKTAIL_NAME;
+	}
+	
+	
 }

@@ -23,15 +23,15 @@ public class CockTail_Controller extends HttpServlet {
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		//Cocktail_Info, CockDAO, reccommend.jsp,
-		//CockinfoMapper, MemberMapper, CockTail_Controller
-		
+		//Cocktail_Info, CockDAO, reccommend.jsp, CockinfoMapper,
+		//MemberMapper, CockTail_Controller
 		CockDAO dao = new CockDAO();
-		List<Cocktail_Info> info = dao.Cockinfo();
+		List<Cocktail_Info> join = dao.Cockinfo();
+		request.setCharacterEncoding("UTF-8");
 		
-		request.setAttribute("info", info);
-		RequestDispatcher dis = request.getRequestDispatcher( "recommend.jsp" );
-		dis.forward(request, response);
+		
+		PrintWriter out = response.getWriter();
+		out.print(join);
 		
 		
 		

@@ -47,7 +47,7 @@
             </div>
         </div>
 
-		<% CockDAO dao = new CockDAO(); 
+		<% CockDAO dao = new CockDAO();
 		   List<Cocktail_Info> Info = dao.Cockinfo();
 		%>
 		
