@@ -23,10 +23,10 @@ public class MEM_DeleteController extends HttpServlet {
         
         if (res > 0) {
             // 삭제 성공 시 로그인 페이지로 리다이렉트
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("member/login.jsp");
         } else {
-            // 실패 시 에러 페이지 또는 메시지 표시
-            response.sendRedirect("error.jsp");
+            // 실패 시 에러 페이지로 리다이렉트
+            response.sendRedirect("member/fail.jsp");
         }
     }
 }

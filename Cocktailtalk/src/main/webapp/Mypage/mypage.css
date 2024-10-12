@@ -220,7 +220,7 @@ button {
 }
 
 .wishlist-button:hover {
-    position: absolute;
+    position: relative;
     background-color: #ff4a4a;
 }
 

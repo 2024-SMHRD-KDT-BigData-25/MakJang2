@@ -33,20 +33,19 @@
         .anyMatch(cocktail -> cocktail.getCOCKTAIL_NO() == cocktailNo);
 %>
 
-<script>
-	function confirmDelete() {
-		if(confirm("회원탈퇴를 하시겠습니까?")) {
-			window.location.href="DeleteController?US_EMAIL=<%=US_EMAIL %>";
-		}
-	}
-</script>
-
 <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" href="../Mypage/mypage.css">
     <meta charset="UTF-8">
     <title>마이페이지</title>
+    <script>
+    	function confirmDelete() {
+    		if(confirm("회원탈퇴를 하시겠습니까?")) {
+    			window.location.href="../DeleteController?US_EMAIL=<%=US_EMAIL %>";
+    		}
+    	}
+    </script>
 </head>
 <body>
 	<jsp:include page="${contextPath }/header/header.jsp" />
@@ -64,11 +63,13 @@
                             <label for="email">이메일:</label>
                             <input type="text" id=email disabled value="<%= US_EMAIL %>">
                         </div>
+                        
                         <div class="nickname-section">
                             <label for="nickname">닉네임:</label>
                             <input type="text" id="nickname" value="<%= US_NICK %>">
                         </div>
-                        <a href="changeinfo.jsp" ><button>회원정보수정</button></a>
+                        
+                        <a href="../member/changeinfo.jsp" ><button>회원정보수정</button></a>
                     </div>
                 </div>
             </div>
@@ -97,15 +98,13 @@
                     boolean Bookmarked = true; // 찜 되어 있는 상태
             %>
             <div class="cocktail-item">
-                <form action="../BM_ToggleBookmarkController" method="post">
-                    <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
-                    <input type="hidden" name="COCKTAIL_NO" value="<%= cocktail.getCOCKTAIL_NO() %>">
-                    <span class="wishlist-button" onclick="this.closest('form').submit()">
-                    ✔ 취소
-                    </span>
-                </form>
-                <br>
-                <br>
+            	<form action="../BM_ToggleBookmarkController" method="post" style="position: absolute; top: 10px; right: 10px;">
+					<input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
+					<input type="hidden" name="COCKTAIL_NO" value="<%= cocktail.getCOCKTAIL_NO() %>">
+					<span class="wishlist-button" onclick="this.closest('form').submit()">✔ 취소</span>
+				</form>
+				<br>
+				<br>
                 <h2><%= cocktail.getCOCKTAIL_NAME() %></h2>
                 <img src="<%= request.getContextPath() + "/CocokTail_Img/" + cocktail.getCOCKTAIL_IMG() %>" alt="<%= cocktail.getCOCKTAIL_NAME() %>"
                 style="width: 200px; height: auto;">
@@ -114,6 +113,7 @@
                 <div class="ingredients">레시피(RECIPE)</div>
                 <div class="ingredients"><%= cocktail.getCOCKTAIL_RECIPE() %></div>
             </div>
+            
             <%
                 }
             } else {
@@ -201,21 +201,20 @@
     <form action="../BM_ToggleBookmarkController" method="post">
         <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
         <input type="hidden" name="COCKTAIL_NO" value= 2 >
-        테스트용1<button type="submit"><%= isBookmarked ? "찜취소" : "찜하기" %></button>
+        다이키리<button type="submit"><%= isBookmarked ? "찜취소" : "찜하기" %></button>
     </form>
 
     <form action="../BM_ToggleBookmarkController" method="post">
         <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
         <input type="hidden" name="COCKTAIL_NO" value= 3 >
-        테스트용2<button type="submit"><%= isBookmarked ? "찜취소" : "찜하기" %></button>
+        드라이<button type="submit"><%= isBookmarked ? "찜취소" : "찜하기" %></button>
     </form>
 
     <form action="../BM_ToggleBookmarkController" method="post">
         <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
         <input type="hidden" name="COCKTAIL_NO" value= 4 >
-        테스트용3<button type="submit"><%= isBookmarked ? "찜취소" : "찜하기" %></button>
+        에스프레소<button type="submit"><%= isBookmarked ? "찜취소" : "찜하기" %></button>
     </form>
-
 
 </body>
 </html>

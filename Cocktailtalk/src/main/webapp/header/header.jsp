@@ -40,7 +40,7 @@
 	            </ul>
 	            <div>
 	                <ul class="my_page">
-	                    <li><a href="#">로그아웃</a></li>
+	                    <li><a href="${contextPath }/member/logout.jsp">로그아웃</a></li>
 	                    <li><a href="${contextPath }/Mypage/mypage.jsp">마이페이지</a></li>
 	                </ul>
 	            </div>

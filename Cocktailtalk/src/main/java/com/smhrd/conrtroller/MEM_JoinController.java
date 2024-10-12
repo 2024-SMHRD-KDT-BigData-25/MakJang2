@@ -35,7 +35,7 @@ public class MEM_JoinController extends HttpServlet {
 	        int res = dao.join(joinMember);
 	        
 	        if (res > 0) {
-	            response.sendRedirect("member/main.jsp");
+	            response.sendRedirect("CT3/jsp/index.jsp");
 	        } else {
 	            response.sendRedirect("member/logincheck.jsp");
 	        }
