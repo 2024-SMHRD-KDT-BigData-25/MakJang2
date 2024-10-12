@@ -1,4 +1,4 @@
-package com.smhrd.conrtroller;
+package com.smhrd.conrtroller.PartyController;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

@@ -1,13 +1,10 @@
-<%@page import="java.io.PrintWriter"%>
-<%@page import="com.smhrd.model.TB_SHOW_LIKES"%>
-<%@page import="com.smhrd.model.MemberLikeDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%@ page import="com.smhrd.model.MemberDAO" %>
 <%@ page import="com.smhrd.model.MyMember" %>
 
 <%
-response.setContentType("text/html; charset=UTF-8");
+    response.setContentType("text/html; charset=UTF-8");
     response.setCharacterEncoding("UTF-8");
 
     // 현재 세션을 가져옴
@@ -43,29 +40,11 @@ response.setContentType("text/html; charset=UTF-8");
     <title>메인페이지</title>
 </head>
 <body>
-<%
-MemberLikeDAO daoo = new MemberLikeDAO();
-int sh_no = 1;
-TB_SHOW_LIKES res = daoo.totallike(sh_no);
-TB_SHOW_LIKES ress = new TB_SHOW_LIKES(sh_no, email);
-int check = daoo.checklike(ress);
-System.out.print(check);
-%>
+
 <h1>메인페이지</h1>
 <h3>안녕하세요! <%= nick %>님!</h3> <!-- 수정된 변수 사용 -->
+<a href="login.jsp"><button>로그아웃</button></a>
 <a href="mypage.jsp"><button>마이페이지</button></a>
 <a href="event.jsp"><button>이벤트</button></a>
-
-<%
-	if(check >0) {%>
-		<form action="LikeDeleteController">
-			<button type="submit" name="email" value=<%=email%>>싫어요 <%=res.getSH_NO() %></button>
-		</form>
-	<%}else {%>
-		<form action="LikeInsertController">
-			<button type="submit" name="email" value=<%=email%>>좋아요 <%=res.getSH_NO() %></button>
-		</form>
-	<%}%>
-	
 </body>
 </html>

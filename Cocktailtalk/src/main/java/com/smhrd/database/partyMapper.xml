@@ -17,7 +17,7 @@
  </delete>
  
  <select id="checkparty" parameterType="com.smhrd.model.TB_SHOW_LIKES" resultType="int">
- 	select * from ab where SH_NO=#{SH_NO} and US_EMAIL=#{US_EMAIL}
+ 	select * from AB where SH_NO=#{SH_NO} and US_EMAIL=#{US_EMAIL}
  </select>
  
  
