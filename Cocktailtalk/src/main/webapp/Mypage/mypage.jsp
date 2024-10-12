@@ -197,36 +197,13 @@
         });
     </script>
 
-<hr>
-
-<h1>찜 기능 테스트</h1>
 <!-- 찜하기/찜삭제 기능 -->
     <form action="../BM_ToggleBookmarkController" method="post">
         <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
-        <input type="hidden" name="COCKTAIL_NO" value="<%=cocktailNo%>">
+        <input type="hidden" name="COCKTAIL_NO" value= 2 >
         <button type="submit"><%= isBookmarked ? "찜취소" : "찜하기" %></button>
     </form>
-
-<h1>찜 목록 출력</h1>
-<div>
-    <h1>내가 한 찜</h1>
-    <%
-        if (bookmarkList != null && !bookmarkList.isEmpty()) {
-            for (Cocktail_Info cocktail : bookmarkList) {
-                %>
-                <div>
-                    <h3><%= cocktail.getCOCKTAIL_NAME() %></h3>
-                    <img src="<%= request.getContextPath() + "/CocokTail_Img/" + cocktail.getCOCKTAIL_IMG() %>" alt="<%= cocktail.getCOCKTAIL_NAME() %>" />
-                </div>
-                <%
-            }
-        } else {
-            %>
-            <p>찜한 칵테일이 없습니다.</p>
-            <%
-        }
-    %>
-</div>
+    
 <jsp:include page="${contextPath }/footer/footer.jsp" />
 
 </body>
