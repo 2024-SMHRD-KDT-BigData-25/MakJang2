@@ -45,6 +45,12 @@
         VALUES (#{US_EMAIL}, #{COCKTAIL_NO})
     </insert>
     
+    <!-- 찜 중복체크 -->
+    <select id="countBookmark" parameterType="com.smhrd.model.Bookmark" resultType="int">
+    	SELECT COUNT(*) FROM TB_BOOKMARK WHERE US_EMAIL = #{US_EMAIL} AND COCKTAIL_NO = #{COCKTAIL_NO}
+	</select>
+    
+    
     <!-- 찜 목록 -->
     <select id="selectBookmark" parameterType="String" resultType="com.smhrd.model.Cocktail_Info">
 		SELECT B.*

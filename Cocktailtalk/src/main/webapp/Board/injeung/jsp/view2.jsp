@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html lang=kr">
 <head>
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="../../css/css.css">
 </head>
 <body>
-	<%@include file="/Board/header.jsp" %>
+	<jsp:include page="${contextPath }/header/header.jsp" />
     <div class="board_wrap">
         <div class="board_title">
             <Strong>인증 게시글</Strong>
@@ -52,8 +53,6 @@
             </div>
         </div>
     </div>
-    
-    <%@include file="/Board/footer.jsp" %>
-    
+    <jsp:include page="${contextPath }/footer/footer.jsp" />
 </body>
 </html>

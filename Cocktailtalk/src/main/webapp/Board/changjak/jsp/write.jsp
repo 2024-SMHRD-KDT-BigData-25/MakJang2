@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="../../css/css.css">
 </head>
 <body>
+	<jsp:include page="${contextPath }/header/header.jsp" />
     <div class="board_wrap">
         <div class="board_title">
             <Strong>창작 게시글 작성</Strong>
@@ -53,5 +55,6 @@
             </div>
         </div>
     </div>
+    <jsp:include page="${contextPath }/footer/footer.jsp" />
 </body>
 </html>

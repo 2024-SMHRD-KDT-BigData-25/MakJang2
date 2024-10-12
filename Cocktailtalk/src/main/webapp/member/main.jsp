@@ -43,7 +43,6 @@
 
 <h1>메인페이지</h1>
 <h3>안녕하세요! <%= nick %>님!</h3> <!-- 수정된 변수 사용 -->
-<a href="login.jsp"><button>로그아웃</button></a>
 <a href="mypage.jsp"><button>마이페이지</button></a>
 <a href="event.jsp"><button>이벤트</button></a>
 </body>

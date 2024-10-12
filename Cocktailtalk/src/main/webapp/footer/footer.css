@@ -1,0 +1,55 @@
+*{
+    list-style : none;
+    text-decoration: none; /* a태그 밑줄 없애줌 */
+    border-collapse: collapse;
+    margin: 0px;
+    padding:0px;
+    color: #000;
+    }
+    
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+footer {
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.logo a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #333;
+}
+.people span {
+        font-size: 10px;
+}
+
+.list {
+    margin-top: 10px;
+}
+
+.people span {
+    display: block;
+    margin: 5px 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1000px) {
+    .logo a {
+        font-size: 24px;
+    }
+
+    .people span {
+        font-size: 10px;
+    }
+}
+   
+    

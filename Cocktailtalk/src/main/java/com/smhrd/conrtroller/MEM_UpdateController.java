@@ -12,7 +12,7 @@ import com.smhrd.model.MemberDAO;
 import com.smhrd.model.MyMember;
 
 @WebServlet("/UpdateController")
-public class UpdateController extends HttpServlet {
+public class MEM_UpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

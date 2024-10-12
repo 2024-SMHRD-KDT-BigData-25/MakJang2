@@ -9,30 +9,28 @@
     response.setContentType("text/html; charset=UTF-8");
     response.setCharacterEncoding("UTF-8");
 
-    // 현재 세션을 가져옴
     HttpSession userSession = request.getSession();
-    String US_EMAIL = (String)userSession.getAttribute("EMAIL");
+    String US_EMAIL = (String) userSession.getAttribute("EMAIL");
 
-    // 로그인 정보가 없는 경우 오류 페이지로 리다이렉트
     if (US_EMAIL == null) {
         response.sendRedirect("fail.jsp");
         return;
     }
 
-    // MemberDAO를 사용하여 DB에서 사용자 정보를 가져옴
     MemberDAO dao = new MemberDAO();
-    MyMember member = dao.getMemberByEmail(US_EMAIL); // DB에서 닉네임 조회
-
+    MyMember member = dao.getMemberByEmail(US_EMAIL);
     String US_NICK = member != null ? member.getUS_NICK() : null;
 
-    // 닉네임이 없으면 오류 페이지로 리다이렉트
     if (US_NICK == null) {
         response.sendRedirect("fail.jsp");
         return;
     }
     
-	// 찜 목록을 가져오는 로직
     List<Cocktail_Info> bookmarkList = dao.selectBookmarkByEmail(US_EMAIL);
+    // 찜 목록에 칵테일 번호가 있는지 확인
+    int cocktailNo = 2; // 예시로 사용할 칵테일 번호
+    boolean isBookmarked = bookmarkList.stream()
+        .anyMatch(cocktail -> cocktail.getCOCKTAIL_NO() == cocktailNo);
 %>
 
 <script>
@@ -43,7 +41,7 @@
 	}
 </script>
 
-<link rel="stylesheet" href="Mypage/mypage.css">
+<link rel="stylesheet" href="../Mypage/mypage.css">
 
 <!DOCTYPE html>
 <html>
@@ -52,7 +50,7 @@
     <title>마이페이지</title>
 </head>
 <body>
-
+	<jsp:include page="${contextPath }/header/header.jsp" />
     <div class="mypage-wrap">
         <div class="mypage-container">
             <h1>마이페이지</h1>
@@ -97,6 +95,26 @@
                                     <button class="wishlist-button">
                                         ♡ 찜
                                     </button>
+                                    
+                                    <%
+        							if (bookmarkList != null && !bookmarkList.isEmpty()) {
+            							for (Cocktail_Info cocktail : bookmarkList) {
+                						%>
+                					<div>
+                    					<h3><%= cocktail.getCOCKTAIL_NAME() %></h3>
+                    						<img src="<%= request.getContextPath() + "/CocokTail_Img/" + cocktail.getCOCKTAIL_IMG() %>" alt="<%= cocktail.getCOCKTAIL_NAME() %>" />
+               					 	</div>
+                					<%
+            							}
+        							} else {
+            						%>
+            							<p>찜한 칵테일이 없습니다.</p>
+            						<%
+        							}
+   	 								%>
+									</div>
+                                    
+                                    <!--
                                     <h2>마가리타</h2>
                                     <div class="clickable-div" data-title="상품 1" data-description="상품 1의 레시피입니다." data-history="상품 1의 역사입니다">
                                     <img src="/hompage/image/icon1.svg">
@@ -106,7 +124,8 @@
                                         <span class="tag">상큼</span>
                                         <span class="tag">짭짤</span>
                                     </div>
-                                </div>
+                                	</div>
+                                	-->
                             </div>
                 
                             <div class="cocktail-item">
@@ -146,8 +165,7 @@
             </div>
         </div>
     </div>
-
-
+    
     <script>
         // DOM 요소 가져오기
         const nicknameInput = document.getElementById('nickname');
@@ -182,35 +200,15 @@
 <hr>
 
 <h1>찜 기능 테스트</h1>
-<!-- 찜하기 기능 -->
-    <form action="BM_InsertController" method="post">
+<!-- 찜하기/찜삭제 기능 -->
+    <form action="../BM_ToggleBookmarkController" method="post">
         <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
-        <input type="hidden" name="COCKTAIL_NO" value="2">
-        네그로니<input type="submit" value="찜하기">
-    </form>
-    
-    <form action="BM_InsertController" method="post">
-        <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
-        <input type="hidden" name="COCKTAIL_NO" value="3">
-        다이키리<input type="submit" value="찜하기">
+        <input type="hidden" name="COCKTAIL_NO" value="<%=cocktailNo%>">
+        <button type="submit"><%= isBookmarked ? "찜취소" : "찜하기" %></button>
     </form>
 
-<h1>찜 취소</h1>
-<!-- 찜취소 기능 -->
-	<form action="BM_DeleteController" method="post">
-		<input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
-		<input type="hidden" name="COCKTAIL_NO" value="2">
-		네그로니<input type="submit" value="찜취소">
-	</form>
-	
-	<form action="BM_DeleteController" method="post">
-		<input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
-		<input type="hidden" name="COCKTAIL_NO" value="3">
-		다이키리<input type="submit" value="찜취소">
-	</form>
-
-<!-- 찜 목록 출력 -->
-<div class="bookmark-section">
+<h1>찜 목록 출력</h1>
+<div>
     <h1>내가 한 찜</h1>
     <%
         if (bookmarkList != null && !bookmarkList.isEmpty()) {
@@ -229,6 +227,7 @@
         }
     %>
 </div>
+<jsp:include page="${contextPath }/footer/footer.jsp" />
 
 </body>
 </html>

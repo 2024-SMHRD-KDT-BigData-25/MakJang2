@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.smhrd.model.MemberDAO;
 
 @WebServlet("/DeleteController")
-public class DeleteController extends HttpServlet {
+public class MEM_DeleteController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

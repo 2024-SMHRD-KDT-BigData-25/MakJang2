@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +12,8 @@
 </head>
 <body>
     <div class="wrap">
-		<%@include file="/Board/header.jsp" %>
-        <!-- intro 끝 -->
+		<jsp:include page="${contextPath }/header/header.jsp" />
+        
         <div>
             <div class=main_bg>
             </div>
@@ -51,5 +52,6 @@
         </div>
         <%@include file="/Board/footer.jsp" %>
     </div>
+    <jsp:include page="${contextPath }/footer/footer.jsp" />
 </body>
 </html>

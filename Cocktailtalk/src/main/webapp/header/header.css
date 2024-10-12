@@ -1,0 +1,172 @@
+*{
+    list-style : none;
+    text-decoration: none; /* a태그 밑줄 없애줌 */
+    border-collapse: collapse;
+    margin: 0px;
+    padding:0px;
+    color: #000;
+    }
+
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.intro_bg{
+    background-image: url("");
+    width: 100%;
+    height: auto;
+    background-color: white; /* 다크 네비게이션 바 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+}
+
+.header {
+    display: flex;
+    width: 80%;
+    height: 86px;
+    margin : auto; /*가운데로 들어옴*/
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px; /* 상하좌우 여백 조정 */
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 170px; /* 로고 크기 조정 */
+}
+
+.nav {
+    list-style: none;
+    display: flex;
+    gap: 50px; /* 메뉴 간 간격 조정 */
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+    position: relative;
+    
+}
+
+.nav a {
+    color: coral;
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.nav a:hover {
+    color: white; /* 오렌지 색상 강조 */
+    background-color:#444;
+    border-radius: 5px;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: coral;
+    padding: 10px 0;
+    list-style: none;
+    min-width: 180px; /* 드롭다운 너비 */
+    border-radius: 8px; /* 둥근 모서리 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 드롭다운 그림자 */
+}
+
+.dropdown li {
+    padding: 0;
+}
+
+.dropdown a {
+    padding: 12px 20px;
+    color: #f0f0f0;
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu:hover .dropdown {
+    display: block;
+}
+
+.dropdown a:hover {
+    background-color: #444;
+}
+
+.my_page {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* 마이페이지 메뉴 간격 */
+    margin: 0;
+    padding: 0;
+}
+
+.my_page a {
+    color: coral;
+    text-decoration: none;
+    font-size: 21px;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.my_page a:hover {
+    color: #ff8c00;
+    background-color: #444;
+    border-radius: 5px;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+    }
+    .nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    .my_page {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}
+
+/* 반응형 디자인 */
+@media (max-width : 1000px) {
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: coral;
+        padding: 20px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav.open {
+        display: flex;
+    }
+
+    .nav li {
+        text-align: center;
+        margin: 10px 0;
+        white-space: nowrap; /* 줄바꿈 방지 */
+    }
+
+    .my_page {
+        display: none;
+    }
+}
