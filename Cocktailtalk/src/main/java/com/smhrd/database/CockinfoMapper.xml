@@ -3,6 +3,7 @@
 <mapper namespace="CockinfoMapper">
 
 	<!-- Cocktail_info 전체 데이터 가져오기-->
+	<!-- Cocktail_Info, CockDAO, reccommend.jsp, CockinfoMapper, MemberMapper  -->
 	<select id="info_List" resultType="com.smhrd.model.Cocktail_Info">
 		select * from tb_cocktail_info order by cocktail_img
 	</select>

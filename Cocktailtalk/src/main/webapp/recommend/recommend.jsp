@@ -58,14 +58,14 @@
                         ♡ 찜
                     </button>
                     <h2>마가리타</h2>
-                    <div class="clickable-div" data-title="<%=c.getCocktail_name() %>"  data-recipe="<%=c.getCocktail_recipe() %>" data-history="<%=c.getCocktail_his() %>" data-image="/hompage/image/<%=c.getCocktail_img() %>">>
-                    <img src="/hompage/image/<%=c.getCocktail_img() %>">
-                    <p><%=c.getCocktail_point() %></p>
-                    <div class="ingredients"><%=c.getCocktail_base() %></div>
+                    <div class="clickable-div" data-title="<%=c.getCOCKTAIL_NAME() %>"  data-recipe="<%=c.getCOCKTAIL_RECIPE() %>" data-history="<%=c.getCOCKTAIL_HIS() %>" data-image="/hompage/image/<%=c.getCOCKTAIL_IMG() %>">>
+                    <img src="/hompage/image/<%=c.getCOCKTAIL_IMG() %>">
+                    <p><%=c.getCOCKTAIL_POINT() %></p>
+                    <div class="ingredients"><%=c.getCOCKTAIL_BASE() %></div>
                     <div class="tags">
-                        <span class="tag"><%=c.getCocktail_tag_1() %></span>
-                    <%if(c.getCocktail_tag_2()!=null){ %>   
-                        <span class="tag"><%=c.getCocktail_tag_2() %></span>
+                        <span class="tag"><%=c.getCOCKTAIL_TAG_1() %></span>
+                    <%if(c.getCOCKTAIL_TAG_2()!=null){ %>   
+                        <span class="tag"><%=c.getCOCKTAIL_TAG_2() %></span>
                        <%} %>
                     </div>
                 </div>
