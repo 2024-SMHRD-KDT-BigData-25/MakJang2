@@ -58,8 +58,8 @@
                         ♡ 찜
                     </button>
                     <h2>마가리타</h2>
-                    <div class="clickable-div" data-title="<%=c.getCOCKTAIL_NAME() %>"  data-recipe="<%=c.getCOCKTAIL_RECIPE() %>" data-history="<%=c.getCOCKTAIL_HIS() %>" data-image="/hompage/image/<%=c.getCOCKTAIL_IMG() %>">>
-                    <img src="/hompage/image/<%=c.getCOCKTAIL_IMG() %>">
+                    <div class="clickable-div" data-title="<%=c.getCOCKTAIL_NAME() %>"  data-recipe="<%=c.getCOCKTAIL_RECIPE() %>" data-history="<%=c.getCOCKTAIL_HIS() %>" data-image="../CocokTail_Img/<%=c.getCOCKTAIL_IMG() %>">>
+                    <img src="../CocokTail_Img/<%=c.getCOCKTAIL_IMG() %>">
                     <p><%=c.getCOCKTAIL_POINT() %></p>
                     <div class="ingredients"><%=c.getCOCKTAIL_BASE() %></div>
                     <div class="tags">
