@@ -59,11 +59,12 @@ input[type="text"] {
 .cocktail-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
+    justify-content: flex-start;
+    margin: 0 -10px; /* 좌우 마진 조정 */
 }
 
 .cocktail-item {
+	margin: 10px;
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
@@ -76,8 +77,10 @@ input[type="text"] {
 
 
 .cocktail-item h2 {
+	margin-top: 35px;
     margin-bottom: 10px;
     color: #007bff;
+    
 }
 
 .cocktail-item img{
@@ -161,6 +164,7 @@ input[type="text"] {
     padding: 5px 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+    
 }
 
 .wishlist-button:hover {

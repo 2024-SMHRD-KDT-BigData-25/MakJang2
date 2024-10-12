@@ -100,68 +100,72 @@
 
      <!-- 자바스크립트를 이용한 필터링 기능 -->
      <script>
-        const nameSearchInput = document.getElementById('searchInput');
-        const cocktailItems = document.querySelectorAll('.cocktail-item');
-        const tagButtons = document.querySelectorAll('.tag-button');
-        const ingredientButtons = document.querySelectorAll('.ingredient-button');
-        const subIngredientLists = document.querySelectorAll('.sub-ingredient-list');
-        const subIngredientButtons = document.querySelectorAll('.sub-ingredient-button');
+     const nameSearchInput = document.getElementById('searchInput');
+     const cocktailItems = document.querySelectorAll('.cocktail-item');
+     const tagButtons = document.querySelectorAll('.tag-button');
+     const ingredientButtons = document.querySelectorAll('.ingredient-button');
 
      // 이름 검색 기능
-        function searchCocktails() {
-            const searchValue = nameSearchInput.value.toLowerCase();
+     function searchCocktails() {
+         const searchValue = nameSearchInput.value.toLowerCase();
 
-            cocktailItems.forEach(item => {
-                const cocktailName = item.querySelector('h2').textContent.toLowerCase();
-                if (cocktailName.includes(searchValue)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
+         cocktailItems.forEach(item => {
+             const cocktailName = item.querySelector('h2').textContent.toLowerCase();
+             if (cocktailName.includes(searchValue)) {
+                 item.style.display = 'block'; // 검색된 아이템은 표시
+             } else {
+                 item.style.display = 'none'; // 검색되지 않은 아이템은 숨김
+             }
+         });
 
-        // 버튼 클릭 시 검색
-        document.querySelector('.search-bar button').addEventListener('click', searchCocktails);
+         // 검색 후 카운팅하여 위치 조정
+         const visibleItems = Array.from(cocktailItems).filter(item => item.style.display === 'block');
+         visibleItems.forEach((item, index) => {
+             item.style.order = index; // 순서대로 정렬
+         });
+     }
 
-        // 엔터 키를 눌렀을 때 검색
-        nameSearchInput.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                searchCocktails();
-            }
-        });
+     // 버튼 클릭 시 검색
+     document.querySelector('.search-bar button').addEventListener('click', searchCocktails);
 
-        // 태그 버튼 클릭 시 필터링 기능
-        tagButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const selectedTag = button.getAttribute('data-tag').toLowerCase();
+     // 엔터 키를 눌렀을 때 검색
+     nameSearchInput.addEventListener('keydown', function(event) {
+         if (event.key === 'Enter') {
+             searchCocktails();
+         }
+     });
 
-                cocktailItems.forEach(item => {
-                    const tags = Array.from(item.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
-                    if (tags.includes(selectedTag)) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
+     // 태그 버튼 클릭 시 필터링 기능
+     tagButtons.forEach(button => {
+         button.addEventListener('click', function() {
+             const selectedTag = button.getAttribute('data-tag').toLowerCase();
 
-        // 재료 버튼 클릭 시 필터링 기능
-        ingredientButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const selectedIngredient = button.getAttribute('data-ingredient').toLowerCase();
+             cocktailItems.forEach(item => {
+                 const tags = Array.from(item.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+                 if (tags.includes(selectedTag)) {
+                     item.style.display = 'block';
+                 } else {
+                     item.style.display = 'none';
+                 }
+             });
+         });
+     });
 
-                cocktailItems.forEach(item => {
-                    const ingredients = item.querySelector('.ingredients').textContent.toLowerCase();
-                    if (ingredients.includes(selectedIngredient)) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
+     // 재료 버튼 클릭 시 필터링 기능
+     ingredientButtons.forEach(button => {
+         button.addEventListener('click', function() {
+             const selectedIngredient = button.getAttribute('data-ingredient').toLowerCase();
+
+             cocktailItems.forEach(item => {
+                 const ingredients = item.querySelector('.ingredients').textContent.toLowerCase();
+                 if (ingredients.includes(selectedIngredient)) {
+                     item.style.display = 'block';
+                 } else {
+                     item.style.display = 'none';
+                 }
+             });
+         });
+     });
 
         // 모든 찜하기 버튼에 대해 이벤트 리스너 추가
         const wishlistButtons = document.querySelectorAll('.wishlist-button');
