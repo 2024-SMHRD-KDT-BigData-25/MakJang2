@@ -29,7 +29,7 @@ public class CockTail_Controller extends HttpServlet {
 		List<Cocktail_Info> info = dao.Cockinfo();
 		
 		request.setAttribute("info", info);
-		RequestDispatcher dis = request.getRequestDispatcher( "recommend/recommend.jsp" );
+		RequestDispatcher dis = request.getRequestDispatcher( "recommend.jsp" );
 		dis.forward(request, response);
 		
 		
