@@ -10,7 +10,7 @@ public class CockDAO {
 	
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
 	
-	//Cocktail_Info SELECT 		
+	//Cocktail_Info reccommend SELECT
 	//Cocktail_Info, CockDAO, reccommend.jsp, CockinfoMapper,
 	//MemberMapper, CockTail_Controller
 
