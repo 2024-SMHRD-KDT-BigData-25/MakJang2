@@ -94,12 +94,8 @@
     	<artifactId>ojdbc8</artifactId>
     	<version>23.2.0.0</version>
 	</dependency>
-
-	<dependency>
-		<groupId>com.smhrd</groupId>
-		<artifactId>Cocktail</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</dependency>
+	
+	
 	
   </dependencies>
 
