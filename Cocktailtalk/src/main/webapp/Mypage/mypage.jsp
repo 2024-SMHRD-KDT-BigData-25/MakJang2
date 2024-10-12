@@ -41,11 +41,10 @@
 	}
 </script>
 
-<link rel="stylesheet" href="../Mypage/mypage.css">
-
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="../Mypage/mypage.css">
     <meta charset="UTF-8">
     <title>마이페이지</title>
 </head>
@@ -58,7 +57,7 @@
             <!-- 프로필 영역 -->
             <div class="profile-section">
                 <div>
-                    <img src="0.png" alt="프로필 이미지" class="profile-img">
+                    <img src="../images/0.png" alt="프로필 이미지" class="profile-img" style="width: 150px; height: auto;">
                     <div class="profile-info">
                         
                         <div class="email-section">
@@ -88,46 +87,46 @@
                         <h1>내가 한 찜</h1>
                     </div>
                 </div>
-                <div class="jjim-list">
-                    <div>
-                        <div class="cocktail-list">
-                            <div class="cocktail-item">
-                                    <button class="wishlist-button">
-                                        ♡ 찜
-                                    </button>
-                                    
-                                    <%
-        							if (bookmarkList != null && !bookmarkList.isEmpty()) {
-            							for (Cocktail_Info cocktail : bookmarkList) {
-                						%>
-                					<div>
-                    					<h3><%= cocktail.getCOCKTAIL_NAME() %></h3>
-                    						<img src="<%= request.getContextPath() + "/CocokTail_Img/" + cocktail.getCOCKTAIL_IMG() %>" alt="<%= cocktail.getCOCKTAIL_NAME() %>" />
-               					 	</div>
-                					<%
-            							}
-        							} else {
-            						%>
-            							<p>찜한 칵테일이 없습니다.</p>
-            						<%
-        							}
-   	 								%>
-									</div>
-                                    
-                                    <!--
-                                    <h2>마가리타</h2>
-                                    <div class="clickable-div" data-title="상품 1" data-description="상품 1의 레시피입니다." data-history="상품 1의 역사입니다">
-                                    <img src="/hompage/image/icon1.svg">
-                                    <p>라임 주스와 테킬라가 어우러진 상큼한 칵테일</p>
-                                    <div class="ingredients">테킬라, 라임 주스, 삼각 설탕</div>
-                                    <div class="tags">
-                                        <span class="tag">상큼</span>
-                                        <span class="tag">짭짤</span>
-                                    </div>
-                                	</div>
-                                	-->
-                            </div>
                 
+<div class="jjim-list">
+    <div>
+        <div class="cocktail-list">
+            <%
+            if (bookmarkList != null && !bookmarkList.isEmpty()) {
+                for (Cocktail_Info cocktail : bookmarkList) {
+                    boolean Bookmarked = true; // 찜 되어 있는 상태
+            %>
+            <div class="cocktail-item">
+                <form action="../BM_ToggleBookmarkController" method="post">
+                    <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
+                    <input type="hidden" name="COCKTAIL_NO" value="<%= cocktail.getCOCKTAIL_NO() %>">
+                    <span class="wishlist-button" onclick="this.closest('form').submit()">
+                    ✔ 취소
+                    </span>
+                </form>
+                <br>
+                <br>
+                <h2><%= cocktail.getCOCKTAIL_NAME() %></h2>
+                <img src="<%= request.getContextPath() + "/CocokTail_Img/" + cocktail.getCOCKTAIL_IMG() %>" alt="<%= cocktail.getCOCKTAIL_NAME() %>"
+                style="width: 200px; height: auto;">
+                <br>
+                <br>
+                <div class="ingredients">레시피(RECIPE)</div>
+                <div class="ingredients"><%= cocktail.getCOCKTAIL_RECIPE() %></div>
+            </div>
+            <%
+                }
+            } else {
+            %>
+                <p>찜한 칵테일이 없습니다.</p>
+            <%
+            }
+            %>
+        </div>
+    </div>
+</div>
+
+                			<!--
                             <div class="cocktail-item">
                                     <button class="wishlist-button">
                                         ♡ 찜
@@ -156,16 +155,14 @@
                                     <div class="tags">
                                         <span class="tag">쌉싸름</span>
                                         <span class="tag">강렬</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+									</div>
+								</div>
+							</div>
+							-->
+		</div>
+	</div>
+</div>
+
     <script>
         // DOM 요소 가져오기
         const nicknameInput = document.getElementById('nickname');
@@ -197,14 +194,28 @@
         });
     </script>
 
-<!-- 찜하기/찜삭제 기능 -->
+<jsp:include page="${contextPath }/footer/footer.jsp" />
+
+<!-- 찜 버튼 세이브용 -->
+
     <form action="../BM_ToggleBookmarkController" method="post">
         <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
         <input type="hidden" name="COCKTAIL_NO" value= 2 >
-        <button type="submit"><%= isBookmarked ? "찜취소" : "찜하기" %></button>
+        테스트용1<button type="submit"><%= isBookmarked ? "찜취소" : "찜하기" %></button>
     </form>
-    
-<jsp:include page="${contextPath }/footer/footer.jsp" />
+
+    <form action="../BM_ToggleBookmarkController" method="post">
+        <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
+        <input type="hidden" name="COCKTAIL_NO" value= 3 >
+        테스트용2<button type="submit"><%= isBookmarked ? "찜취소" : "찜하기" %></button>
+    </form>
+
+    <form action="../BM_ToggleBookmarkController" method="post">
+        <input type="hidden" name="US_EMAIL" value="<%=US_EMAIL%>">
+        <input type="hidden" name="COCKTAIL_NO" value= 4 >
+        테스트용3<button type="submit"><%= isBookmarked ? "찜취소" : "찜하기" %></button>
+    </form>
+
 
 </body>
 </html>

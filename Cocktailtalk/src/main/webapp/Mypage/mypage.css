@@ -207,7 +207,7 @@ button {
 /*찜 버튼*/
 
 .wishlist-button{
-    position: absolute;
+    position: relative;
     top: 10px;
     right: 10px;
     background-color: #ff6b6b;
@@ -223,3 +223,4 @@ button {
     position: absolute;
     background-color: #ff4a4a;
 }
+
