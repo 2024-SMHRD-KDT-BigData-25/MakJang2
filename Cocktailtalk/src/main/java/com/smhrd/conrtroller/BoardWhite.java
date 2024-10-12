@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.smhrd.model.boardDAO;
-import com.smhrd.model.myboard;
+import com.smhrd.model.BoardDAO;
+import com.smhrd.model.MyBoard;
 
 /**
  * Servlet implementation class BoardWhite
@@ -40,10 +40,10 @@ public class BoardWhite extends HttpServlet {
 		String writer = multi.getParameter("writer");
 		String img = multi.getFilesystemName("img");
 		
-		myboard uploadBoard = new myboard(title,content,writer,img);
+		MyBoard uploadBoard = new MyBoard(title,content,writer,img);
 		
-		boardDAO dao = new boardDAO();
-		int res = dao.writeBoard(uploadBoard);
+		BoardDAO dao = new BoardDAO();
+		int res = dao.writeimgBoard(uploadBoard);
 		
 		if(res>0) {
 			response.sendRedirect("boardlist.jsp");

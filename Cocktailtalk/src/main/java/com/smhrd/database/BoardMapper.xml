@@ -2,20 +2,114 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardMapper">
 	
-	<select id = "getList" resultType="com.smhrd.model.myboard">
+	<select id = "getimgList" resultType="com.smhrd.model.MyBoard">
 		select * from myboard
 	</select>
 	
-	<insert id="write" parameterType="com.smhrd.model.myboard">
+	<insert id="imgwrite" parameterType="com.smhrd.model.MyBoard">
 		insert into myboard(title,content,writer,img)
 		values (#{title},#{content},#{writer},#{img})
 	</insert>
 	
-	<select id = "getBoard" parameterType="int" resultType="com.smhrd.model.myboard">
+	<select id = "getimgBoard" parameterType="int" resultType="com.smhrd.model.MyBoard">
 		select * from myboard where idx = #{idx}
 	</select>
 	
-	<delete id = "delete">
+	<delete id = "imgdelete">
 		delete from myboard where idx = #{idx}
 	</delete>
+	
+		<!-- 모임 게시글 정보 -->
+	<select id="meSelect" resultType="com.smhrd.model.MyBoard">
+		select * from TB_MEETING_BOARD a, tb_user_info b where a.us_email = b.us_email order by a.ME_WRITEDATE DESC
+	</select>
+	
+	<!-- 모임 게시판 글작성  -->
+	<insert id="meWrite" parameterType="com.smhrd.model.MyBoard">
+		insert into TB_MEETING_BOARD(ME_TITLE,ME_CONTENT,US_EMAIL,ME_PEOPLE)
+		values (#{meTitle},#{meContent},#{usEmail},#{mePeople})
+	</insert>
+	
+	<!-- 모임글작성 완료뷰 -->
+	<select id="getmeet" parameterType="int" resultType="com.smhrd.model.MyBoard">
+		select * from TB_MEETING_BOARD a, tb_user_info b where a.us_email = b.us_email and a.ME_NO=#{ME_NO}
+	</select>	
+	
+	   <!-- 특정 글 조회 (수정할 글 불러오기) -->
+    <select id="selectBoard" parameterType="int" resultType="com.smhrd.model.MyBoard">
+        SELECT ME_NO, ME_TITLE, US_EMAIL, ME_PEOPLE, ME_CONTENT
+        FROM TB_MEETING_BOARD
+        WHERE ME_NO = #{ME_NO}
+    </select>
+
+	 <!-- 게시글 삭제 -->
+	<delete id="delete">
+		delete from TB_MEETING_BOARD where ME_NO=#{meNo}
+	</delete>
+
+    <!-- 글 수정 (Update) -->
+	<update id="updateBoard" parameterType="com.smhrd.model.MyBoard">
+	    UPDATE TB_MEETING_BOARD
+	    SET ME_TITLE = #{meTitle},
+	        ME_CONTENT = #{meContent},
+	        ME_PEOPLE = #{mePeople}
+	    WHERE ME_NO = #{ME_NO}
+	</update>
+	    
+    <!-- 페이징 -->
+	<select id="getBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
+	        SELECT * 
+	        FROM (
+	            SELECT ROWNUM AS rnum, c.*
+	            FROM (
+	                SELECT a.ME_NO, a.ME_TITLE, a.ME_CONTENT, a.ME_WRITEDATE, a.ME_HIT, a.ME_LIKE, a.me_people, a.me_click, b.us_nick 
+	                FROM TB_MEETING_BOARD a, tb_user_info b
+	                where a.us_email = b.us_email
+	                ORDER BY a.ME_WRITEDATE DESC
+	            ) c
+	            WHERE ROWNUM &lt;= #{endRow}
+	        )
+	        WHERE rnum &gt;= #{startRow}
+	    </select>
+
+
+    <!-- 전체 게시글 수 조회 -->
+     <select id="getBoardCount" resultType="int">
+        SELECT COUNT(*) 
+        FROM TB_MEETING_BOARD
+    </select>
+    
+	<!-- 댓글 또는 답글 추가 -->
+	<insert id="insertComment">
+	    INSERT INTO comments (board_id, parent_comment_id, writer, content, us_email)
+	    VALUES (#{boardId}, #{parentCommentId, jdbcType=INTEGER}, #{writer}, #{content}, #{us_email} )
+	</insert>
+
+    <!-- 특정 게시글의 댓글 및 답글 조회 -->
+	<select id="getCommentsByBoardId" resultType="com.smhrd.model.Comment">
+	    SELECT * 
+	    FROM comments 
+	    WHERE board_id = #{boardId}
+	    ORDER BY COALESCE(parent_comment_id, comment_id), comment_id	
+	</select>
+	
+	<!-- 조회수 증가  -->
+	<update id="increaseHitCount" parameterType="int">
+    	UPDATE TB_MEETING_BOARD
+    	SET ME_HIT = ME_HIT + 1
+    	WHERE ME_NO = #{boardId}
+	</update>
+	
+	<!-- 댓글 수 조회 -->
+	<select id="getCommentCountByBoardId" parameterType="int" resultType="int">
+	    SELECT COUNT(*) FROM comments WHERE board_id = #{boardId}
+	</select>
+	
+	<!-- 대댓글 삭제 -->
+	<delete id="deleteComment" parameterType="int">
+    DELETE FROM comments WHERE COMMENT_ID = #{commentId}
+	</delete>
+    
+<!--________________________________________모임_____________________________________________________  -->
+
 </mapper>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.smhrd.model.MyMember;
 import com.smhrd.model.MemberDAO;
 
-@WebServlet("/JoinController")
+@WebServlet("/member/JoinController")
 public class MEM_JoinController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,7 +27,7 @@ public class MEM_JoinController extends HttpServlet {
 	        // 중복 체크
 	        if (dao.isDuplicateEmail(US_EMAIL)) {
 	            // 데이터가 이미 존재하는 경우 메인 페이지로 리다이렉트
-	            response.sendRedirect("member/main.jsp");
+	            response.sendRedirect("main.jsp");
 	            return;
 	        }
 
@@ -35,13 +35,13 @@ public class MEM_JoinController extends HttpServlet {
 	        int res = dao.join(joinMember);
 	        
 	        if (res > 0) {
-	            response.sendRedirect("member/main.jsp");
+	            response.sendRedirect("/member/main.jsp");
 	        } else {
-	            response.sendRedirect("member/logincheck.jsp");
+	            response.sendRedirect("/member/logincheck.jsp");
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace(); // 에러 로그 기록
-	        response.sendRedirect("member/fail.jsp"); // 에러 페이지로 리다이렉트
+	        response.sendRedirect("fail.jsp"); // 에러 페이지로 리다이렉트
 	    }
 	}
 

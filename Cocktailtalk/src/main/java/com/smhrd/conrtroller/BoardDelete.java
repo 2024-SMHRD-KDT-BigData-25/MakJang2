@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.smhrd.model.boardDAO;
+import com.smhrd.model.BoardDAO;
 
 /**
  * Servlet implementation class BoardDelete
@@ -25,8 +25,8 @@ public class BoardDelete extends HttpServlet {
 		
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		
-		boardDAO dao = new boardDAO();
-		int res = dao.deleteBoard(idx);
+		BoardDAO dao = new BoardDAO();
+		int res = dao.deleteimgBoard(idx);
 		
 		PrintWriter out = response.getWriter();
 		out.print(res);

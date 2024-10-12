@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.smhrd.model.boardDAO;
-import com.smhrd.model.myboard;
+import com.smhrd.model.BoardDAO;
+import com.smhrd.model.MyBoard;
 
 /**
  * Servlet implementation class BoardList
@@ -26,8 +26,8 @@ public class BoardList extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		boardDAO dao = new boardDAO();
-		List<myboard> list = dao.getList();
+		BoardDAO dao = new BoardDAO();
+		List<MyBoard> list = dao.getimgList();
 		// JavaObject => JSONObject(json 형식의 객체구조) => GSON
 		Gson gson = new Gson();
 		String json = gson.toJson(list);

@@ -43,90 +43,35 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인확인</title>
-    <style>
-		.logincheck-wrap{
-			display:flex;
-			justify-content: center;
-			align-items: center;
-    		margin-top: 120px;
-		}
-		
-		.logincheck-success{
-			flex: 1;
-			margin-left: 100px;
-		}
-		
-		.logincheck-image{
-			flex: 1;
-		}
-		
-		.submit {
-		    padding: 10px 20px;
-		    background-color: lightgray;
-		    color: black;
-		    border: none;
-		    border-radius: 4px;
-		    cursor: pointer;
-		}
-		
-		.form{
-			align: center;
-		}
-		
-		.success{
-			font-size:80px;
-		}
-		
-		.welcome{
-			color: orange;
-			margin: 25px;
-			font-size:30px;
-		}
-		
-		.email{
-			border: 1px solid black;
-		    border-radius: 8px;
-		    max-width: 300px;
-		}
-		
-		.main{
-			margin: 25px;
-		}
-		
-    </style>
 </head>
 <body>
-<div class="logincheck-wrap">
-	<div class="logincheck-success">
-		<div align="center">
-			<div class="success">
-	    		<div> Login Success!</div>
-	    	</div>
-	    <!-- 아이디: <%=US_NAME %> -->
-	    <!-- 닉네임: <%=US_NICK %> -->
-	    	<div class="welcome">
-	    		<div>칵테일톡에 오신걸 환영합니다!</div>
-	    	</div>
-	    	<div class="email">
-	    		<div>접속한 계정의 이메일: <%=US_EMAIL %></div>
-	    	</div>
-	    	<div class="main">
-	    		<div>
-				    <form action="../JoinController" class="form">
-				    	<input type="hidden" name="US_EMAIL" value="<%=US_EMAIL %>">
-				    	<input type="hidden" name="US_NAME" value="<%=US_NAME %>">
-				    	<input type="hidden" name="US_NICK" value="<%=US_NICK %>">
-				        <input type="submit" class="submit" value="메인페이지로 이동">
-				    </form>
-	    		</div>
-	    	</div>
-	    </div>
-	</div>
-<div class="logincheck-image">
-	<img src="../images/test.png" class="image">
-</div>
-</div>
-
-
+<fieldset>
+	<table align="center">
+		<tr>
+    		<td><h1 align="center">로그인 성공!</h1></td>
+    	</tr>
+    <!-- 아이디: <%=US_NAME %> -->
+    <!-- 닉네임: <%=US_NICK %> -->
+    	<tr>
+    		<td><h2 align="center">칵테일톡에 오신걸 환영합니다!</h2></td>
+    	</tr>
+    	<tr>
+    		<td><p align="center">접속한 계정의 이메일: <%=US_EMAIL %></p></td>
+    	</tr>
+    	<tr>
+    		<td>
+			    <form action="JoinController">
+			    	<input type="hidden" name="US_EMAIL" value="<%=US_EMAIL %>">
+			    	<input type="hidden" name="US_NAME" value="<%=US_NAME %>">
+			    	<input type="hidden" name="US_NICK" value="<%=US_NICK %>">
+			        <input type="submit" value="메인페이지로 이동">
+			    </form>
+    		</td>
+    		<td>
+    			<a href="logout.jsp"><button>로그아웃</button></a>
+    		</td>
+    	</tr>
+    </table>
+</fieldset>
 </body>
 </html>

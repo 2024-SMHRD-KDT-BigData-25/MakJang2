@@ -1,0 +1,117 @@
+    *{
+    list-style : none;
+    text-decoration: none; /* a태그 밑줄 없애줌 */
+    border-collapse: collapse;
+    margin: 0px;
+    padding:0px;
+    color: #000;
+    }
+
+    .intro_bg{
+        background-image: url("");
+        width: 1700px;;
+        height: auto;
+        background: lightsalmon;
+    }
+    
+    .header{
+        display: flex;
+        width:1400px;
+        margin : auto; /*가운데로 들어옴*/
+        height: 86px;
+        line-height: 86px;
+        gap: 55px;
+        font-size: 1.4rem
+        
+    }
+
+    .logo{
+        flex:1;
+        text-align:center;        
+    }
+
+    .logo > a{
+        color:#000;
+        font-weight: bold;
+    }
+
+    .nav{
+        flex: 7;
+        display:flex;
+        justify-content:flex-start;
+        /* gap: 120px; */
+    }
+
+    .nav > li{
+        padding: 0 60px;
+    }
+    
+    .nav > li> a{
+        color:#000;
+        font-weight: bold;
+    }
+
+    .nav a:hover{
+        background-color: #fff;
+        background-size: auto;
+        padding : 5px;
+    }
+
+    .dropdown {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        min-width: 160px;
+    }
+
+    /* 서브메뉴 스타일 */
+    .dropdown li {
+        width: 170px;
+        text-align: center;
+        border: 1px solid #000;
+        border-radius: 10px;
+    }
+
+    .dropdown li a {
+        /* padding: 10px 20px; */
+        color: #000;
+        text-decoration: none;
+        display: block;
+        cursor: pointer;
+    }
+
+    .dropdown li a:hover {
+        background-color: rgb(210, 250, 213);
+        text-decoration: underline;
+    }
+
+    /* 부모 항목에 마우스 오버시 서브메뉴 보이기 */
+    .nav > li:hover .dropdown {
+        display: block;
+    }
+
+    /* 전체 클리어 스타일 */
+    .clear {
+        clear: both;
+    }
+
+    .my_page{
+        flex:2;
+        display:flex;
+        justify-content:flex-start;
+        text-align: center;
+        /* gap: 40px; */
+    }
+
+    .my_page > li{
+        padding: 0 30px;
+    }
+    
+    .my_page > li> a{
+        color:#000;
+        font-weight: bold;
+        
+    }

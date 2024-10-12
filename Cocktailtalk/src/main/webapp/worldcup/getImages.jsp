@@ -1,16 +1,16 @@
 <%@page contentType="application/json; charset=UTF-8" %>
 <%@page import="com.google.gson.Gson"%>
-<%@page import="com.smhrd.model.boardDAO"%>
-<%@page import="com.smhrd.model.myboard"%>
+<%@page import="com.smhrd.model.BoardDAO"%>
+<%@page import="com.smhrd.model.MyBoard"%>
 <%@page import="java.util.*"%>
 <%@page import="java.io.IOException"%>
 
 <%
-    boardDAO dao = new boardDAO();
-    List<myboard> list = dao.getList(); // DB에서 이미지 목록 가져오기
+BoardDAO dao = new BoardDAO();
+    List<MyBoard> list = dao.getimgList(); // DB에서 이미지 목록 가져오기
     
     List<Map<String, String>> images = new ArrayList<>(); // 이미지를 담을 리스트
-    for (myboard board : list) {
+    for (MyBoard board : list) {
         String imgName = board.getImg(); // 전체 이미지 이름
         String nameWithoutExtension = imgName.substring(0, imgName.lastIndexOf(".")); // 확장자 제외한 이름
         
