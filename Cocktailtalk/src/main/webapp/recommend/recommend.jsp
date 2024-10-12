@@ -48,7 +48,7 @@
         </div>
 
 		<% CockDAO dao = new CockDAO(); 
-		   List<Cocktail_Info> Info = dao.getCockinfo();
+		   List<Cocktail_Info> Info = dao.Cockinfo();
 		%>
 		
  	<div class="cocktail-list">
