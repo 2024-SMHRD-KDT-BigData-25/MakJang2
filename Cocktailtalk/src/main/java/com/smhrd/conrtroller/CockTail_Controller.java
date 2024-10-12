@@ -23,7 +23,8 @@ public class CockTail_Controller extends HttpServlet {
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		// Cocktail_Info, CockDAO, reccommend.jsp, CockinfoMapper
+		//Cocktail_Info, CockDAO, reccommend.jsp,
+		//CockinfoMapper, MemberMapper, CockTail_Controller
 		
 		CockDAO dao = new CockDAO();
 		List<Cocktail_Info> info = dao.Cockinfo();

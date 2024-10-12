@@ -10,8 +10,10 @@ public class CockDAO {
 	
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
 	
-	//Cocktail_Info SELECT 		
-	// Cocktail_Info, CockDAO, reccommend.jsp, CockinfoMapper, MemberMapper
+	//Cocktail_Info SELECT
+	
+	//Cocktail_Info, CockDAO, reccommend.jsp,
+	//CockinfoMapper, MemberMapper, CockTail_Controller
 
 	public List<Cocktail_Info> Cockinfo() {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
