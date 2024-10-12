@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.smhrd.model.BoardDAO;
 import com.smhrd.model.MyBoard;
 
-@WebServlet("/meeting_BBS/meWrite")
+@WebServlet("/Board/meeting_BBS/meWrite")
 public class MeBoardWrite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

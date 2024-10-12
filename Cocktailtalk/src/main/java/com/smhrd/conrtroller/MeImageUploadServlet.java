@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-@WebServlet("/meeting_BBS/uploadImage")
+@WebServlet("/Board/meeting_BBS/uploadImage")
 @MultipartConfig
 public class MeImageUploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

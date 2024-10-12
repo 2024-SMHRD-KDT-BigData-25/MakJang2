@@ -44,7 +44,6 @@
 <h1>메인페이지</h1>
 <h3>안녕하세요! <%= nick %>님!</h3> <!-- 수정된 변수 사용 -->
 <a href="mypage.jsp"><button>마이페이지</button></a>
-<a href="/Cocktailtalk/meeting_BBS/meList.jsp"><button>모임게시판</button></a>
 <a href="event.jsp"><button>이벤트</button></a>
 </body>
 </html>

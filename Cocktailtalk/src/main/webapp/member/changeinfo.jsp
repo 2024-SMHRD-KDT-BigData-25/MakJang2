@@ -2,13 +2,14 @@
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%@ page import="com.smhrd.model.MemberDAO" %>
 <%@ page import="com.smhrd.model.MyMember" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>회원정보수정</title>
-
-<link rel="stylesheet" href="Mypage/mypage.css">
+	<link rel="stylesheet" href="../Mypage/mypage.css">
+	<meta charset="UTF-8">
+	<title>회원정보수정</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <%	
@@ -41,26 +42,49 @@
         <!-- 프로필 영역 -->
         <div class="profile-section">
             <div>
-                <img src="0.png" alt="프로필 이미지" class="profile-img">
+                <img src="../images/0.png" alt="프로필 이미지" class="profile-img" style="width: 150px; height: auto";>
                 <div class="profile-info">
                     <div class="email-section">
                         <label for="email">이메일:</label>
-                        <input type="text" id=email disabled value="<%= US_EMAIL %>">
+                        <input type="text" id="email" disabled value="<%= US_EMAIL %>">
                     </div>
-                     
-                    <form action="UpdateController" method="post">
-						<input type="hidden" name="US_EMAIL" value="<%=US_EMAIL %>">
-						닉네임: <input type="text" name="US_NICK" id="nickname" value="<%=US_NICK %>"><br>
-						<input type="submit" class="submit" value="변경하기">
-					</form>
-                        
+                    
+                    <div>
+                    <input type="hidden" id="US_EMAIL" value="<%=US_EMAIL %>">
+                    닉네임: <input type="text" id="nickname" value="<%=US_NICK %>"><br>
                     <% if (errorMessage != null) { %>
-						<div style="color: red;"><%= errorMessage %></div>
-					<% } %>
+                        <div style="color: red;"><%= errorMessage %></div>
+                    <% } %>
+                    </div>
+                    <button id="saveChanges">변경하기</button>
                 </div>
             </div>
         </div>    
         
- 
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#saveChanges').click(function() {
+            const US_EMAIL = $('#US_EMAIL').val();
+            const US_NICK = $('#nickname').val();
+
+            // 이전 오류 메시지 삭제
+            $('.error-message').remove();
+
+            $.post('../UpdateController', { US_EMAIL: US_EMAIL, US_NICK: US_NICK }, function(data) {
+                if (data.success) {
+                    // 성공 시 세션에 저장된 닉네임 업데이트 후 마이페이지로 이동
+                    window.location.href = '../Mypage/mypage.jsp'; 
+                } else {
+                    // 에러 메시지 표시
+                    $('.profile-info').append('<div class="error-message" style="color: red;">' + data.errorMessage + '</div>');
+                }
+            }, 'json');
+        });
+    });
+</script>
+
 </body>
 </html>

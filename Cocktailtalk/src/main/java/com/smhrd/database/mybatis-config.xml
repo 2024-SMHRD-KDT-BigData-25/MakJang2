@@ -19,5 +19,7 @@
   <mappers>
     <mapper resource="com/smhrd/database/BoardMapper.xml"/>
     <mapper resource="com/smhrd/database/MemberMapper.xml"/>
+    <mapper resource="com/smhrd/database/likeMapper.xml"/>
+    <mapper resource="com/smhrd/database/partyMapper.xml"/>
   </mappers>
 </configuration>

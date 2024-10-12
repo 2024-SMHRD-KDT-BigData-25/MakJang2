@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.model.CommentDAO;
 
-@WebServlet("/meeting_BBS/deleteComment.do")
+@WebServlet("/Board/meeting_BBS/deleteComment.do")
 public class MeDeleteCommentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int commentId = Integer.parseInt(request.getParameter("commentId"));

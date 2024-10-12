@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.model.BoardDAO;
 
-@WebServlet("/meeting_BBS/deleteBoard.do")
+@WebServlet("/Board/meeting_BBS/deleteBoard.do")
 public class MeDeleteBoardServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int meNo = Integer.parseInt(request.getParameter("meNo"));

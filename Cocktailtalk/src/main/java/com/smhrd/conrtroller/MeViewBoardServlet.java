@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.smhrd.model.BoardDAO;
 import com.smhrd.model.MyBoard;
 
-@WebServlet("/meeting_BBS/viewBoard.do")
+@WebServlet("/Board/meeting_BBS/viewBoard.do")
 public class MeViewBoardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

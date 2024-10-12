@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.smhrd.model.BoardDAO;
 import com.smhrd.model.MyBoard;
 
-@WebServlet("/meeting_BBS/updateBoard.do")
+@WebServlet("/Board/meeting_BBS/updateBoard.do")
 public class MeUpdateBoardServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        

@@ -1,0 +1,38 @@
+    *{
+    list-style : none;
+    text-decoration: none; /* a태그 밑줄 없애줌 */
+    border-collapse: collapse;
+    margin: 0px;
+    padding:0px;
+    color: #000;
+    }
+    
+    footer {
+    background-color: #f0f0f0; /* 배경 색상 설정 */
+    padding: 20px; /* 패딩 추가 */
+    
+	}
+    
+	.inner {
+	    display: flex; /* 플렉스 박스 사용 */
+	    align-items: flex-start; /* 위쪽 정렬 */
+	    justify-content: space-between;
+	    width:800px;
+	    margin-right : auto;
+	}
+    
+    .logo{
+ 		font-size: 1.5rem; 
+    }
+    
+    .list {
+    display: flex; /* 플렉스 박스 사용 */
+    align-items: flex-start; /* 위쪽 정렬 */
+    flex-direction: row; /* 가로 정렬 */
+    line-height: 20px;
+
+	}
+	
+    
+   
+    

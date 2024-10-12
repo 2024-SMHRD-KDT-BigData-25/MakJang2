@@ -95,37 +95,13 @@
     }
 %>	
 
-    <div class="wrap"></div>
-        <div class="intro_bg">
-            <div class="header">
-                <div class="logo"><a href="">칵테일톡</a></div>
-                <ul class="nav">
-                    <li><a href="#">칵테일 검색</a></li>
-                    <li><a href="#">커뮤니티</a>
-                        <ul class="dropdown">
-                            <li><a href="">모임 게시판</a></li>
-                            <li><a href="">자유 게시판</a></li>
-                            <li><a href="">창작 게시판</a></li>
-                            <li><a href="">인증 게시판</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">즐길거리</a></li>
-                    <li><a href="#">행사</a></li>
-                </ul>
-                <div>
-                    <ul class="my_page">
-                        <li><a href="">로그아웃</a></li>
-                        <li><a href="">마이페이지</a></li>
-                    </ul>
-                </div>
-            </div>
+	<jsp:include page="${contextPath }/header/header.jsp" />
+    <div class="board_wrap">
+        <div class="board_title">
+            <Strong>모임 게시판</Strong>
+            <p>취향이 맞는 다른 사람들과 함께 마시기 원한다면 방을 만들어보세요!</p>
         </div>
 
-        <div class="board_wrap">
-            <div class="board_title">
-                <Strong><a href="meList.jsp">모임 게시판</a></Strong>
-                <p>취향이 맞는 다른 사람들과 함께 마시기 원한다면 방을 만들어보세요!</p>
-            </div>
             <div class="board_list_wrap">
                 <div class="board_list">
                     <div class="top">
@@ -154,8 +130,10 @@
                     </div>
                     <% } %>
                     
-                    
-                    
+             <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="제목 또는 작성자를 검색하세요">
+                <button id="searchButton">검색</button>                   
+             </div>     
                     <!-- 페이지 번호 표시 -->
 					<div class="board_page">
 					    <% if (startPage > 1) { %>
@@ -182,7 +160,7 @@
             </div>
         </div>
         
-        
+     <jsp:include page="${contextPath }/footer/footer.jsp" />       
      
     
     

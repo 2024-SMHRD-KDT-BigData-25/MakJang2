@@ -3,7 +3,7 @@
 	
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,32 +16,32 @@
 	    <div class="intro_bg">
 	        <div class="header">
 	            <div class="logo">
-	                <a href="../html/index.html"><img src="${contextPath }/header/logo8.png" alt="칵테일톡 로고" alt="Logo" class="logo-img"></a>
+	                <a href="${contextPath }/CT3/jsp/index.jsp"><img src="${contextPath }/header/logo8.png" alt="칵테일톡 로고" alt="Logo" class="logo-img"></a>
 	            </div>
 	            <ul class="nav">
-	                <li><a href="#">칵테일 검색</a></li>
+	                <li><a href="${contextPath }/recommend/recommend.jsp">칵테일 검색</a></li>
 	                <li class="dropdown-menu">
 	                    <a href="#">커뮤니티</a>
 	                    <ul class="dropdown">
-	                        <li><a href="/Board/moim/list.html">모임 게시판</a></li>
-	                        <li><a href="/Board/jaU/list.html">자유 게시판</a></li>
-	                        <li><a href="/Board/changjak/list.html">창작 게시판</a></li>
-	                        <li><a href="/Board/injeung/list.html">인증 게시판</a></li>
+	                        <li><a href="${contextPath }/Board/meeting_BBS/meList.jsp">모임 게시판</a></li>
+	                        <li><a href="${contextPath }/Board/jaU/jsp/list.jsp">자유 게시판</a></li>
+	                        <li><a href="${contextPath }/Board/changjak/jsp/list.jsp">창작 게시판</a></li>
+	                        <li><a href="${contextPath }/Board/injeung/jsp/list.jsp">인증 게시판</a></li>
 	                    </ul>                    
 	                </li>
 	                <li class="dropdown-menu">
 	                    <a href="#">즐길거리</a>
 	                    <ul class="dropdown">
-	                        <li><a href="#">먹었어요 월드컵</a></li>
+	                        <li><a href="${contextPath }/worldcup/worldcup.jsp">먹었어요 월드컵</a></li>
 	                        <li><a href="#">먹고 싶어요 월드컵</a></li>
 	                    </ul>
 	                </li>
-	                <li><a href="event.jsp">행사</a></li>
+	                <li><a href="${contextPath }/member/event.jsp">행사</a></li>
 	            </ul>
 	            <div>
 	                <ul class="my_page">
-	                    <li><a href="#">로그아웃</a></li>
-	                    <li><a href="mypage.jsp">마이페이지</a></li>
+	                    <li><a href="${contextPath }/member/logout.jsp">로그아웃</a></li>
+	                    <li><a href="${contextPath }/Mypage/mypage.jsp">마이페이지</a></li>
 	                </ul>
 	            </div>
 	        </div>
@@ -64,7 +64,6 @@
                 });
             });
         });
-
     </script>
 </body>
 </html>

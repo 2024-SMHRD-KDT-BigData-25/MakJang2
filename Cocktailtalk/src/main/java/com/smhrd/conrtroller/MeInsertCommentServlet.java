@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.smhrd.model.Comment;
 import com.smhrd.model.CommentDAO;
 
-@WebServlet("/meeting_BBS/insertComment.do")
+@WebServlet("/Board/meeting_BBS/insertComment.do")
 public class MeInsertCommentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

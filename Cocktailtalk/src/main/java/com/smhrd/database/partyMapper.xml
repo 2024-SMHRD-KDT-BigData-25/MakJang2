@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace : mapper의 식별자 -->
+<!-- mapper : 데이터베이스에 데이터를 삽입하는 쿼리를 정의 -->
+<mapper namespace="partyMapper">
+
+ 
+ 
+ <insert id="insertparty" parameterType="com.smhrd.model.TB_SHOW_LIKES">
+	insert into AB values (#{SH_NO},#{US_EMAIL})
+ </insert>
+ <select id="totalparty" resultType="com.smhrd.model.TB_SHOW_LIKES">
+ 	select count(*) as SH_NO from AB where SH_NO=#{SH_NO}
+ </select>
+  <delete id="deleteparty" parameterType="com.smhrd.model.TB_SHOW_LIKES">
+ 	delete from AB where SH_NO=#{SH_NO} and US_EMAIL=#{US_EMAIL}
+ </delete>
+ 
+ <select id="checkparty" parameterType="com.smhrd.model.TB_SHOW_LIKES" resultType="int">
+ 	select * from AB where SH_NO=#{SH_NO} and US_EMAIL=#{US_EMAIL}
+ </select>
+ 
+ 
+ 
+</mapper>
