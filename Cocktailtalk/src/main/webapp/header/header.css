@@ -23,7 +23,7 @@ body {
 
 .header {
     display: flex;
-    width:1400px;
+    width: 80%;
     height: 86px;
     margin : auto; /*가운데로 들어옴*/
     justify-content: space-between;
@@ -139,5 +139,34 @@ body {
         flex-direction: column;
         align-items: center;
         gap: 15px;
+    }
+}
+
+/* 반응형 디자인 */
+@media (max-width : 1000px) {
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: coral;
+        padding: 20px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav.open {
+        display: flex;
+    }
+
+    .nav li {
+        text-align: center;
+        margin: 10px 0;
+        white-space: nowrap; /* 줄바꿈 방지 */
+    }
+
+    .my_page {
+        display: none;
     }
 }

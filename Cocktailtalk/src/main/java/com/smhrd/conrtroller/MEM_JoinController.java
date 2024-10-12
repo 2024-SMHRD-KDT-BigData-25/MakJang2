@@ -27,7 +27,7 @@ public class MEM_JoinController extends HttpServlet {
 	        // 중복 체크
 	        if (dao.isDuplicateEmail(US_EMAIL)) {
 	            // 데이터가 이미 존재하는 경우 메인 페이지로 리다이렉트
-	            response.sendRedirect("member/main.jsp");
+	            response.sendRedirect("CT3/jsp/index.jsp");
 	            return;
 	        }
 

@@ -1,12 +1,6 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
+* { 
+	margin: 0;
     padding: 0;
-    text-decoration: none;
-    border-collapse: collapse;
-    list-style : none;
-    padding:0px;
-    color: #000;
 }
 
 body {
@@ -16,12 +10,13 @@ body {
 
 .container {
     max-width: 1000px;
-    margin: 100px auto; 
+    margin: 0 auto; 
 }
 
 .top {
     max-width: 1000px; 
     border: 1px solid gray;
+    margin-top: 100px;
     margin-bottom: 50px;
     border-radius: 5px;
     padding: 30px;

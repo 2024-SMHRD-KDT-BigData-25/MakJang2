@@ -7,32 +7,49 @@
     color: #000;
     }
     
-    footer {
-    background-color: #f0f0f0; /* 배경 색상 설정 */
-    padding: 20px; /* 패딩 추가 */
-    
-	}
-    
-	.inner {
-	    display: flex; /* 플렉스 박스 사용 */
-	    align-items: flex-start; /* 위쪽 정렬 */
-	    justify-content: space-between;
-	    width:800px;
-	    margin-right : auto;
-	}
-    
-    .logo{
- 		font-size: 1.5rem; 
-    }
-    
-    .list {
-    display: flex; /* 플렉스 박스 사용 */
-    align-items: flex-start; /* 위쪽 정렬 */
-    flex-direction: row; /* 가로 정렬 */
-    line-height: 20px;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
 
-	}
-	
-    
+footer {
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.logo a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #333;
+}
+.people span {
+        font-size: 10px;
+}
+
+.list {
+    margin-top: 10px;
+}
+
+.people span {
+    display: block;
+    margin: 5px 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1000px) {
+    .logo a {
+        font-size: 24px;
+    }
+
+    .people span {
+        font-size: 10px;
+    }
+}
    
     

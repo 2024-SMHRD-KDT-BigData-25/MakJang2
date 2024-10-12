@@ -50,7 +50,7 @@
     <title>마이페이지</title>
 </head>
 <body>
-
+	<jsp:include page="${contextPath }/header/header.jsp" />
     <div class="mypage-wrap">
         <div class="mypage-container">
             <h1>마이페이지</h1>
@@ -165,8 +165,7 @@
             </div>
         </div>
     </div>
-
-
+    
     <script>
         // DOM 요소 가져오기
         const nicknameInput = document.getElementById('nickname');
@@ -228,6 +227,7 @@
         }
     %>
 </div>
+<jsp:include page="${contextPath }/footer/footer.jsp" />
 
 </body>
 </html>
