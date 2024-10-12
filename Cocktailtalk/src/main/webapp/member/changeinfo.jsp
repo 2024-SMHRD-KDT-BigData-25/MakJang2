@@ -2,6 +2,7 @@
 <%@ page import="javax.servlet.http.HttpSession" %>
 <%@ page import="com.smhrd.model.MemberDAO" %>
 <%@ page import="com.smhrd.model.MyMember" %>
+
 <!DOCTYPE html>
 <html>
 <head>

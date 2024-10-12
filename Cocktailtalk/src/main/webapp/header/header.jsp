@@ -3,7 +3,7 @@
 	
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,10 +16,10 @@
 	    <div class="intro_bg">
 	        <div class="header">
 	            <div class="logo">
-	                <a href="../html/index.html"><img src="${contextPath }/header/logo8.png" alt="칵테일톡 로고" alt="Logo" class="logo-img"></a>
+	                <a href="${contextPath }/CT3/jsp/index.jsp"><img src="${contextPath }/header/logo8.png" alt="칵테일톡 로고" alt="Logo" class="logo-img"></a>
 	            </div>
 	            <ul class="nav">
-	                <li><a href="#">칵테일 검색</a></li>
+	                <li><a href="${contextPath }/recommend/recommend.jsp">칵테일 검색</a></li>
 	                <li class="dropdown-menu">
 	                    <a href="#">커뮤니티</a>
 	                    <ul class="dropdown">
