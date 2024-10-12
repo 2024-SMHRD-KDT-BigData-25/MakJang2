@@ -83,6 +83,8 @@ input[type="text"] {
 .cocktail-item img{
     touch-action: manipulation;
     cursor: pointer;
+    width: 200px;
+    height: 200px;
 }
 
 .cocktail-item p {

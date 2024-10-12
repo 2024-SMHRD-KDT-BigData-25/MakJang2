@@ -9,8 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>칵테일 검색</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="styles.css" type="text/css">
 </head>
 <body>
 	<jsp:include page="${contextPath }/header/header.jsp" />
