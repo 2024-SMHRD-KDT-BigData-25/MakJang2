@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
+   pageEncoding="UTF-8"%>
+   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../css/index_style.css">
-    <link rel="stylesheet" type="text/css" href="../../Board/css/css.css">
 </head>
 <body>
     <div class="wrap">
-		<jsp:include page="${contextPath }/header/header.jsp" />
+      <jsp:include page="${contextPath }/header/header.jsp" />
         
         <div>
             <div class=main_bg>
@@ -50,7 +49,6 @@
                 <img src="../image/worldcup.jpg">
             </div>
         </div>
-        <%@include file="/Board/footer.jsp" %>
     </div>
     <jsp:include page="${contextPath }/footer/footer.jsp" />
 </body>
