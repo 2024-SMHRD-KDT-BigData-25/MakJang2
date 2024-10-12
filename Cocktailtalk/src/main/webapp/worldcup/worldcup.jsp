@@ -54,8 +54,9 @@
         }
         
         #round-title {
-		    display: block; /* 요소가 보여지도록 설정 */
+		    display: block; !important;/* 요소가 보여지도록 설정 */
 		    color: orange;
+		    font-size: 24px;
 		}
 		        
         .image-wrap{
@@ -98,7 +99,7 @@
 		<div id="loader">Loading...</div>
 		<div class="container" id="content">
 		    <div class="round-wrap">
-		    	<h1 id="round-title"></h1>
+		    	<h1 id="round-title" style="display: block;">Round 1</h1>
 		    </div>
 		    <div class="image-wrap">
 		    	<div class="image-container" id="image-container"></div>
@@ -138,13 +139,24 @@
             });
     }
 
-    // 이미지를 렌더링하는 함수
     function renderImages() {
         document.getElementById('loader').style.display = 'none';
         document.getElementById('content').style.display = 'block';
         document.getElementById('winner').style.display = 'none';
-        document.getElementById('round-title').style.display = 'block';
-        document.getElementById('round-title').innerText = `Round ${currentRound}`;
+
+        // 라운드 제목 설정
+        let roundTitleText;
+        if (currentRound === 1) {
+            roundTitleText = "8강";
+        } else if (currentRound === 2) {
+            roundTitleText = "4강";
+        } else if (currentRound === 3) {
+            roundTitleText = "결승";
+        } else {
+            roundTitleText = "최종 우승자";
+        }
+        
+        document.getElementById('round-title').innerText = roundTitleText;
         
         const imageContainer = document.getElementById('image-container');
         imageContainer.innerHTML = '';
@@ -155,10 +167,10 @@
             return;
         }
 
+        // 두 개의 이미지를 무작위로 선택
         let indices = [];
         while (indices.length < 2) {
             const index = Math.floor(Math.random() * currentImages.length);
-            // 이미 출력된 이미지는 제외
             if (!indices.includes(index) && !shownImages.includes(currentImages[index].name)) {
                 indices.push(index);
             }
@@ -171,11 +183,10 @@
         shownImages.push(image1.name);
         shownImages.push(image2.name);
 
-        // 첫 번째 이미지
         createImageElement(image1, imageContainer);
-        // 두 번째 이미지
         createImageElement(image2, imageContainer);
     }
+
 
     // 이미지 요소 생성 함수
     function createImageElement(image, container) {
@@ -236,7 +247,8 @@
 
     // 페이지 로드 시 이미지 가져오기
     loadImages();
-</script>
+    
+    </script>
 
 </body>
 </html>
