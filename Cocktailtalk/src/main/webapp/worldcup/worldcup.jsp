@@ -8,22 +8,24 @@
     <title>이상형 월드컵</title>
     <style>
     
-    	*{
+    	*{	
 		    margin: 0;
 		    padding: 0;
+		    
 		}
 		    
         body {
             font-family: Arial, sans-serif;
             align-items: center;
             background-color: #f4f4f4;
-			
+            				
         }
         
         .worldcup-wrap{
+        
         	border: 3px solid black;
         	background-color: black;
-        	margin: 100px auto;
+        	margin: 100px auto 0 auto;
         	width: 80%
         }
         
@@ -32,7 +34,8 @@
             background-color: white;
             margin: auto;
             border-left: 3px solid black;
-            border-right: 3px solid black;  
+            border-right: 3px solid black;
+            height: 450px;  
         }
         
         .worldcup-title{
@@ -72,7 +75,7 @@
         .image-wrapper {
             margin: 0 20px;
         }
-        img {
+        .img {
             max-width: 200px;
             height: auto;
             cursor: pointer;
@@ -105,7 +108,7 @@
 		    	<div class="image-container" id="image-container"></div>
 			    <div class="winner" id="winner">
 			        <h2>최종 우승자!</h2>
-			        <img id="winner-image" src="" alt="Winner">
+			        <img id="winner-image" src="" alt="Winner" class="img">
 			        <div id="winner-name" class="image-name"></div>
 			    </div>
 		    </div> 
