@@ -243,10 +243,20 @@ input[type="text"] {
 .modal-recipe-info{
     flex:1;
     border : 1px solid #000;
+    /* 수직 중앙 정렬 설정 */
+    position: relative;    
 }
 
 .modal-recipe-info > h3{
     border-bottom : 1px solid #000;
+}
+
+.modal-recipe-info > #modalRecipe{
+	align-items: center;
+	/* 수직 중앙 정렬하기 */
+  	position: absolute;
+  	top: 50%;
+  	transform: translate(0, -50%);
 }
 
 .modal-history-info{
