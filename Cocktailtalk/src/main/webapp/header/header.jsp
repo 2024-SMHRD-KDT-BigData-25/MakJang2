@@ -24,8 +24,8 @@
 	                    <a href="#">커뮤니티</a>
 	                    <ul class="dropdown">
 	                        <li><a href="${contextPath }/Board/meeting_BBS/meList.jsp">모임 게시판</a></li>
-	                        <li><a href="${contextPath }/Board/jaU/jsp/list.jsp">자유 게시판</a></li>
-	                        <li><a href="${contextPath }/Board/changjak/jsp/list.jsp">창작 게시판</a></li>
+	                        <li><a href="${contextPath }/Board/free_BBS/crList.jsp">자유 게시판</a></li>
+	                        <li><a href="${contextPath }/Board/create_BBS/crList.jsp">창작 게시판</a></li>
 	                        <li><a href="${contextPath }/Board/injeung/jsp/list.jsp">인증 게시판</a></li>
 	                    </ul>                    
 	                </li>

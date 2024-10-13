@@ -8,40 +8,50 @@
     <title>이상형 월드컵</title>
     <style>
     
-    	*{
+    	*{	
 		    margin: 0;
 		    padding: 0;
+		    
 		}
 		    
         body {
             font-family: Arial, sans-serif;
             align-items: center;
             background-color: #f4f4f4;
-			
+            				
         }
         
         .worldcup-wrap{
-        	border: 3px solid black;
-        	background-color: black;
-        	margin: 100px auto;
-        	width: 80%
+        
+        	border: 3px solid #333;
+            background-color: #333;
+            width: 70%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        	margin: 100px auto 0 auto;
+        	
         }
         
         .worldcup-wrap2{
         	width: 90%;
             background-color: white;
             margin: auto;
-            border-left: 3px solid black;
-            border-right: 3px solid black;  
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            height: 500px;  
         }
         
         .worldcup-title{
         	text-align: center;
-        	border-bottom: 3px solid black;
         	background-color: rgba(0, 0, 0, 0.2);
-        	height: 50px;
-        	font-size:40px;
+        	height: 60px;
+        	font-size:36px;
         	color: white;
+        	display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .container {
@@ -50,7 +60,9 @@
         }
         
         .round-wrap{
-        	background-color: rgba(243, 190, 155, 0.2);     
+        	background-color: rgba(243, 190, 155, 0.2);
+        	margin: 20px 0;
+            padding: 10px;     
         }
         
         #round-title {
@@ -62,6 +74,7 @@
         .image-wrap{
         	background-color: white;
         	border-top: 3px solid black;
+        	padding: 20px 0;
         }
                 
         .image-container {
@@ -71,21 +84,42 @@
         
         .image-wrapper {
             margin: 0 20px;
+            transition: transform 0.3s;
         }
-        img {
-            max-width: 200px;
+        
+         .image-wrapper:hover {
+            transform: scale(1.05);
+        }        
+        
+        .img {
+            max-width: 300px;
+            max-height: 300px;
             height: auto;
             cursor: pointer;
+            border-radius: 8px; /* 이미지 모서리 둥글게 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
         }
         .image-name {
             margin-top: 5px;
             font-weight: bold;
+            color: #333;
         }
         .winner {
             display: none;
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
+        }
+        
+        #winner-image {
+            max-width: 300px;
+            border-radius: 8px; /* 우승자 이미지 모서리 둥글게 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin: 30px 0;
         }
     </style>
 </head>
@@ -105,7 +139,7 @@
 		    	<div class="image-container" id="image-container"></div>
 			    <div class="winner" id="winner">
 			        <h2>최종 우승자!</h2>
-			        <img id="winner-image" src="" alt="Winner">
+			        <img id="winner-image" src="" alt="Winner" class="img">
 			        <div id="winner-name" class="image-name"></div>
 			    </div>
 		    </div> 

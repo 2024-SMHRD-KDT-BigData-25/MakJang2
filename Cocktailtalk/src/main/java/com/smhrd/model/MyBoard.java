@@ -56,6 +56,8 @@ public class MyBoard {
 	
 	private int No;
 
+
+
 	
 	public MyBoard(int idx, String title, String writer, String indate) {
 		super();
@@ -103,5 +105,6 @@ public class MyBoard {
 		this.content = Content;
 		this.No = No;
 	}
+	
 	
 }

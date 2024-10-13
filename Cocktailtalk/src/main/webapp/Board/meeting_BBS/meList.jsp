@@ -101,7 +101,6 @@
             <Strong>모임 게시판</Strong>
             <p>취향이 맞는 다른 사람들과 함께 마시기 원한다면 방을 만들어보세요!</p>
         </div>
-
             <div class="board_list_wrap">
                 <div class="board_list">
                     <div class="top">

@@ -38,6 +38,10 @@
                         <dt>조회</dt>
                         <dd>33</dd>
                     </dl>
+                    <dl>
+                        <dt><button class="like-button">좋아요 ♡</button></dt>
+                        <dd class="like-count"><span id="likeCount">0</span></dd>
+                    </dl>
 
                 </div>
                 <div class="cont">
@@ -49,10 +53,32 @@
             </div>
             
             <div class="bt_wrap">
-                <a href="list.html" class="on">목록</a>
+                <a href="list.jsp" class="on">목록</a>
             </div>
         </div>
     </div>
     <jsp:include page="${contextPath }/footer/footer.jsp" />
+    
+    <script>
+        // 좋아요 수를 저장할 변수
+        let likeCount = 0;
+
+        // 좋아요 버튼 가져오기
+        const likeButton = document.querySelector('.like-button');
+        const likeCountDisplay = document.getElementById('likeCount');
+
+        // 좋아요 버튼 클릭 이벤트 리스너 추가
+        likeButton.addEventListener('click', function() {
+            this.classList.toggle('active');
+            if (this.classList.contains("active")) {
+                likeCount++; // 좋아요를 추가
+                this.textContent = "좋아요 ♥"; // 텍스트 변경
+            } else {
+                likeCount--; // 좋아요를 제거
+                this.textContent = "좋아요 ♡"; // 텍스트 변경
+            }
+            likeCountDisplay.textContent = likeCount; // 좋아요 수 업데이트
+        });
+    </script>
 </body>
 </html>
