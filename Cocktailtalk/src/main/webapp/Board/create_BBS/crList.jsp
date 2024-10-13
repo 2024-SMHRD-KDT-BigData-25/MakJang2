@@ -114,7 +114,7 @@
                     <!-- DB에서 게시글 목록 출력 -->
                     
                     <%for(MyBoard b:list){ 
-                    	 int commentCount = commentDao.getCommentCountByBoardId(b.getCR_NO());  // 댓글 개수 조회
+                    	 int commentCount = commentDao.getcrCommentCountByBoardId(b.getCR_NO());  // 댓글 개수 조회
                     %>
                    
                     <div>

@@ -211,7 +211,7 @@
 	<!-- 자유 게시판 글작성  -->
 	<insert id="frWrite" parameterType="com.smhrd.model.MyBoard">
 		insert into TB_FREE_BOARD(FR_TITLE,FR_CONTENT,US_EMAIL)
-		values (#{title},#{Content},#{usEmail})
+		values (#{title},#{content},#{usEmail})
 	</insert>
 	
 	<!-- 자유글작성 완료뷰 -->

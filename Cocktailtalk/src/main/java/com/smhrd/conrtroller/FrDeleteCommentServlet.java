@@ -23,7 +23,7 @@ public class FrDeleteCommentServlet extends HttpServlet {
         
         if (result > 0) {
             // 댓글이 삭제되면 해당 게시물로 리다이렉트
-            response.sendRedirect("meetingview.jsp?NO=" + boardId);
+            response.sendRedirect("meetingview.jsp?No=" + boardId);
         } else {
             // 오류가 발생하면 에러 페이지로 리다이렉트
             response.sendRedirect("error.jsp");

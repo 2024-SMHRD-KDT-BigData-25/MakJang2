@@ -85,7 +85,7 @@ public class CommentDAO {
             // 자유 댓글 또는 답글 추가
             public int insertfrComment(Comment comment) {
                 SqlSession sqlSession = sqlSessionFactory.openSession(true);
-                int res = sqlSession.insert("BoardMapper.insertCrComment", comment);
+                int res = sqlSession.insert("BoardMapper.insertFrComment", comment);
                 sqlSession.close();
                 return res;
             }
@@ -93,7 +93,7 @@ public class CommentDAO {
             // 자유 특정 게시글의 댓글 목록 가져오기 (답글 포함)
             public List<Comment> getfrCommentsByBoardId(int boardId) {
                 SqlSession sqlSession = sqlSessionFactory.openSession(true);
-                List<Comment> res = sqlSession.selectList("BoardMapper.getCrCommentsByBoardId", boardId);
+                List<Comment> res = sqlSession.selectList("BoardMapper.getFrCommentsByBoardId", boardId);
                 sqlSession.close();
                 return res;
             }
@@ -101,7 +101,7 @@ public class CommentDAO {
                 // 자유 댓글 삭제 메서드
                 public int deletefrComment(int commentId) {
                     SqlSession sqlSession = sqlSessionFactory.openSession(true);
-                    int result = sqlSession.delete("BoardMapper.deleteCrComment", commentId);
+                    int result = sqlSession.delete("BoardMapper.deleteFrComment", commentId);
                     sqlSession.close();
                     return result;
             }
@@ -109,7 +109,7 @@ public class CommentDAO {
                 // 자유 게시글별 댓글 개수 조회
                 public int getfrCommentCountByBoardId(int boardId) {
                     SqlSession sqlSession = sqlSessionFactory.openSession(true);
-                    int commentCount = sqlSession.selectOne("BoardMapper.getCrCommentCountByBoardId", boardId);
+                    int commentCount = sqlSession.selectOne("BoardMapper.getFrCommentCountByBoardId", boardId);
                     sqlSession.close();
                     return commentCount;
                 }

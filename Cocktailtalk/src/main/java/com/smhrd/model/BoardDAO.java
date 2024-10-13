@@ -236,7 +236,7 @@ public class BoardDAO {
 	//자유게시글가져오기
 	public List<MyBoard> getFrList() {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		List<MyBoard> res = sqlSession.selectList("BoardMapper.crSelect");
+		List<MyBoard> res = sqlSession.selectList("BoardMapper.frSelect");
 		sqlSession.close();
 		return res;
 	}
@@ -244,7 +244,7 @@ public class BoardDAO {
 	//자유글작성 완료뷰
 	public MyBoard getfrBoard(int idx) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		MyBoard res = sqlSession.selectOne("BoardMapper.getcreate", idx);
+		MyBoard res = sqlSession.selectOne("BoardMapper.getfree", idx);
 		sqlSession.close();
 		return res;
 	}		
@@ -252,7 +252,7 @@ public class BoardDAO {
 	//자유게시판 글작성
 	public int writefrBoard(MyBoard b) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.insert("BoardMapper.crWrite", b);
+		int res = sqlSession.insert("BoardMapper.frWrite", b);
 		sqlSession.close();
 		return res;
 	}
@@ -262,7 +262,7 @@ public class BoardDAO {
         SqlSession session = sqlSessionFactory.openSession(true);
         MyBoard board = null;
         try {
-            board = session.selectOne("BoardMapper.selectCrBoard", meNo);
+            board = session.selectOne("BoardMapper.selectFrBoard", meNo);
         } finally {
             session.close();
         }
@@ -272,7 +272,7 @@ public class BoardDAO {
     // 자유게시글 삭제 
 	public int deletefrBoard(int meNo) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.delete("BoardMapper.crdelete",meNo);
+		int res = sqlSession.delete("BoardMapper.deleteFr",meNo);
 		sqlSession.close();
 		return res;
 	}
@@ -280,7 +280,7 @@ public class BoardDAO {
     // 자유게시글 수정 메서드
     public int updatefrBoard(MyBoard board) {
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
-        int result = sqlSession.update("BoardMapper.updateCrBoard", board);
+        int result = sqlSession.update("BoardMapper.updateFrBoard", board);
         sqlSession.close();
         return result;
     }
@@ -293,7 +293,7 @@ public class BoardDAO {
             Map<String, Integer> params = new HashMap<>();
             params.put("startRow", startRow);
             params.put("endRow", endRow);
-            boardList = session.selectList("BoardMapper.getCrBoardListPaging", params);
+            boardList = session.selectList("BoardMapper.getFrBoardListPaging", params);
         } finally {
             session.close();
         }
@@ -305,7 +305,7 @@ public class BoardDAO {
         SqlSession session = sqlSessionFactory.openSession();
         int totalCount = 0;
         try {
-            totalCount = session.selectOne("BoardMapper.getCrBoardCount");
+            totalCount = session.selectOne("BoardMapper.getFrBoardCount");
         } finally {
             session.close();
         }
@@ -316,7 +316,7 @@ public class BoardDAO {
     public void increasefrHitCount(int boardId) {
         SqlSession session = sqlSessionFactory.openSession();
         try {
-            session.update("BoardMapper.increaseCrHitCount", boardId);
+            session.update("BoardMapper.increaseFrHitCount", boardId);
             session.commit();
         } finally {
             session.close();
