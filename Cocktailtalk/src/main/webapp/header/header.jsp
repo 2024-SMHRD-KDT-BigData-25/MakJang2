@@ -26,7 +26,7 @@
 	                        <li><a href="${contextPath }/Board/meeting_BBS/meList.jsp">모임 게시판</a></li>
 	                        <li><a href="${contextPath }/Board/free_BBS/crList.jsp">자유 게시판</a></li>
 	                        <li><a href="${contextPath }/Board/create_BBS/crList.jsp">창작 게시판</a></li>
-	                        <li><a href="${contextPath }/Board/injeung/jsp/list.jsp">인증 게시판</a></li>
+	                        <li><a href="${contextPath }/Board/show_BBS/crList.jsp">인증 게시판</a></li>
 	                    </ul>                    
 	                </li>
 	                <li class="dropdown-menu">

@@ -294,4 +294,102 @@
 	</delete>
 	
 <!--________________________________________자유_____________________________________________________  -->
+	<!-- 인증 게시글 정보 -->
+	<select id="shSelect" resultType="com.smhrd.model.MyBoard">
+		select * from TB_SHOW_BOARD a, tb_user_info b where a.us_email = b.us_email order by a.SH_WRITEDATE DESC
+	</select>
+	
+	<!-- 인증 게시판 글작성  -->
+	<insert id="shWrite" parameterType="com.smhrd.model.MyBoard">
+		insert into TB_SHOW_BOARD(SH_TITLE,SH_CONTENT,US_EMAIL)
+		values (#{title},#{content},#{usEmail})
+	</insert>
+	
+	<!-- 인증 게시판(이미지) 글작성  -->
+	<insert id="shimgwrite" parameterType="com.smhrd.model.MyBoard">
+	insert into TB_SHOW_BOARD(SH_TITLE,SH_CONTENT,SH_FILENAME,US_EMAIL)
+	values (#{title},#{content},#{img},#{usEmail})
+	</insert>
+	
+	<!-- 인증글작성 완료뷰 -->
+	<select id="getshow" parameterType="int" resultType="com.smhrd.model.MyBoard">
+		select * from TB_SHOW_BOARD a, tb_user_info b where a.us_email = b.us_email and a.SH_NO=#{No}
+	</select>	
+	
+	   <!-- 특정 글 조회 (수정할 글 불러오기) -->
+    <select id="selectShBoard" parameterType="int" resultType="com.smhrd.model.MyBoard">
+        SELECT SH_NO, SH_TITLE, US_EMAIL, SH_CONTENT
+        FROM TB_SHOW_BOARD
+        WHERE SH_NO = #{No}
+    </select>
+
+	 <!-- 게시글 삭제 -->
+	<delete id="deleteSh">
+		delete from TB_SHOW_BOARD where SH_NO=#{No}
+	</delete>
+
+    <!-- 글 수정 (Update) -->
+	<update id="updateShBoard" parameterType="com.smhrd.model.MyBoard">
+	    UPDATE TB_SHOW_BOARD
+	    SET SH_TITLE = #{title},
+	        SH_CONTENT = #{content},
+	        SH_FILENAME = #{img}
+	    WHERE SH_NO = #{No}
+	</update>
+	    
+    <!-- 페이징 -->
+	<select id="getShBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
+	        SELECT * 
+	        FROM (
+	            SELECT ROWNUM AS rnum, c.*
+	            FROM (
+	                SELECT a.SH_NO, a.SH_TITLE, a.SH_CONTENT, a.SH_WRITEDATE, a.SH_HIT, a.SH_LIKE, b.us_nick 
+	                FROM TB_SHOW_BOARD a, tb_user_info b
+	                where a.us_email = b.us_email
+	                ORDER BY a.SH_WRITEDATE DESC
+	            ) c
+	            WHERE ROWNUM &lt;= #{endRow}
+	        )
+	        WHERE rnum &gt;= #{startRow}
+	    </select>
+
+
+    <!-- 전체 게시글 수 조회 -->
+     <select id="getShBoardCount" resultType="int">
+        SELECT COUNT(*) 
+        FROM TB_SHOW_BOARD
+    </select>
+    
+	<!-- 댓글 또는 답글 추가 -->
+	<insert id="insertShComment">
+	    INSERT INTO sh_comments (board_id, parent_comment_id, writer, content, us_email)
+	    VALUES (#{boardId}, #{parentCommentId, jdbcType=INTEGER}, #{writer}, #{content}, #{us_email} )
+	</insert>
+
+    <!-- 특정 게시글의 댓글 및 답글 조회 -->
+	<select id="getShCommentsByBoardId" resultType="com.smhrd.model.Comment">
+	    SELECT * 
+	    FROM sh_comments 
+	    WHERE board_id = #{boardId}
+	    ORDER BY COALESCE(parent_comment_id, comment_id), comment_id	
+	</select>
+	
+	<!-- 조회수 증가  -->
+	<update id="increaseShHitCount" parameterType="int">
+    	UPDATE TB_SHOW_BOARD
+    	SET SH_HIT = SH_HIT + 1
+    	WHERE SH_NO = #{boardId}
+	</update>
+	
+	<!-- 댓글 수 조회 -->
+	<select id="getShCommentCountByBoardId" parameterType="int" resultType="int">
+	    SELECT COUNT(*) FROM sh_comments WHERE board_id = #{boardId}
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteShComment" parameterType="int">
+    DELETE FROM sh_comments WHERE COMMENT_ID = #{commentId}
+	</delete>
+<!--________________________________________인증_____________________________________________________  -->	
+	
 </mapper>

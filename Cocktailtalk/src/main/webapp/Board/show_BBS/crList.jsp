@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자유 게시판</title>
+    <title>인증 게시판</title>
     <link rel="stylesheet" href="../css/css.css">
 </head>
 <body>
@@ -28,7 +28,7 @@
 		int pageNum = (pageNumStr == null) ? 1 : Integer.parseInt(pageNumStr);
 		
 		// 전체 게시글 수
-		int totalCount = dao.getfrBoardCount();
+		int totalCount = dao.getshBoardCount();
 		
 		// 전체 페이지 수 계산
 		int pageCount = (totalCount / pageSize) + ((totalCount % pageSize == 0) ? 0 : 1);
@@ -42,7 +42,7 @@
 		int endRow = pageNum * pageSize;
 		
 		// 해당 페이지의 데이터 가져오기
-		List<MyBoard> list = dao.getfrBoardListPaging(startRow, endRow);
+		List<MyBoard> list = dao.getshBoardListPaging(startRow, endRow);
 		
 	    // 게시물 번호 계산 (페이지 내에서 역순으로 번호를 표시)
 	    int listNo = totalCount - (pageNum - 1) * pageSize;
@@ -98,7 +98,7 @@
  	<jsp:include page="${contextPath }/header/header.jsp" />
         <div class="board_wrap">
             <div class="board_title">
-                <Strong><a href="crList.jsp">자유 게시판</a></Strong>
+                <Strong><a href="crList.jsp">인증 게시판</a></Strong>
                 <p>취향이 맞는 다른 사람들과 함께 마시기 원한다면 방을 만들어보세요!</p>
             </div>
             <div class="board_list_wrap">
@@ -114,16 +114,16 @@
                     <!-- DB에서 게시글 목록 출력 -->
                     
                     <%for(MyBoard b:list){ 
-                    	 int commentCount = commentDao.getfrCommentCountByBoardId(b.getFR_NO());  // 댓글 개수 조회
+                    	 int commentCount = commentDao.getshCommentCountByBoardId(b.getSH_NO());  // 댓글 개수 조회
                     %>
                    
                     <div>
                         <div class="num"><%=listNo--%></div>
-                        <div class="title"><a href="viewBoard.do?No=<%=b.getFR_NO()%>&pageNum=<%=pageNum%>"><%= b.getFR_TITLE().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
+                        <div class="title"><a href="viewBoard.do?No=<%=b.getSH_NO()%>&pageNum=<%=pageNum%>"><%= b.getSH_TITLE().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
                         <%if(commentCount!=0){ %><span style="color:gray;">[<%= commentCount %>]</span> <!-- 댓글 개수 표시 --><%} %></a> </div>
                         <div class="writer"><%= b.getUS_NICK()%></div>
-                        <div class="date"><%= b.getFR_WRITEDATE().substring(0,11) %></div>
-                        <div class="count"><%= b.getFR_HIT() %></div>
+                        <div class="date"><%= b.getSH_WRITEDATE().substring(0,11) %></div>
+                        <div class="count"><%= b.getSH_HIT() %></div>
                     </div>
                     <% } %>
                     

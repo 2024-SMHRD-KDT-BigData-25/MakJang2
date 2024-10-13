@@ -116,6 +116,41 @@ public class CommentDAO {
                            
          //자유
                 
+         //인증
+                // 인증 댓글 또는 답글 추가
+                public int insertshComment(Comment comment) {
+                    SqlSession sqlSession = sqlSessionFactory.openSession(true);
+                    int res = sqlSession.insert("BoardMapper.insertShComment", comment);
+                    sqlSession.close();
+                    return res;
+                }
+
+                // 인증 특정 게시글의 댓글 목록 가져오기 (답글 포함)
+                public List<Comment> getshCommentsByBoardId(int boardId) {
+                    SqlSession sqlSession = sqlSessionFactory.openSession(true);
+                    List<Comment> res = sqlSession.selectList("BoardMapper.getShCommentsByBoardId", boardId);
+                    sqlSession.close();
+                    return res;
+                }
+                
+                    // 인증 댓글 삭제 메서드
+                    public int deleteshComment(int commentId) {
+                        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+                        int result = sqlSession.delete("BoardMapper.deleteShComment", commentId);
+                        sqlSession.close();
+                        return result;
+                }
+
+                    // 인증 게시글별 댓글 개수 조회
+                    public int getshCommentCountByBoardId(int boardId) {
+                        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+                        int commentCount = sqlSession.selectOne("BoardMapper.getShCommentCountByBoardId", boardId);
+                        sqlSession.close();
+                        return commentCount;
+                    }
+                    
+         //인증
+                
 }
 
 

@@ -46,7 +46,7 @@
     <form class="board_write" action="meWrite" method="post" onsubmit="return submitForm();">
     <div class="board_wrap">
         <div class="board_title">
-            <Strong>창작 게시글 작성</Strong>
+            <Strong>자유 게시글 작성</Strong>
             <p>취향이 맞는 다른 사람들과 함께 마시기 원한다면 방을 만들어보세요!</p>
         </div>
         <div class="board_write_wrap">

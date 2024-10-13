@@ -325,5 +325,106 @@ public class BoardDAO {
     
   //자유끝
     
+  //인증
+	   
+	//인증게시글가져오기
+	public List<MyBoard> getShList() {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		List<MyBoard> res = sqlSession.selectList("BoardMapper.shSelect");
+		sqlSession.close();
+		return res;
+	}
+	
+	//인증글작성 완료뷰
+	public MyBoard getshBoard(int idx) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		MyBoard res = sqlSession.selectOne("BoardMapper.getshow", idx);
+		sqlSession.close();
+		return res;
+	}		
+	
+	//인증게시판 글작성
+	public int writeshBoard(MyBoard b) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.insert("BoardMapper.shWrite", b);
+		sqlSession.close();
+		return res;
+	}
+	
+	 // 특정 게시글 조회 (수정할 글 불러오기)
+    public MyBoard geteditshBoard(int meNo) {
+        SqlSession session = sqlSessionFactory.openSession(true);
+        MyBoard board = null;
+        try {
+            board = session.selectOne("BoardMapper.selectShBoard", meNo);
+        } finally {
+            session.close();
+        }
+        return board;
+    }
+    
+    // 인증게시글 삭제 
+	public int deleteshBoard(int meNo) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.delete("BoardMapper.deleteSh",meNo);
+		sqlSession.close();
+		return res;
+	}
+
+    // 인증게시글 수정 메서드
+    public int updateshBoard(MyBoard board) {
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+        int result = sqlSession.update("BoardMapper.updateShBoard", board);
+        sqlSession.close();
+        return result;
+    }
+    
+ // 페이징을 위한 인증게시글 목록 조회
+    public List<MyBoard> getshBoardListPaging(int startRow, int endRow) {
+        SqlSession session = sqlSessionFactory.openSession();
+        List<MyBoard> boardList = null;
+        try {
+            Map<String, Integer> params = new HashMap<>();
+            params.put("startRow", startRow);
+            params.put("endRow", endRow);
+            boardList = session.selectList("BoardMapper.getShBoardListPaging", params);
+        } finally {
+            session.close();
+        }
+        return boardList;
+    }
+
+    // 전체 인증게시글 수 카운트
+    public int getshBoardCount() {
+        SqlSession session = sqlSessionFactory.openSession();
+        int totalCount = 0;
+        try {
+            totalCount = session.selectOne("BoardMapper.getShBoardCount");
+        } finally {
+            session.close();
+        }
+        return totalCount;
+    }
+    
+    // 인증게시물 조회수 증가 메서드
+    public void increaseshHitCount(int boardId) {
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            session.update("BoardMapper.increaseShHitCount", boardId);
+            session.commit();
+        } finally {
+            session.close();
+        }
+    }
+    
+    //인증게시글 작성 이미지 업로드 테스트
+	public int writeshimgBoard(MyBoard b) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.insert("BoardMapper.shimgwrite",b);
+		sqlSession.close();
+		return res;
+	}  
+  //인증끝  
+    
     
 }

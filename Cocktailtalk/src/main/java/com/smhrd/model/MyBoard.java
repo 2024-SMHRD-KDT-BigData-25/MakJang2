@@ -54,6 +54,15 @@ public class MyBoard {
 	private int FR_HIT;
 	private int FR_LIKE;
 	
+	//인증
+	private int SH_NO;
+	private String SH_TITLE;
+	private String SH_CONTENT;
+	private String SH_FILENAME;
+	private String SH_WRITEDATE;
+	private int SH_HIT;
+	private int SH_LIKE;
+	
 	private int No;
 
 
@@ -67,12 +76,12 @@ public class MyBoard {
 		this.indate = indate;
 	}
 	
-	public MyBoard(String title, String content, String writer, String img) {
+	public MyBoard(String Title, String Content, String img, String usEmail) {
 		super();
-		this.title = title;
-		this.content = content;
-		this.writer = writer;
+		this.title = Title;
+		this.content = Content;
 		this.img = img;
+		this.usEmail = usEmail;
 	}
 	
 	public MyBoard(String meTitle, String meContent, String usEmail, int mePeople) {
@@ -98,6 +107,7 @@ public class MyBoard {
 		this.content = Content;
 		this.usEmail = usEmail;
 	}
+		
 	
 	public MyBoard(String Title, String Content, int No) {
 		super();
