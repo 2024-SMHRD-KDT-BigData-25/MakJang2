@@ -73,6 +73,11 @@ input[type="text"] {
     box-sizing: border-box;
     text-align: center;
     position: relative;
+    transition: transform 0.3s;
+}
+
+.cocktail-item:hover {
+	transform: scale(1.05);
 }
 
 
