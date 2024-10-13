@@ -49,7 +49,7 @@
             </div>
             
             <div class="bt_wrap">
-                <a href="list.html" class="on">목록</a>
+                <a href="list.jsp" class="on">목록</a>
             </div>
         </div>
     </div>

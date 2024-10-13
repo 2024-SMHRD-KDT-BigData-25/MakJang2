@@ -38,6 +38,10 @@
                         <dt>조회</dt>
                         <dd>33</dd>
                     </dl>
+                    <dl>
+                        <dt><button class="like-button">좋아요 ♡</button></dt>
+                        <dd>좋아요 개수</dd>
+                    </dl>
 
                 </div>
                 <div class="cont">
@@ -49,10 +53,22 @@
             </div>
             
             <div class="bt_wrap">
-                <a href="list.html" class="on">목록</a>
+                <a href="list.jsp" class="on">목록</a>
             </div>
         </div>
     </div>
     <jsp:include page="${contextPath }/footer/footer.jsp" />
+    
+    <script>
+    // 모든 좋아요 버튼에 대해 이벤트 리스너 추가
+    const wishlistButtons = document.querySelectorAll('.like-button');
+
+    wishlistButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.toggle('active');
+            this.textContent = this.classList.contains("active") ? " 좋아요 ♥" : "좋아요 ♡"; // 텍스트 변경
+        }); 
+    });
+    </script>
 </body>
 </html>

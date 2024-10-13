@@ -56,8 +56,8 @@
             </div>
             
             <div class="bt_wrap">
-                <a href="view.html" class="on">수정</a>
-                <a href="view.html">취소</a>
+                <a href="list.jsp" class="on">수정</a>
+                <a href="view.jsp">취소</a>
             </div>
         </div>
     </div>

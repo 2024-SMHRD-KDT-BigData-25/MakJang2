@@ -50,8 +50,8 @@
             </div>
             
             <div class="bt_wrap">
-                <a href="view.html" class="on">등록</a>
-                <a href="list.html">취소</a>
+                <a href="view.jsp" class="on">등록</a>
+                <a href="list.jsp">취소</a>
             </div>
         </div>
     </div>

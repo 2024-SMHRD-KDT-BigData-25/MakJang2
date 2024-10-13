@@ -38,6 +38,10 @@
                         <dt>조회</dt>
                         <dd>33</dd>
                     </dl>
+                    <dl>
+                        <dt>좋아요 ♡</dt>
+                        <dd>좋아요 개수</dd>
+                    </dl>
                 </div>
                 <div class="cont">
                     글 내용이 들어갑니다<br> <!-- input-->
@@ -48,8 +52,8 @@
             </div>
             
             <div class="bt_wrap">
-                <a href="list.html" class="on">목록</a>
-                <a href="edit.html">수정</a>
+                <a href="list.jsp" class="on">목록</a>
+                <a href="edit.jsp">수정</a>
             </div>
         </div>
     </div>

@@ -25,6 +25,7 @@
                     <div class="writer">글쓴이</div>
                     <div class="date">작성일</div>
                     <div class="count">조회</div>
+                    <div class="people">참여인원</div>
                 </div>
                 <div class="post-item" data-title="글제목이 들어갑니다" data-writer="방승완"><!-- DB에서 불러오기-->
                     <div class="num">5</div>
@@ -32,6 +33,7 @@
                     <div class="writer">방승완</div>
                     <div class="date">2024.10.04</div>
                     <div class="count">33</div>
+                    <div class="people">1/8</div>
                 </div>
                 <div class="post-item" data-title="글제목이 들어갑니다" data-writer="방완">
                     <div class="num">4</div>
@@ -39,6 +41,7 @@
                     <div class="writer">방완</div>
                     <div class="date">2024.10.04</div>
                     <div class="count">33</div>
+                    <div class="people">1/8</div>
                 </div>
                 <div class="post-item" data-title="글제목이 들어갑니다" data-writer="방완">
                     <div class="num">3</div>
@@ -46,6 +49,7 @@
                     <div class="writer">방완</div>
                     <div class="date">2024.10.04</div>
                     <div class="count">33</div>
+                    <div class="people">1/8</div>
                 </div>
                 <div class="post-item" data-title="글제목이 들어갑니다" data-writer="방완">
                     <div class="num">2</div>
@@ -53,6 +57,7 @@
                     <div class="writer">방완</div>
                     <div class="date">2024.10.04</div>
                     <div class="count">33</div>
+                    <div class="people">1/8</div>
                 </div>
                 <div class="post-item" data-title="글제목이 들어갑니다" data-writer="방승">
                     <div class="num">1</div>
@@ -60,6 +65,7 @@
                     <div class="writer">방승</div>
                     <div class="date">2024.10.04</div>
                     <div class="count">33</div>
+                    <div class="people">1/8</div>
                 </div>
             </div>
             <div class="search-bar">
@@ -78,7 +84,7 @@
                 <a href="#" class="bt last">>></a>
             </div>
             <div class="bt_wrap">
-                <a href="write.html" class="on">등록</a>
+                <a href="write.jsp" class="on">등록</a>
                 <!-- <a href="#">수정</a> -->
             </div>
         </div>
