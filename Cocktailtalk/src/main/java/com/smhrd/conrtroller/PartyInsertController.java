@@ -1,4 +1,4 @@
-package com.smhrd.conrtroller.PartyController;
+package com.smhrd.conrtroller;
 
 import java.io.IOException;
 
@@ -22,20 +22,20 @@ public class PartyInsertController extends HttpServlet {
 		// int SH_NO = Integer.parseInt(request.getParameter("SH_NO"));
 		String email = request.getParameter("email");
 		int num = 1;
-		TB_SHOW_LIKES insertlike = new TB_SHOW_LIKES(num,email);
+		TB_SHOW_LIKES insertparty = new TB_SHOW_LIKES(num,email);
 		MemberPartyDAO dao = new MemberPartyDAO();
-		int res = dao.insertlike(insertlike);
+		int res = dao.insertparty(insertparty);
 	
 		
 		
 		if(res>0) {
 			System.out.println("성공!");
-			RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("Board/moim/jsp/view2.jsp");
 			rd.forward(request, response);
 
 		} else {
 			System.out.println("실패!");
-			RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("Board/moim/jsp/view2.jsp");
 			rd.forward(request, response);
 		}
 		

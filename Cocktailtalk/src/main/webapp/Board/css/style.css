@@ -51,7 +51,7 @@ a{
 }
 
 .bt_wrap a:first-child{
-    margin-left:0;
+    margin-left:10;
 }
 
 .bt_wrap a.on{

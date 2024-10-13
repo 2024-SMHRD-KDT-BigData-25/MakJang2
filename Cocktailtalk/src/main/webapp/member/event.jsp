@@ -78,11 +78,11 @@
 
             // 각 행사에 맞는 URL 설정
             if (eventType === 'drawingBar') {
-                eventURL = 'https://feverup.com/m/140432?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7'; // 칵테일 나이트 페이지 URL
+                eventURL = 'https://feverup.com/m/140432?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7';
             } else if (eventType === 'teaCocktail') {
-                eventURL = 'https://feverup.com/m/136579?q=%EC%B9%B5&srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7'; // 모히토 파티 페이지 URL
+                eventURL = 'https://feverup.com/m/136579?q=%EC%B9%B5&srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7'; 
             } else if (eventType === 'artNight') {
-                eventURL = 'https://feverup.com/m/143133?q=%EC%B9%B5&srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7'; // 위스키 테이스팅 페이지 URL
+                eventURL = 'https://feverup.com/m/143133?q=%EC%B9%B5&srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7'; 
             }
 
             // 행사 제목 설정
