@@ -1,4 +1,4 @@
-package com.smhrd.conrtroller.LikeController;
+package com.smhrd.conrtroller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -23,7 +23,7 @@ public class LikeDeleteController extends HttpServlet {
 		MemberLikeDAO dao = new MemberLikeDAO();
 		TB_SHOW_LIKES deleteLikes = new TB_SHOW_LIKES(SH_NO,US_EMAIL);
 		int res = dao.deletelike(deleteLikes);
-		response.sendRedirect("main.jsp");
+		response.sendRedirect("Board/injeung/jsp/view2.jsp");
 	}
 
 }

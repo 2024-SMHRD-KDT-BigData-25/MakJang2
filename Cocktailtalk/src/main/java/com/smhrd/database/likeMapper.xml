@@ -9,7 +9,7 @@
  <insert id="insertlike" parameterType="com.smhrd.model.TB_SHOW_LIKES">
 	insert into AB values (#{SH_NO},#{US_EMAIL})
  </insert>
- <select id="totallike" resultType="com.smhrd.model.TB_SHOW_LIKES">
+ <select id="totallike" resultType="java.lang.Integer">
  	select count(*) as SH_NO from AB where SH_NO=#{SH_NO}
  </select>
   <delete id="deletelike" parameterType="com.smhrd.model.TB_SHOW_LIKES">
