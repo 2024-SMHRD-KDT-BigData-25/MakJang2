@@ -23,28 +23,35 @@
         
         .worldcup-wrap{
         
-        	border: 3px solid black;
-        	background-color: black;
+        	border: 3px solid #333;
+            background-color: #333;
+            width: 70%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
         	margin: 100px auto 0 auto;
-        	width: 80%
+        	
         }
         
         .worldcup-wrap2{
         	width: 90%;
             background-color: white;
             margin: auto;
-            border-left: 3px solid black;
-            border-right: 3px solid black;
-            height: 450px;  
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            height: 500px;  
         }
         
         .worldcup-title{
         	text-align: center;
-        	border-bottom: 3px solid black;
         	background-color: rgba(0, 0, 0, 0.2);
-        	height: 50px;
-        	font-size:40px;
+        	height: 60px;
+        	font-size:36px;
         	color: white;
+        	display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .container {
@@ -53,7 +60,9 @@
         }
         
         .round-wrap{
-        	background-color: rgba(243, 190, 155, 0.2);     
+        	background-color: rgba(243, 190, 155, 0.2);
+        	margin: 20px 0;
+            padding: 10px;     
         }
         
         #round-title {
@@ -65,6 +74,7 @@
         .image-wrap{
         	background-color: white;
         	border-top: 3px solid black;
+        	padding: 20px 0;
         }
                 
         .image-container {
@@ -74,21 +84,42 @@
         
         .image-wrapper {
             margin: 0 20px;
+            transition: transform 0.3s;
         }
+        
+         .image-wrapper:hover {
+            transform: scale(1.05);
+        }        
+        
         .img {
-            max-width: 200px;
+            max-width: 300px;
+            max-height: 300px;
             height: auto;
             cursor: pointer;
+            border-radius: 8px; /* 이미지 모서리 둥글게 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
         }
         .image-name {
             margin-top: 5px;
             font-weight: bold;
+            color: #333;
         }
         .winner {
             display: none;
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
+        }
+        
+        #winner-image {
+            max-width: 300px;
+            border-radius: 8px; /* 우승자 이미지 모서리 둥글게 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin: 30px 0;
         }
     </style>
 </head>
