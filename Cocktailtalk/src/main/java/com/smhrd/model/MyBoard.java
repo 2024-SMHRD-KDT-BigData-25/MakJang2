@@ -55,8 +55,7 @@ public class MyBoard {
 	private int FR_LIKE;
 	
 	private int No;
-	private String Title;
-	private String Content;
+
 	
 	public MyBoard(int idx, String title, String writer, String indate) {
 		super();
@@ -93,15 +92,15 @@ public class MyBoard {
 	
 	public MyBoard(String Title, String Content, String usEmail) {
 		super();
-		this.Title = Title;
-		this.Content = Content;
+		this.title = Title;
+		this.content = Content;
 		this.usEmail = usEmail;
 	}
 	
 	public MyBoard(String Title, String Content, int No) {
 		super();
-		this.Title = Title;
-		this.Content = Content;
+		this.title = Title;
+		this.content = Content;
 		this.No = No;
 	}
 	

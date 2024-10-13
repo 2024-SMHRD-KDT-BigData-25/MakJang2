@@ -27,7 +27,7 @@
                 </div>
                 <div class="post-item" data-title="글제목이 들어갑니다" data-writer="방승완"><!-- DB에서 불러오기-->
                     <div class="num">5</div>
-                    <div class="title"><a href="view2.html">글제목이 들어갑니다</a></div>
+                    <div class="title"><a href="view2.jsp">글제목이 들어갑니다</a></div>
                     <div class="writer">방승완</div>
                     <div class="date">2024.10.04</div>
                     <div class="count">33</div>
