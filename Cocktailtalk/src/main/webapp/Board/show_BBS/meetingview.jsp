@@ -18,13 +18,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     
     <style>
-    /* 기본 댓글 스타일 */
-    .comment {
-        margin-bottom: 10px;
-        padding: 10px;
-        background-color: #f9f9f9;
-        border: 1px solid #ddd;
-        border-radius: 4px;
+    
+    .comment-wrap{
+    	margin-top: 20px;
+    	border: 1px solid black;
+    	padding: 20px;
+    	border-radius: 5px;
+    }
     }
 
     /* 대댓글 스타일 - 들여쓰기와 약간 어두운 배경 */
@@ -32,6 +32,115 @@
         margin-left: 20px;
         background-color: #f0f0f0;
     }
+    
+    /* 댓글 목록 스타일 */
+.list-group {
+    margin: 20px 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+h3{
+	margin: 20px;
+}
+
+textarea{
+	width: 100%;
+}
+
+.comment {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s;
+}
+
+.comment:hover {
+    background-color: #f1f1f1;
+}
+
+.comment.reply {
+    margin-left: 20px; /* 답글을 들여쓰기 */
+    border-left: 3px solid #007bff; /* 답글 강조 */
+}
+
+.content{
+
+}
+
+.btn {
+    margin-top: 5px;
+    float: right; /* 버튼을 오른쪽으로 이동 */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* 댓글 삭제 버튼 스타일 */
+.btn-danger {
+    float: right;
+}
+
+/* 텍스트 영역 스타일 */
+textarea.form-control {
+    width: 100%;
+    height: 70px; /* 텍스트 영역 높이 조절 */
+}
+
+/* 댓글 작성 폼 숨김 처리 */
+form[style*="display:none;"] {
+    margin-top: 10px;
+}
+
+/* 사용자 아이디 및 작성일 스타일 */
+strong {
+    color: #333;
+}
+
+/* 댓글 내용 스타일 */
+.comment-content {
+    white-space: pre-wrap; /* 줄바꿈 및 공백 처리 */
+    color: #555;
+}
+
+.nickname{
+	border: 1px solid black;
+	padding: 7px;
+	border-radius: 5px;
+	padding-bottom: 5px;
+	font-weight: bold;
+}
+
+
+
+/* 버튼 기본 스타일 */
+.delete, .modify {
+    background-color: white;   /* 배경 색상 */
+    border: 1px solid #007bff; /* 테두리 색상 */
+    border-radius: 5px;        /* 모서리 둥글게 */
+    padding: 10px 15px;        /* 내부 여백 */
+    cursor: pointer;            /* 커서 변경 */
+    font-weight: bold;          /* 글자 두께 */
+    color: #007bff;             /* 글자 색상 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+    height: 20px;              /* 버튼 높이 통일 */
+}
+
+/* 삭제, 수정 버튼 호버 시 효과 */
+.delete:hover, .modify:hover {
+    background-color: #f1f1f1; /* 호버 시 배경색 변화 */
+}
+
+/* 버튼의 텍스트 정렬 */
+.delete, .modify {
+    display: flex;              /* 플렉스 박스로 변환 */
+    align-items: center;        /* 세로 정렬 */
+    justify-content: center;    /* 가로 정렬 */
+}
+
   </style>
 </head>
 <body>
@@ -115,15 +224,17 @@
 
                   <% if (board.getUS_EMAIL().equals(email)){ %>
 				    <dl>
-				        <!-- 게시물 삭제 버튼 -->
-				        <form action="deleteBoard.do" method="post" onsubmit="return confirmDelete();">
-				            <input type="hidden" name="No" value="<%= board.getSH_NO() %>">
-				            <dt><button type="submit">삭제</button></dt>
-				        </form>
+				    	<dt>
+					        <!-- 게시물 삭제 버튼 -->
+					        <form action="deleteBoard.do" method="post" onsubmit="return confirmDelete();">
+					            <input type="hidden" name="No" value="<%= board.getFR_NO() %>">
+					            <dt><button type="submit" class="delete">삭제</button></dt>
+					        </form>
+				        </dt>
 				    </dl>
-				   <!-- <dl>
-				    <dt><a href="updateBoardForm.jsp?No=<%= board.getSH_NO() %>" class="btn btn-warning">게시글 수정</a></dt>
-				    </dl> -->
+				    <dl>
+				    	<dt><button class="modify"><a href="updateBoardForm.jsp?No=<%= board.getFR_NO() %>">수정</a></button></dt>
+				    </dl>
 				<% } %>
 
 				    
@@ -135,7 +246,7 @@
         			 if (imgPath != null && !imgPath.isEmpty()) { 
 					%>
 					<!-- 이미지 표시 -->
-				        <img src="<%= request.getContextPath() + "/upload/" + imgPath %>" alt="이미지" style="max-width:100%;"><br>
+				        <img src="<%= board.getSH_FILENAME() %>" alt="게시글 이미지" style="max-width:100%;">	<br>
 				        <%=board.getSH_CONTENT() %>
 				    <% } else { %>
                     	<%=board.getSH_CONTENT() %>
@@ -148,22 +259,29 @@
              
             </div>
    
+<div class="comment-wrap">
    		<h3>댓글 작성</h3>
+	
 	<form action="insertComment.do" method="post">
-	    <input type="hidden" name="boardId" value="<%= board.getSH_NO()%>">
+	    <input type="hidden" name="boardId" value="<%= board.getFR_NO()%>">
 	    <input type="hidden" name="parentCommentId" value="">
+	    
 	    <div class="form-group">
-	        <label for="writer"><%= nick %></label> <!-- 사용자 아이디 받기 -->
+	        <label for="writer" class="nickname">닉네임: <%= nick %></label> <!-- 사용자 아이디 받기 -->
 	        <input type="hidden" class="form-control" id="writer" name="writer" value="<%= nick %>" required>
 	        <input type="hidden" class="form-control" id="us_email" name="us_email" value="<%= email %>" required>
 	    </div>
+	    
 	    <div class="form-group">
-	        <label for="content">내용:</label>
+	        <label for="content" class="content">내용:</label>
+	        <br>
+	        <br>
 	        <textarea class="form-control" id="content" name="content" required></textarea>
 	    </div>
 	    <button type="submit" class="btn btn-primary">댓글 작성</button>
 	</form>         
-     
+     <br>
+     <br>
      
      <h3>댓글 목록</h3>
 <ul class="list-group">

@@ -125,48 +125,66 @@ body {
     border-radius: 5px;
 }
 
-/* 반응형 */
-@media (max-width: 768px) {
+
+
+/* 1300px 이하일 때 */
+@media (max-width: 1300px) {
     .header {
-        flex-direction: column;
+        padding: 10px 20px; /* 여백 줄임 */
     }
-    .nav {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
+
+    .logo-img {
+        width: 120px; /* 로고 크기 더 줄임 */
     }
-    .my_page {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
+    .nav a {
+        font-size: 16px; /* 네비게이션 글자 크기 축소 */
     }
+    .my_page a {
+        font-size: 16px; /* 마이페이지 글자 크기 축소 */
+    }
+    .dropdown a {
+        font-size: 14px; /* 드롭다운 메뉴 글자 크기 조정 */
+    }
+    .nav li, .my_page li {
+    white-space: nowrap;
+}
 }
 
-/* 반응형 디자인 */
-@media (max-width : 1000px) {
-    .nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: coral;
-        padding: 20px 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
 
-    .nav.open {
+@media (max-width: 1000px) {
+    .intro_bg {
         display: flex;
+        flex-wrap: wrap; /* 작은 화면에서 항목이 자동으로 줄바꿈됨 */
+        justify-content: space-between; /* 로고와 메뉴 간 간격 유지 */
+        align-items: center;
+        padding: 10px;
+        width: 100%;
     }
 
-    .nav li {
-        text-align: center;
-        margin: 10px 0;
+    .logo {
+        flex: 1; /* 로고가 좌측에 자리 잡도록 설정 */
+    }
+
+    .nav, .my_page {
+        display: flex;
+        flex-wrap: wrap; /* 항목들이 자동으로 줄바꿈됨 */
+        justify-content: flex-start; /* 메뉴들이 좌측 정렬 */
+        gap: 10px; /* 간격 조정 */
+        flex: 2; /* 로고 옆으로 나란히 배치 */
         white-space: nowrap; /* 줄바꿈 방지 */
     }
 
+    .nav li, .my_page li {
+        flex: 1 1 auto; /* 항목들이 자동으로 크기를 조절 */
+        text-align: center; /* 텍스트 중앙 정렬 */
+    }
+    
+    .media-non{
+    	display: none;
+    }
+    
+
     .my_page {
-        display: none;
+        margin-left: 20px; /* 로고와 my_page 간격 */
     }
 }

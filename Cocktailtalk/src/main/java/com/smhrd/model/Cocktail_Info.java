@@ -22,6 +22,9 @@ public class Cocktail_Info {
 	private String COCKTAIL_TAG_1;
 	private String COCKTAIL_TAG_2;
 	
+	// 찜 기능을 위해 북마크 추가
+	private boolean bookmarked;
+	
 	public Cocktail_Info(int COCKTAIL_NO, String COCKTAIL_NAME, String COCKTAIL_IMG) {
 		this.COCKTAIL_NO = COCKTAIL_NO;
 		this.COCKTAIL_NAME = COCKTAIL_NAME;
@@ -34,5 +37,14 @@ public class Cocktail_Info {
 		COCKTAIL_NAME = cOCKTAIL_NAME;
 	}
 	
+	// 북마크
+	public boolean isBookmarked() {
+        return this.bookmarked;
+    }
+
+    // 북마크 상태 설정
+    public void setBookmarked(boolean bookmarked) {
+        this.bookmarked = bookmarked;
+    }
 	
 }
