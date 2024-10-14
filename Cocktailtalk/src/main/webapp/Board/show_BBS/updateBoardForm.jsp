@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="../css/css.css">
 <head>
 <body>
-
+	<jsp:include page="${contextPath }/header/header.jsp" />
 <form action="updateBoard.do" method="post" enctype="multipart/form-data" onsubmit="return submitForm();">  
     
     <input type="hidden" name="No" value="<%= board.getSH_NO() %>">
@@ -61,7 +61,7 @@
             </div>
         </div>
     </form>
-    
+    <jsp:include page="${contextPath }/footer/footer.jsp" />    
 <script>
     // 폼 제출 전 검증 작업 (제목과 내용)
     function submitForm() {

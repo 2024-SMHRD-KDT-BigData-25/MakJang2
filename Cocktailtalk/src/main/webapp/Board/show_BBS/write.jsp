@@ -39,6 +39,7 @@
         return;
     }
 %>
+	<jsp:include page="${contextPath }/header/header.jsp" />
     <form class="board_write" action="Write" method="post" enctype="multipart/form-data" onsubmit="return submitForm();">
     <div class="board_wrap">
         <div class="board_title">
@@ -80,7 +81,8 @@
         </div>
     </div>
     </form>
-
+    <jsp:include page="${contextPath }/footer/footer.jsp" />
+    
 <script>
     // 폼 제출 전 검증 작업 (제목과 내용)
     function submitForm() {
