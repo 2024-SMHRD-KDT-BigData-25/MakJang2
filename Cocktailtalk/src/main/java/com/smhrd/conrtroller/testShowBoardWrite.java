@@ -25,7 +25,7 @@ public class testShowBoardWrite extends HttpServlet {
 		
 		//파일저장경로(절대경로)
 		ServletContext context = request.getServletContext();
-		String uploadPath = context.getRealPath("upload");
+		String uploadPath = context.getRealPath("/upload");
 		
 		// 디렉토리가 존재하지 않으면 생성
 		File uploadDir = new File(uploadPath);
@@ -43,11 +43,11 @@ public class testShowBoardWrite extends HttpServlet {
 		String Content =multi.getParameter("meContent");
 		String usEmail = multi.getParameter("usEmail");	
 		// 이미지
-		String img = multi.getFilesystemName("image");
+		String image = multi.getFilesystemName("image");
 
 
 		// DB에 저장할 파일 경로 (서버의 상대 경로)
-		String imagePath = "upload/" + img;
+        String img = request.getContextPath() + "/upload/" + image;
 		 
 		MyBoard crBoard = new MyBoard(Title,Content,img,usEmail);
 		
