@@ -242,7 +242,7 @@ strong {
 				    	<dt>
 					        <!-- 게시물 삭제 버튼 -->
 					        <form action="deleteBoard.do" method="post" onsubmit="return confirmDelete();">
-					            <input type="hidden" name="No" value="<%= board.getME_NO() %>">
+					            <input type="hidden" name="meNo" value="<%= board.getME_NO() %>">
 					            <dt><button type="submit" class="delete">삭제</button></dt>
 					        </form>
 				        </dt>
