@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.TB_SHOW_LIKES"%>
+<%@page import="com.smhrd.model.MemberPartyDAO"%>
 <%@page import="com.smhrd.model.MyMember"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.Comment"%>
@@ -189,7 +191,17 @@ strong {
         return;
     }
     //System.out.print(pnum);
-%>		
+%>	
+
+<%
+	// 참여버튼에 들어갈 정보
+    MemberPartyDAO daoo = new MemberPartyDAO();
+    int totalparty = daoo.totalparty(board.getME_NO());
+    TB_SHOW_LIKES ress = new TB_SHOW_LIKES(board.getME_NO(), email);
+    int check = daoo.checkparty(ress);
+%>
+
+	
 
 	
 	
@@ -222,7 +234,7 @@ strong {
                     </dl>
                     <dl>
                         <dt>참여인원</dt>
-                        <dd>(<%=board.getME_CLICK() %>/<%=board.getME_PEOPLE() %>)</dd>
+                        <dd>(<span class="people"><%=1+ totalparty %></span><span>/<%= board.getME_PEOPLE() %>)</span></dd>
                     </dl>
 
                   <% if (board.getUS_EMAIL().equals(email)){ %>
@@ -250,7 +262,7 @@ strong {
             
             <div class="bt_wrap">
                 <a href="meList.jsp?pageNum=<%=pageNum%>" class="on">목록</a>
-                <a href="">참여</a>
+                <span class="party-button <%= check > 0 ? "active" : "" %>"><a id="partyText"><%= check > 0 ? "참여취소" : "참여" %></a></span>
             </div>
    
 <div class="comment-wrap">
@@ -345,6 +357,41 @@ strong {
     function confirmDeletereply() {
         return confirm("정말로 이 댓글을 삭제하시겠습니까?");
     }
+    
+ // 참여버튼
+    const partyButton = document.querySelector('.party-button');
+    const partyCountDisplay = document.querySelector('.people'); // 참여인원 표시하는 요소
+    const partyTextDisplay = document.getElementById('partyText');
+
+    partyButton.addEventListener('click', function() {
+        const isActive = this.classList.toggle('active'); // 버튼의 상태 토글
+        const xhr = new XMLHttpRequest();
+        const url = isActive ? "../../PartyInsertController" : "../../PartyDeleteController";
+
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // 성공 시 총 참여 인원 수 업데이트
+                if (partyCountDisplay) { // partyCountDisplay가 null인지 확인
+                    const currentparty = parseInt(partyCountDisplay.textContent.match(/\d+/)[0]); // 현재 참여 인원 수 추출
+                    partyCountDisplay.textContent = isActive ? currentparty + 1 : currentparty - 1; // 화면에 참여인원 수 업데이트
+                }
+
+                // 버튼 텍스트 변경
+                partyTextDisplay.textContent = isActive ? "참여취소" : "참여"; 
+            } else {
+                console.error("요청에 실패했습니다.");
+            }
+        };
+
+        // 서버로 보낼 데이터 설정
+        xhr.send("email=" + encodeURIComponent("<%=email%>") + "&ME_NO=" + encodeURIComponent("<%=board.getME_NO()%>"));
+    });
+
+    
+    
+    
 </script>
 
 </body>

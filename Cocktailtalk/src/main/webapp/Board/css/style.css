@@ -341,4 +341,12 @@ a{
     
 }
 
+.party-button {
+    display: inline-block; /* 블록 형태로 만들어줌 */
+    padding: 10px; /* 클릭 영역을 넓혀줌 */
+    color: black; /* 글자 색상 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 클릭 커서 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+}
 
