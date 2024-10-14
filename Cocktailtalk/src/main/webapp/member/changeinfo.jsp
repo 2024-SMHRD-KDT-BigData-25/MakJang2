@@ -33,7 +33,7 @@
     String errorMessage = (String) request.getAttribute("errorMessage");
 %>
     
-<h1>회원정보 수정</h1>
+<jsp:include page="${contextPath }/header/header.jsp" />
 
 <div class="mypage-wrap">
     <div class="mypage-container">
