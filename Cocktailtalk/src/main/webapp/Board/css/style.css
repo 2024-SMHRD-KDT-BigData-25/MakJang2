@@ -50,9 +50,6 @@ a{
     font-size: 1.4rem;
 }
 
-.bt_wrap a:first-child{
-    margin-left:10;
-}
 
 .bt_wrap a.on{
     background: #000;
