@@ -15,7 +15,7 @@ body {
 }
 
 mypage-wrap{
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 100px auto;
 }
 
@@ -131,7 +131,7 @@ button {
 
 .jjim-container {
     border: 1px solid gray;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 50px auto; 
     background-color: white;
     padding: 20px;
@@ -154,11 +154,12 @@ button {
 .cocktail-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
+    justify-content: flex-start;
+    margin: 0 -10px; /* 좌우 마진 조정 */
 }
 
 .cocktail-item {
+	margin: 10px;
     background-color: #fff;
     padding: 10px;
     border-radius: 10px;
@@ -167,22 +168,33 @@ button {
     box-sizing: border-box;
     text-align: center;
     position: relative;
+    transition: transform 0.3s;
 }
 
+.cocktail-item:hover {
+	transform: scale(1.05);
+}
+
+
 .cocktail-item h2 {
+	margin-top: 35px;
     margin-bottom: 10px;
     color: #007bff;
+    
 }
 
 .cocktail-item img{
     touch-action: manipulation;
     cursor: pointer;
+    width: 200px;
+    height: 200px;
 }
 
 .cocktail-item p {
     margin-bottom: 10px;
     color: #333;
 }
+
 
 
 .ingredients {
