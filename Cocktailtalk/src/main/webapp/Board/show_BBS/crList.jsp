@@ -127,27 +127,26 @@
                     </div>
                     <% } %>
                     
-                    
-                    
-                    <!-- 페이지 번호 표시 -->
-					<div class="board_page">
-					    <% if (startPage > 1) { %>
-					    <a href="crList.jsp?pageNum=<%= startPage - 1 %>" class="bt pre" ><<</a>
-					    <% } %>
+                </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="제목 또는 작성자를 검색하세요">
+                <button id="searchButton">검색</button>
+            </div>
+                                    <!-- 페이지 번호 표시 -->
+			<div class="board_page">
+				<% if (startPage > 1) { %>
+				<a href="crList.jsp?pageNum=<%= startPage - 1 %>" class="bt pre" ><<</a>
+				<% } %>
 					
-					    <% for (int i = startPage; i <= endPage; i++) { %>
-					    <a href="crList.jsp?pageNum=<%= i %>" <%= (i == pageNum) ? "class='num on'" : "class='num'" %> ><%= i %></a>
-					    <% } %>
+				<% for (int i = startPage; i <= endPage; i++) { %>
+				<a href="crList.jsp?pageNum=<%= i %>" <%= (i == pageNum) ? "class='num on'" : "class='num'" %> ><%= i %></a>
+				<% } %>
 					
-					    <% if (endPage < pageCount) { %>
-					    <a href="crList.jsp?pageNum=<%= endPage + 1 %>"class="bt last">>></a>
-					    <% } %>
+				<% if (endPage < pageCount) { %>
+				<a href="crList.jsp?pageNum=<%= endPage + 1 %>"class="bt last">>></a>
+				<% } %>
 					    
-					</div>	
-					
-                    
-                   
-                    
+			</div>     
                     <div class="bt_wrap">
                         <a href="write.jsp" class="on">등록</a>
                     </div>
