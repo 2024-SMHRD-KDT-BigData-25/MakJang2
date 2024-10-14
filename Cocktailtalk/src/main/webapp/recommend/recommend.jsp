@@ -3,6 +3,37 @@
 <%@page import="com.smhrd.model.CockDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.smhrd.model.MemberDAO" %>
+<%@ page import="com.smhrd.model.MyMember" %>
+<%
+    response.setContentType("text/html; charset=UTF-8");
+    response.setCharacterEncoding("UTF-8");
+
+    HttpSession userSession = request.getSession();
+    String US_EMAIL = (String) userSession.getAttribute("EMAIL");
+
+    if (US_EMAIL == null) {
+        response.sendRedirect("fail.jsp");
+        return;
+    }
+
+    MemberDAO dao1 = new MemberDAO();
+    MyMember member = dao1.getMemberByEmail(US_EMAIL);
+    String US_NICK = member != null ? member.getUS_NICK() : null;
+
+    if (US_NICK == null) {
+        response.sendRedirect("fail.jsp");
+        return;
+    }
+    
+    List<Cocktail_Info> bookmarkList = dao1.selectBookmarkByEmail(US_EMAIL);
+    // 찜 목록에 칵테일 번호가 있는지 확인
+    int cocktailNo = 2; // 예시로 사용할 칵테일 번호
+    boolean isBookmarked = bookmarkList.stream()
+        .anyMatch(cocktail -> cocktail.getCOCKTAIL_NO() == cocktailNo);
+%>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -46,16 +77,18 @@
             </div>
         </div>
 
-		<% CockDAO dao = new CockDAO();
-		   List<Cocktail_Info> Info = dao.Cockinfo();
+		<%
+			CockDAO dao = new CockDAO();
+			List<Cocktail_Info> Info = dao.Cockinfo();
 		%>
 		
  	<div class="cocktail-list">
 		<%for(Cocktail_Info c:Info){ %>
             <div class="cocktail-item">
-                    <button class="wishlist-button">
-                        ♡ 찜
-                    </button>
+        			<input type="hidden" name="COCKTAIL_NO" value="<%= c.getCOCKTAIL_NO() %>">
+        			<button class="wishlist-button" data-cocktail-no="<%= c.getCOCKTAIL_NO() %>" data-us-email="<%= US_EMAIL %>">
+    					<%= bookmarkList.stream().anyMatch(bookmark -> bookmark.getCOCKTAIL_NO() == c.getCOCKTAIL_NO()) ? "✔ 찜됨" : "♡ 찜" %>
+					</button>
                     <h2><%=c.getCOCKTAIL_NAME() %></h2>
                     <div class="clickable-div" data-title="<%=c.getCOCKTAIL_NAME() %>"  data-recipe="<%=c.getCOCKTAIL_RECIPE() %>" data-history="<%=c.getCOCKTAIL_HIS() %>" data-image="../CocokTail_Img/<%=c.getCOCKTAIL_IMG() %>">>
                     <img src="../CocokTail_Img/<%=c.getCOCKTAIL_IMG() %>">
@@ -211,6 +244,37 @@
         }
 
     </script>
+
+
+<script>
+document.querySelectorAll('.wishlist-button').forEach(button => {
+    button.addEventListener('click', function() {
+        const cocktailNo = this.getAttribute('data-cocktail-no');
+        const usEmail = this.getAttribute('data-us-email');
+
+        // AJAX 요청
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '../BM_ToggleController', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText); // JSON 형식으로 응답을 받음
+                if (response.success) {
+                    // 버튼 상태 변경
+                    button.textContent = response.newStatus; // 서버에서 받은 새로운 상태로 변경
+                }
+            }
+        };
+
+        xhr.send('US_EMAIL=' + encodeURIComponent(usEmail) + '&COCKTAIL_NO=' + encodeURIComponent(cocktailNo));
+    });
+});
+
+
+
+</script>
+
 
 </body>
 </html>
