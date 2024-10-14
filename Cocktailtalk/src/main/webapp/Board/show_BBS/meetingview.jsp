@@ -220,7 +220,10 @@ strong {
                         <dt>조회</dt>
                         <dd><%=board.getSH_HIT() %></dd>
                     </dl>
-
+                   	<dl>
+                        <dt>좋아요 ♡</dt>
+                        <dd>좋아요 개수</dd>
+                    </dl>
 
                   <% if (board.getUS_EMAIL().equals(email)){ %>
 				    <dl>
