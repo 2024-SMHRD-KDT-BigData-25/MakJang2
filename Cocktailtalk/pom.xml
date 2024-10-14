@@ -101,7 +101,7 @@
     	<artifactId>ojdbc8</artifactId>
     	<version>23.2.0.0</version>
 	</dependency>
-	
+
   </dependencies>
 
   <build>
