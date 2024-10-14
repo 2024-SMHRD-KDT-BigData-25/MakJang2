@@ -11,110 +11,110 @@ import lombok.Setter;
 @Getter // get 메서드
 public class MyBoard {
 
-	private int idx;
-	private String title;
-	private String content;
-	private String writer;
-	private String img;
-	private String indate;
+   private int idx;
+   private String title;
+   private String content;
+   private String writer;
+   private String img;
+   private String indate;
 
-	// 모임게시판
-	private int ME_NO;
-	private String ME_TITLE;
-	private String ME_CONTENT;
-	private String ME_WRITEDATE;
-	private int ME_HIT;
-	private String US_EMAIL;
-	private int ME_LIKE;
-	private int ME_PEOPLE;
-	private int ME_CLICK;
-	private String US_NICK;
-	
-	private String meTitle;
-	private String meContent;
-	private int mePeople;
-	private int meclick;
-	
-	private String usEmail;
-	private String usNick;
-	
-	// 창작게시판
-	private int CR_NO;
-	private String CR_TITLE;
-	private String CR_CONTENT;
-	private String CR_WRITEDATE;
-	private int CR_HIT;
-	private int CR_LIKE;
-	
-	//자유
-	private int FR_NO;
-	private String FR_TITLE;
-	private String FR_CONTENT;
-	private String FR_WRITEDATE;
-	private int FR_HIT;
-	private int FR_LIKE;
-	
-	//인증
-	private int SH_NO;
-	private String SH_TITLE;
-	private String SH_CONTENT;
-	private String SH_FILENAME;
-	private String SH_WRITEDATE;
-	private int SH_HIT;
-	private int SH_LIKE;
-	
-	private int No;
+   // 모임게시판
+   private int ME_NO;
+   private String ME_TITLE;
+   private String ME_CONTENT;
+   private String ME_WRITEDATE;
+   private int ME_HIT;
+   private String US_EMAIL;
+   private int ME_LIKE;
+   private int ME_PEOPLE;
+   private int ME_CLICK;
+   private String US_NICK;
+   
+   private String meTitle;
+   private String meContent;
+   private int mePeople;
+   private int meclick;
+   
+   private String usEmail;
+   private String usNick;
+   
+   // 창작게시판
+   private int CR_NO;
+   private String CR_TITLE;
+   private String CR_CONTENT;
+   private String CR_WRITEDATE;
+   private int CR_HIT;
+   private int CR_LIKE;
+   
+   //자유
+   private int FR_NO;
+   private String FR_TITLE;
+   private String FR_CONTENT;
+   private String FR_WRITEDATE;
+   private int FR_HIT;
+   private int FR_LIKE;
+   
+   //인증
+   private int SH_NO;
+   private String SH_TITLE;
+   private String SH_CONTENT;
+   private String SH_FILENAME;
+   private String SH_WRITEDATE;
+   private int SH_HIT;
+   private int SH_LIKE;
+   
+   private int No;
 
 
 
-	
-	public MyBoard(int idx, String title, String writer, String indate) {
-		super();
-		this.idx = idx;
-		this.title = title;
-		this.writer = writer;
-		this.indate = indate;
-	}
-	
-	public MyBoard(String Title, String Content, String img, String usEmail) {
-		super();
-		this.title = Title;
-		this.content = Content;
-		this.img = img;
-		this.usEmail = usEmail;
-	}
-	
-	public MyBoard(String meTitle, String meContent, String usEmail, int mePeople) {
-		super();
-		this.meTitle = meTitle;
-		this.meContent = meContent;
-		this.usEmail = usEmail;
-		this.mePeople = mePeople;
-	}
-	
-	public MyBoard(int ME_NO, String meTitle, String meContent, int mePeople) {
-		super();
-		this.ME_NO = ME_NO;
-		this.meTitle = meTitle;
-		this.meContent = meContent;
-		this.mePeople = mePeople;
-	}	
-//    							   모임  											//
-	
-	public MyBoard(String Title, String Content, String usEmail) {
-		super();
-		this.title = Title;
-		this.content = Content;
-		this.usEmail = usEmail;
-	}
-		
-	
-	public MyBoard(String Title, String Content, int No) {
-		super();
-		this.title = Title;
-		this.content = Content;
-		this.No = No;
-	}
-	
-	
+   
+   public MyBoard(int idx, String title, String writer, String indate) {
+      super();
+      this.idx = idx;
+      this.title = title;
+      this.writer = writer;
+      this.indate = indate;
+   }
+   
+   public MyBoard(String Title, String Content, String img, String usEmail) {
+      super();
+      this.title = Title;
+      this.content = Content;
+      this.img = img;
+      this.usEmail = usEmail;
+   }
+   
+   public MyBoard(String meTitle, String meContent, String usEmail, int mePeople) {
+      super();
+      this.meTitle = meTitle;
+      this.meContent = meContent;
+      this.usEmail = usEmail;
+      this.mePeople = mePeople;
+   }
+   
+   public MyBoard(int ME_NO, String meTitle, String meContent, int mePeople) {
+      super();
+      this.ME_NO = ME_NO;
+      this.meTitle = meTitle;
+      this.meContent = meContent;
+      this.mePeople = mePeople;
+   }   
+//                            모임                                   //
+   
+   public MyBoard(String Title, String Content, String usEmail) {
+      super();
+      this.title = Title;
+      this.content = Content;
+      this.usEmail = usEmail;
+   }
+      
+   
+   public MyBoard(String Title, String Content, int No) {
+      super();
+      this.title = Title;
+      this.content = Content;
+      this.No = No;
+   }
+   
+   
 }
