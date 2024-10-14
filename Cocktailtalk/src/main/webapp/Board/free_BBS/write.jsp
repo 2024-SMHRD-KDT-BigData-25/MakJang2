@@ -63,12 +63,12 @@
                 </div>
                 <div class="info">
                     <dl>
-                        <dt><%= nick %></dt>
+                        <dt>작성자</dt>
+                        <dd><%= nick %></dd>
                         <dd>
                             <input type="hidden" name="usEmail" value="<%=email%>">
                         </dd>
-                    </dl>
-                    
+                    </dl>                    
                 </div>
                 <!-- Quill 에디터가 적용될 영역 -->
                 <div class="cont">

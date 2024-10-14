@@ -62,7 +62,8 @@
                 </div>
                 <div class="info">
                     <dl>
-                        <dt><%= nick %></dt>
+                        <dt>작성자</dt>
+                        <dd><%= nick %></dd>
                         <dd>
                             <input type="hidden" name="usEmail" value="<%=email%>">
                         </dd>

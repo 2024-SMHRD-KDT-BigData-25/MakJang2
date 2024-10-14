@@ -82,6 +82,7 @@ textarea{
 /* 댓글 삭제 버튼 스타일 */
 .btn-danger {
     float: right;
+    margin-top: -10px;
 }
 
 /* 텍스트 영역 스타일 */
