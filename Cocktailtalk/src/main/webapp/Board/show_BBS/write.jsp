@@ -65,7 +65,7 @@
                     <dl>
                         <dt>이미지</dt>
                         <dd>
-                            <input type="file" name="image" accept="image/*" multiple required> <!-- 이미지 업로드 -->
+                            <input type="file" name="image" accept="image/*" multiple="multiple" required> <!-- 이미지 업로드 -->
                         </dd>                   
                     </dl>
                 </div>

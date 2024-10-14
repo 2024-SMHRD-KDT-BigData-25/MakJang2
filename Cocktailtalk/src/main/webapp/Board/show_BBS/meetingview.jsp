@@ -135,7 +135,7 @@
         			 if (imgPath != null && !imgPath.isEmpty()) { 
 					%>
 					<!-- 이미지 표시 -->
-				        <img src="<%= board.getSH_FILENAME() %>" alt="게시글 이미지" style="max-width:100%;">	<br>
+				        <img src="../../upload/<%= board.getSH_FILENAME() %>" alt="게시글 이미지" style="max-width:100%;">	<br>
 				        <%=board.getSH_CONTENT() %>
 				    <% } else { %>
                     	<%=board.getSH_CONTENT() %>

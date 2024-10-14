@@ -22,33 +22,32 @@ public class testShowBoardWrite extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
+		int maxSize = 5 * 1024 * 1024; //5MB
 		
 		//파일저장경로(절대경로)
-		ServletContext context = request.getServletContext();
-		String uploadPath = context.getRealPath("/upload");
-		
+		//ServletContext context = request.getServletContext();
+		String uploadPath = "//C:/Users/smhrd/git/MakJang2/Cocktailtalk/src/main/webapp/upload";
+		System.out.println("uploadPath는? "+ uploadPath);
 		// 디렉토리가 존재하지 않으면 생성
-		File uploadDir = new File(uploadPath);
-		if (!uploadDir.exists()) {
-		    uploadDir.mkdir();
-		}
-		
-		int maxSize = 50 * 1024 * 1024; //50MB
+		//		File uploadDir = new File(uploadPath);
+		//		if (!uploadDir.exists()) {
+		//		    uploadDir.mkdir();
+		//		}
 		
 		MultipartRequest multi = new MultipartRequest(request,uploadPath,maxSize,
 				"UTF-8", new DefaultFileRenamePolicy());		
+		
 
 
 		String Title = multi.getParameter("meTitle");
 		String Content =multi.getParameter("meContent");
 		String usEmail = multi.getParameter("usEmail");	
 		// 이미지
-		String image = multi.getFilesystemName("image");
+		String img = multi.getFilesystemName("image");
 
 
 		// DB에 저장할 파일 경로 (서버의 상대 경로)
-        String img = request.getContextPath() + "/upload/" + image;
-		 
+        System.out.println("img는? "+ img); 
 		MyBoard crBoard = new MyBoard(Title,Content,img,usEmail);
 		
 		BoardDAO dao = new BoardDAO();
