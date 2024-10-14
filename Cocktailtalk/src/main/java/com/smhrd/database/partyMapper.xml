@@ -7,17 +7,17 @@
  
  
  <insert id="insertparty" parameterType="com.smhrd.model.TB_SHOW_LIKES">
-	insert into CHAM values (#{SH_NO},#{US_EMAIL})
+	insert into TB_MEETING_PARTY values (#{ME_NO},#{US_EMAIL})
  </insert>
  <select id="totalparty" resultType="java.lang.Integer">
- 	select count(*) as SH_NO from CHAM where SH_NO=#{SH_NO}
+ 	select count(*) as SH_NO from TB_MEETING_PARTY where ME_NO=#{ME_NO}
  </select>
   <delete id="deleteparty" parameterType="com.smhrd.model.TB_SHOW_LIKES">
- 	delete from CHAM where SH_NO=#{SH_NO} and US_EMAIL=#{US_EMAIL}
+ 	delete from TB_MEETING_PARTY where ME_NO=#{ME_NO} and US_EMAIL=#{US_EMAIL}
  </delete>
  
  <select id="checkparty" parameterType="com.smhrd.model.TB_SHOW_LIKES" resultType="int">
- 	select * from CHAM where SH_NO=#{SH_NO} and US_EMAIL=#{US_EMAIL}
+ 	select * from TB_MEETING_PARTY where ME_NO=#{ME_NO} and US_EMAIL=#{US_EMAIL}
  </select>
  
  
