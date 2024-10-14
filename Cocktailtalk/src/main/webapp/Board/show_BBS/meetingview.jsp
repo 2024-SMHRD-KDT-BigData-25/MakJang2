@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.TB_SHOW_LIKES"%>
+<%@page import="com.smhrd.model.MemberLikeDAO"%>
 <%@page import="com.smhrd.model.MyMember"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.Comment"%>
@@ -189,7 +191,18 @@ strong {
         return;
     }
     //System.out.print(pnum);
-%>		
+%>	
+
+<%
+	// 좋아요 수 카운트
+    MemberLikeDAO daoo = new MemberLikeDAO();
+    int totalLikes = daoo.totallike(board.getSH_NO());
+    TB_SHOW_LIKES ress = new TB_SHOW_LIKES(board.getSH_NO(), email);
+    int check = daoo.checklike(ress);
+%>
+
+
+	
 
 	
 	<jsp:include page="${contextPath }/header/header.jsp" />	
@@ -221,8 +234,12 @@ strong {
                         <dd><%=board.getSH_HIT() %></dd>
                     </dl>
                    	<dl>
-                        <dt>좋아요 ♡</dt>
-                        <dd>좋아요 개수</dd>
+                    <dt>
+                        <button class="like-button <%= check > 0 ? "active" : "" %>">
+                            <span id="likeText"><%= check > 0 ? "좋아요 ♥" : "좋아요 ♡" %></span>
+                            <span id="likeCount"><%= totalLikes %></span>
+                        </button>
+                    </dt>
                     </dl>
 
                   <% if (board.getUS_EMAIL().equals(email)){ %>
@@ -355,6 +372,42 @@ strong {
     function confirmDeletereply() {
         return confirm("정말로 이 댓글을 삭제하시겠습니까?");
     }
+ 
+    // 좋아요 추가, 카운트
+    const likeButton = document.querySelector('.like-button');
+    const likeCountDisplay = document.getElementById('likeCount');
+    const likeTextDisplay = document.getElementById('likeText');
+
+    likeButton.addEventListener('click', function() {
+        const isActive = this.classList.toggle('active'); // 버튼의 상태 토글
+        const xhr = new XMLHttpRequest();
+        const url = isActive ? "../../LikeInsertController" : "../../LikeDeleteController";
+
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // 성공 시 총 좋아요 수 업데이트
+                const currentLikes = parseInt(likeCountDisplay.textContent);
+                likeCountDisplay.textContent = isActive ? currentLikes + 1 : currentLikes - 1; // 화면에 좋아요 수 업데이트
+
+                // 버튼 텍스트 변경
+                if (isActive) {
+                    likeTextDisplay.textContent = "좋아요 ♥"; // 좋아요 추가
+                } else {
+                    likeTextDisplay.textContent = "좋아요 ♡"; // 좋아요 제거
+                } 
+            } else {
+                console.log("요청에 실패했습니다.");
+            }
+        };
+
+        // 서버로 보낼 데이터 설정
+        xhr.send("email=" + encodeURIComponent("<%=email%>") + "&SH_NO=" + encodeURIComponent("<%=board.getSH_NO()%>") + "&No=" + encodeURIComponent("<%= idx %>") );
+    });    
+    
+    
+    
 </script>
 
 </body>

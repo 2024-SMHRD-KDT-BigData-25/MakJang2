@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.MemberLikeDAO"%>
 <%@page import="com.smhrd.model.MyMember"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.CommentDAO"%>
@@ -116,6 +117,9 @@
                     
                     <%for(MyBoard b:list){ 
                     	 int commentCount = commentDao.getshCommentCountByBoardId(b.getSH_NO());  // 댓글 개수 조회
+                     	// 참여인원 확인
+                    	 MemberLikeDAO daoo = new MemberLikeDAO();
+                    	 int totallike = daoo.totallike(b.getSH_NO());	
                     %>
                    
                     <div>
@@ -125,7 +129,7 @@
                         <div class="writer"><%= b.getUS_NICK()%></div>
                         <div class="date"><%= b.getSH_WRITEDATE().substring(0,11) %></div>
                         <div class="count"><%= b.getSH_HIT() %></div>
-                        <div class="like">좋아요수</div>
+                        <div class="like"><%= totallike %></div>
                     </div>
                     <% } %>
                     
