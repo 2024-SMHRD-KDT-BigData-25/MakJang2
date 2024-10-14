@@ -43,6 +43,8 @@
         return;
     }
 %>
+
+	<jsp:include page="${contextPath }/header/header.jsp" />
     <form class="board_write" action="meWrite" method="post" onsubmit="return submitForm();">
     <div class="board_wrap">
         <div class="board_title">
@@ -84,7 +86,8 @@
     <input type="hidden" name="meContent" id="meContent">
     
 </form>
-
+    <jsp:include page="${contextPath }/footer/footer.jsp" />
+    
 <script>
     // Quill 에디터 초기화
     var quill = new Quill('#editor-container', {

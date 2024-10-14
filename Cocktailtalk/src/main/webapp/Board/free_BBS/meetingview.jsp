@@ -192,7 +192,7 @@ strong {
 %>		
 
 	
-	
+	<jsp:include page="${contextPath }/header/header.jsp" />	
     <div class="board_wrap">
         <div class="board_title">
             <Strong>자유 게시글</Strong>
@@ -315,7 +315,9 @@ strong {
             
         </div>
     </div>
-</div>    
+</div>
+    <jsp:include page="${contextPath }/footer/footer.jsp" />
+    
 <script>
     // 답글 폼을 토글하는 함수
     function toggleReplyForm(commentId, event) {
