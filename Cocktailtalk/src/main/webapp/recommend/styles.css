@@ -249,7 +249,7 @@ input[type="text"] {
     flex:1;
     border : 1px solid #000;
     /* 수직 중앙 정렬 설정 */
-    position: relative;    
+    position: relative;   
 }
 
 .modal-recipe-info > h3{

@@ -102,7 +102,7 @@
 		        	</div>
 		        </a>
 		        
-		        <a href="https://feverup.com/m/136579?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7&q=%EC%B9%B5%ED%85%8C%EC%9D%BC">
+		        <a href="https://feverup.com/m/136579?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7">
 		        	<div class="event-card">
 						<div class="event-image" style="background-image: url('https://applications-media.feverup.com/image/upload/fever2/plan/photo/e63d5b16-2d25-11ee-8540-f235ab335555.jpg')"></div>
 						<div class="event-info"> 
@@ -114,7 +114,7 @@
 		        	</div>
 		        </a>
 		        
-		        <a href="https://feverup.com/m/143133?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7&q=%EC%B9%B5%ED%85%8C%EC%9D%BC">
+		        <a href="https://feverup.com/m/143133?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7">
 		        	<div class="event-card">
 						<div class="event-image" style="background-image: url('https://applications-media.feverup.com/image/upload/fever2/plan/photo/4e9abe1c-3458-11ef-97d1-569c383ac591.jpg')"></div>
 						<div class="event-info"> 
@@ -127,7 +127,7 @@
 		        	</div>
 		        </a>
 		        
-		        <a href="https://feverup.com/m/134910?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7&q=%EC%B9%B5%ED%85%8C%EC%9D%BC">
+		        <a href="https://feverup.com/m/134910?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7">
 		        	<div class="event-card">
 						<div class="event-image" style="background-image: url('https://applications-media.feverup.com/image/upload/fever2/plan/photo/1ee8eff0-1a3b-11ee-aade-8ee65e6ed624.jpg')"></div>
 						<div class="event-info"> 
