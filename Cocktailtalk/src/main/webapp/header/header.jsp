@@ -29,14 +29,13 @@
 	                        <li><a href="${contextPath }/Board/show_BBS/crList.jsp">인증 게시판</a></li>
 	                    </ul>                    
 	                </li>
-	                <li class="dropdown-menu">
+	                <li class="dropdown-menu media-non">
 	                    <a href="#">즐길거리</a>
 	                    <ul class="dropdown">
 	                        <li><a href="${contextPath }/worldcup/worldcup.jsp">먹었어요 월드컵</a></li>
-	                        <li><a href="#">먹고 싶어요 월드컵</a></li>
 	                    </ul>
 	                </li>
-	                <li><a href="${contextPath }/member/event.jsp">행사</a></li>
+	                <li class="media-non"><a href="${contextPath }/member/event.jsp">행사</a></li>
 	            </ul>
 	            <div>
 	                <ul class="my_page">
