@@ -21,6 +21,7 @@
 </head>
 <body>
 
+	<jsp:include page="${contextPath }/header/header.jsp" />
 <form action="updateBoard.do" method="post" onsubmit="return submitForm();">  <!-- onsubmit 추가 -->
     <input type="hidden" name="meNo" value="<%= board.getME_NO() %>">
     
@@ -77,7 +78,8 @@
    	 </div>
 </form>
     </div>
-
+    <jsp:include page="${contextPath }/footer/footer.jsp" />
+    
 <script>
     // Quill 에디터 초기화
     var quill = new Quill('#editor-container', {

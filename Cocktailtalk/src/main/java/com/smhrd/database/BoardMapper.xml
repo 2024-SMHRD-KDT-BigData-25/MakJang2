@@ -1,76 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="BoardMapper">
-	
-	<select id = "getimgList" resultType="com.smhrd.model.MyBoard">
-		select * from myboard
-	</select>
-	
-	<insert id="imgwrite" parameterType="com.smhrd.model.MyBoard">
-		insert into myboard(title,content,writer,img)
-		values (#{title},#{content},#{writer},#{img})
-	</insert>
-	
-	<select id = "getimgBoard" parameterType="int" resultType="com.smhrd.model.MyBoard">
-		select * from myboard where idx = #{idx}
-	</select>
-	
-	<delete id = "imgdelete">
-		delete from myboard where idx = #{idx}
-	</delete>
-	
-		<!-- 모임 게시글 정보 -->
-	<select id="meSelect" resultType="com.smhrd.model.MyBoard">
-		select * from TB_MEETING_BOARD a, tb_user_info b where a.us_email = b.us_email order by a.ME_WRITEDATE DESC
-	</select>
-	
-	<!-- 모임 게시판 글작성  -->
-	<insert id="meWrite" parameterType="com.smhrd.model.MyBoard">
-		insert into TB_MEETING_BOARD(ME_TITLE,ME_CONTENT,US_EMAIL,ME_PEOPLE)
-		values (#{meTitle},#{meContent},#{usEmail},#{mePeople})
-	</insert>
-	
-	<!-- 모임글작성 완료뷰 -->
-	<select id="getmeet" parameterType="int" resultType="com.smhrd.model.MyBoard">
-		select * from TB_MEETING_BOARD a, tb_user_info b where a.us_email = b.us_email and a.ME_NO=#{ME_NO}
-	</select>	
-	
-	   <!-- 특정 글 조회 (수정할 글 불러오기) -->
+   
+   <select id = "getimgList" resultType="com.smhrd.model.MyBoard">
+      select * from tb_show_board ORDER BY sh_no DESC
+   </select>
+   
+   <insert id="imgwrite" parameterType="com.smhrd.model.MyBoard">
+      insert into myboard(title,content,writer,img)
+      values (#{title},#{content},#{writer},#{img})
+   </insert>
+   
+   <select id = "getimgBoard" parameterType="int" resultType="com.smhrd.model.MyBoard">
+      select * from myboard where idx = #{idx}
+   </select>
+   
+   <delete id = "imgdelete">
+      delete from myboard where idx = #{idx}
+   </delete>
+   
+      <!-- 모임 게시글 정보 -->
+   <select id="meSelect" resultType="com.smhrd.model.MyBoard">
+      select * from TB_MEETING_BOARD a, tb_user_info b where a.us_email = b.us_email order by a.ME_WRITEDATE DESC
+   </select>
+   
+   <!-- 모임 게시판 글작성  -->
+   <insert id="meWrite" parameterType="com.smhrd.model.MyBoard">
+      insert into TB_MEETING_BOARD(ME_TITLE,ME_CONTENT,US_EMAIL,ME_PEOPLE)
+      values (#{meTitle},#{meContent},#{usEmail},#{mePeople})
+   </insert>
+   
+   <!-- 모임글작성 완료뷰 -->
+   <select id="getmeet" parameterType="int" resultType="com.smhrd.model.MyBoard">
+      select * from TB_MEETING_BOARD a, tb_user_info b where a.us_email = b.us_email and a.ME_NO=#{ME_NO}
+   </select>   
+   
+      <!-- 특정 글 조회 (수정할 글 불러오기) -->
     <select id="selectBoard" parameterType="int" resultType="com.smhrd.model.MyBoard">
         SELECT ME_NO, ME_TITLE, US_EMAIL, ME_PEOPLE, ME_CONTENT
         FROM TB_MEETING_BOARD
         WHERE ME_NO = #{ME_NO}
     </select>
 
-	 <!-- 게시글 삭제 -->
-	<delete id="delete">
-		delete from TB_MEETING_BOARD where ME_NO=#{meNo}
-	</delete>
+    <!-- 게시글 삭제 -->
+   <delete id="delete">
+      delete from TB_MEETING_BOARD where ME_NO=#{meNo}
+   </delete>
 
     <!-- 글 수정 (Update) -->
-	<update id="updateBoard" parameterType="com.smhrd.model.MyBoard">
-	    UPDATE TB_MEETING_BOARD
-	    SET ME_TITLE = #{meTitle},
-	        ME_CONTENT = #{meContent},
-	        ME_PEOPLE = #{mePeople}
-	    WHERE ME_NO = #{ME_NO}
-	</update>
-	    
+   <update id="updateBoard" parameterType="com.smhrd.model.MyBoard">
+       UPDATE TB_MEETING_BOARD
+       SET ME_TITLE = #{meTitle},
+           ME_CONTENT = #{meContent},
+           ME_PEOPLE = #{mePeople}
+       WHERE ME_NO = #{ME_NO}
+   </update>
+       
     <!-- 페이징 -->
-	<select id="getBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
-	        SELECT * 
-	        FROM (
-	            SELECT ROWNUM AS rnum, c.*
-	            FROM (
-	                SELECT a.ME_NO, a.ME_TITLE, a.ME_CONTENT, a.ME_WRITEDATE, a.ME_HIT, a.ME_LIKE, a.me_people, a.me_click, b.us_nick 
-	                FROM TB_MEETING_BOARD a, tb_user_info b
-	                where a.us_email = b.us_email
-	                ORDER BY a.ME_WRITEDATE DESC
-	            ) c
-	            WHERE ROWNUM &lt;= #{endRow}
-	        )
-	        WHERE rnum &gt;= #{startRow}
-	    </select>
+   <select id="getBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
+           SELECT * 
+           FROM (
+               SELECT ROWNUM AS rnum, c.*
+               FROM (
+                   SELECT a.ME_NO, a.ME_TITLE, a.ME_CONTENT, a.ME_WRITEDATE, a.ME_HIT, a.ME_LIKE, a.me_people, a.me_click, b.us_nick 
+                   FROM TB_MEETING_BOARD a, tb_user_info b
+                   where a.us_email = b.us_email
+                   ORDER BY a.ME_WRITEDATE DESC
+               ) c
+               WHERE ROWNUM &lt;= #{endRow}
+           )
+           WHERE rnum &gt;= #{startRow}
+       </select>
 
 
     <!-- 전체 게시글 수 조회 -->
@@ -79,89 +79,89 @@
         FROM TB_MEETING_BOARD
     </select>
     
-	<!-- 댓글 또는 답글 추가 -->
-	<insert id="insertComment">
-	    INSERT INTO comments (board_id, parent_comment_id, writer, content, us_email)
-	    VALUES (#{boardId}, #{parentCommentId, jdbcType=INTEGER}, #{writer}, #{content}, #{us_email} )
-	</insert>
+   <!-- 댓글 또는 답글 추가 -->
+   <insert id="insertComment">
+       INSERT INTO comments (board_id, parent_comment_id, writer, content, us_email)
+       VALUES (#{boardId}, #{parentCommentId, jdbcType=INTEGER}, #{writer}, #{content}, #{us_email} )
+   </insert>
 
     <!-- 특정 게시글의 댓글 및 답글 조회 -->
-	<select id="getCommentsByBoardId" resultType="com.smhrd.model.Comment">
-	    SELECT * 
-	    FROM comments 
-	    WHERE board_id = #{boardId}
-	    ORDER BY COALESCE(parent_comment_id, comment_id), comment_id	
-	</select>
-	
-	<!-- 조회수 증가  -->
-	<update id="increaseHitCount" parameterType="int">
-    	UPDATE TB_MEETING_BOARD
-    	SET ME_HIT = ME_HIT + 1
-    	WHERE ME_NO = #{boardId}
-	</update>
-	
-	<!-- 댓글 수 조회 -->
-	<select id="getCommentCountByBoardId" parameterType="int" resultType="int">
-	    SELECT COUNT(*) FROM comments WHERE board_id = #{boardId}
-	</select>
-	
-	<!-- 대댓글 삭제 -->
-	<delete id="deleteComment" parameterType="int">
+   <select id="getCommentsByBoardId" resultType="com.smhrd.model.Comment">
+       SELECT * 
+       FROM comments 
+       WHERE board_id = #{boardId}
+       ORDER BY COALESCE(parent_comment_id, comment_id), comment_id   
+   </select>
+   
+   <!-- 조회수 증가  -->
+   <update id="increaseHitCount" parameterType="int">
+       UPDATE TB_MEETING_BOARD
+       SET ME_HIT = ME_HIT + 1
+       WHERE ME_NO = #{boardId}
+   </update>
+   
+   <!-- 댓글 수 조회 -->
+   <select id="getCommentCountByBoardId" parameterType="int" resultType="int">
+       SELECT COUNT(*) FROM comments WHERE board_id = #{boardId}
+   </select>
+   
+   <!-- 대댓글 삭제 -->
+   <delete id="deleteComment" parameterType="int">
     DELETE FROM comments WHERE COMMENT_ID = #{commentId}
-	</delete>
+   </delete>
     
 <!--________________________________________모임_____________________________________________________  -->
 <!-- 창작 게시글 정보 -->
-	<select id="crSelect" resultType="com.smhrd.model.MyBoard">
-		select * from TB_CREATE_BOARD a, tb_user_info b where a.us_email = b.us_email order by a.CR_WRITEDATE DESC
-	</select>
-	
-	<!-- 창작 게시판 글작성  -->
-	<insert id="crWrite" parameterType="com.smhrd.model.MyBoard">
-		insert into TB_CREATE_BOARD(CR_TITLE,CR_CONTENT,US_EMAIL)
-		values (#{title},#{content},#{usEmail})
-	</insert>
-	
-	<!-- 창작글작성 완료뷰 -->
-	<select id="getcreate" parameterType="int" resultType="com.smhrd.model.MyBoard">
-		select * from TB_CREATE_BOARD a, tb_user_info b where a.us_email = b.us_email and a.CR_NO=#{No}
-	</select>	
-	
-	   <!-- 특정 글 조회 (수정할 글 불러오기) -->
+   <select id="crSelect" resultType="com.smhrd.model.MyBoard">
+      select * from TB_CREATE_BOARD a, tb_user_info b where a.us_email = b.us_email order by a.CR_WRITEDATE DESC
+   </select>
+   
+   <!-- 창작 게시판 글작성  -->
+   <insert id="crWrite" parameterType="com.smhrd.model.MyBoard">
+      insert into TB_CREATE_BOARD(CR_TITLE,CR_CONTENT,US_EMAIL)
+      values (#{title},#{content},#{usEmail})
+   </insert>
+   
+   <!-- 창작글작성 완료뷰 -->
+   <select id="getcreate" parameterType="int" resultType="com.smhrd.model.MyBoard">
+      select * from TB_CREATE_BOARD a, tb_user_info b where a.us_email = b.us_email and a.CR_NO=#{No}
+   </select>   
+   
+      <!-- 특정 글 조회 (수정할 글 불러오기) -->
     <select id="selectCrBoard" parameterType="int" resultType="com.smhrd.model.MyBoard">
         SELECT CR_NO, CR_TITLE, US_EMAIL, CR_CONTENT
         FROM TB_CREATE_BOARD
         WHERE CR_NO = #{No}
     </select>
 
-	 <!-- 게시글 삭제 -->
-	<delete id="crdelete">
-		delete from TB_CREATE_BOARD where CR_NO=#{No}
-	</delete>
+    <!-- 게시글 삭제 -->
+   <delete id="crdelete">
+      delete from TB_CREATE_BOARD where CR_NO=#{No}
+   </delete>
 
     <!-- 글 수정 (Update) -->
-	<update id="updateCrBoard" parameterType="com.smhrd.model.MyBoard">
-	    UPDATE TB_CREATE_BOARD
-	    SET CR_TITLE = #{title},
-	        CR_CONTENT = #{content}
-	    WHERE CR_NO = #{No}
-	</update>
-	    
+   <update id="updateCrBoard" parameterType="com.smhrd.model.MyBoard">
+       UPDATE TB_CREATE_BOARD
+       SET CR_TITLE = #{title},
+           CR_CONTENT = #{content}
+       WHERE CR_NO = #{No}
+   </update>
+       
     <!-- 페이징 -->
-	<select id="getCrBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
-	        SELECT * 
-	        FROM (
-	            SELECT ROWNUM AS rnum, c.*
-	            FROM (
-	                SELECT a.CR_NO, a.CR_TITLE, a.CR_CONTENT, a.CR_WRITEDATE, a.CR_HIT, a.CR_LIKE, b.us_nick 
-	                FROM TB_CREATE_BOARD a, tb_user_info b
-	                where a.us_email = b.us_email
-	                ORDER BY a.CR_WRITEDATE DESC
-	            ) c
-	            WHERE ROWNUM &lt;= #{endRow}
-	        )
-	        WHERE rnum &gt;= #{startRow}
-	    </select>
+   <select id="getCrBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
+           SELECT * 
+           FROM (
+               SELECT ROWNUM AS rnum, c.*
+               FROM (
+                   SELECT a.CR_NO, a.CR_TITLE, a.CR_CONTENT, a.CR_WRITEDATE, a.CR_HIT, a.CR_LIKE, b.us_nick 
+                   FROM TB_CREATE_BOARD a, tb_user_info b
+                   where a.us_email = b.us_email
+                   ORDER BY a.CR_WRITEDATE DESC
+               ) c
+               WHERE ROWNUM &lt;= #{endRow}
+           )
+           WHERE rnum &gt;= #{startRow}
+       </select>
 
 
     <!-- 전체 게시글 수 조회 -->
@@ -170,90 +170,90 @@
         FROM TB_CREATE_BOARD
     </select>
     
-	<!-- 댓글 또는 답글 추가 -->
-	<insert id="insertCrComment">
-	    INSERT INTO cr_comments (board_id, parent_comment_id, writer, content, us_email)
-	    VALUES (#{boardId}, #{parentCommentId, jdbcType=INTEGER}, #{writer}, #{content}, #{us_email} )
-	</insert>
+   <!-- 댓글 또는 답글 추가 -->
+   <insert id="insertCrComment">
+       INSERT INTO cr_comments (board_id, parent_comment_id, writer, content, us_email)
+       VALUES (#{boardId}, #{parentCommentId, jdbcType=INTEGER}, #{writer}, #{content}, #{us_email} )
+   </insert>
 
     <!-- 특정 게시글의 댓글 및 답글 조회 -->
-	<select id="getCrCommentsByBoardId" resultType="com.smhrd.model.Comment">
-	    SELECT * 
-	    FROM cr_comments 
-	    WHERE board_id = #{boardId}
-	    ORDER BY COALESCE(parent_comment_id, comment_id), comment_id	
-	</select>
-	
-	<!-- 조회수 증가  -->
-	<update id="increaseCrHitCount" parameterType="int">
-    	UPDATE TB_CREATE_BOARD
-    	SET CR_HIT = CR_HIT + 1
-    	WHERE CR_NO = #{boardId}
-	</update>
-	
-	<!-- 댓글 수 조회 -->
-	<select id="getCrCommentCountByBoardId" parameterType="int" resultType="int">
-	    SELECT COUNT(*) FROM cr_comments WHERE board_id = #{boardId}
-	</select>
-	
-	<!-- 댓글 삭제 -->
-	<delete id="deleteCrComment" parameterType="int">
+   <select id="getCrCommentsByBoardId" resultType="com.smhrd.model.Comment">
+       SELECT * 
+       FROM cr_comments 
+       WHERE board_id = #{boardId}
+       ORDER BY COALESCE(parent_comment_id, comment_id), comment_id   
+   </select>
+   
+   <!-- 조회수 증가  -->
+   <update id="increaseCrHitCount" parameterType="int">
+       UPDATE TB_CREATE_BOARD
+       SET CR_HIT = CR_HIT + 1
+       WHERE CR_NO = #{boardId}
+   </update>
+   
+   <!-- 댓글 수 조회 -->
+   <select id="getCrCommentCountByBoardId" parameterType="int" resultType="int">
+       SELECT COUNT(*) FROM cr_comments WHERE board_id = #{boardId}
+   </select>
+   
+   <!-- 댓글 삭제 -->
+   <delete id="deleteCrComment" parameterType="int">
     DELETE FROM cr_comments WHERE COMMENT_ID = #{commentId}
-	</delete>
-	
+   </delete>
+   
 <!--________________________________________창작_____________________________________________________  -->
 
-	<!-- 자유 게시글 정보 -->
-	<select id="frSelect" resultType="com.smhrd.model.MyBoard">
-		select * from TB_FREE_BOARD a, tb_user_info b where a.us_email = b.us_email order by a.FR_WRITEDATE DESC
-	</select>
-	
-	<!-- 자유 게시판 글작성  -->
-	<insert id="frWrite" parameterType="com.smhrd.model.MyBoard">
-		insert into TB_FREE_BOARD(FR_TITLE,FR_CONTENT,US_EMAIL)
-		values (#{title},#{content},#{usEmail})
-	</insert>
-	
-	<!-- 자유글작성 완료뷰 -->
-	<select id="getfree" parameterType="int" resultType="com.smhrd.model.MyBoard">
-		select * from TB_FREE_BOARD a, tb_user_info b where a.us_email = b.us_email and a.FR_NO=#{No}
-	</select>	
-	
-	   <!-- 특정 글 조회 (수정할 글 불러오기) -->
+   <!-- 자유 게시글 정보 -->
+   <select id="frSelect" resultType="com.smhrd.model.MyBoard">
+      select * from TB_FREE_BOARD a, tb_user_info b where a.us_email = b.us_email order by a.FR_WRITEDATE DESC
+   </select>
+   
+   <!-- 자유 게시판 글작성  -->
+   <insert id="frWrite" parameterType="com.smhrd.model.MyBoard">
+      insert into TB_FREE_BOARD(FR_TITLE,FR_CONTENT,US_EMAIL)
+      values (#{title},#{content},#{usEmail})
+   </insert>
+   
+   <!-- 자유글작성 완료뷰 -->
+   <select id="getfree" parameterType="int" resultType="com.smhrd.model.MyBoard">
+      select * from TB_FREE_BOARD a, tb_user_info b where a.us_email = b.us_email and a.FR_NO=#{No}
+   </select>   
+   
+      <!-- 특정 글 조회 (수정할 글 불러오기) -->
     <select id="selectFrBoard" parameterType="int" resultType="com.smhrd.model.MyBoard">
         SELECT FR_NO, FR_TITLE, US_EMAIL, FR_CONTENT
         FROM TB_FREE_BOARD
         WHERE FR_NO = #{No}
     </select>
 
-	 <!-- 게시글 삭제 -->
-	<delete id="deleteFr">
-		delete from TB_FREE_BOARD where FR_NO=#{No}
-	</delete>
+    <!-- 게시글 삭제 -->
+   <delete id="deleteFr">
+      delete from TB_FREE_BOARD where FR_NO=#{No}
+   </delete>
 
     <!-- 글 수정 (Update) -->
-	<update id="updateFrBoard" parameterType="com.smhrd.model.MyBoard">
-	    UPDATE TB_FREE_BOARD
-	    SET FR_TITLE = #{title},
-	        FR_CONTENT = #{content}
-	    WHERE FR_NO = #{No}
-	</update>
-	    
+   <update id="updateFrBoard" parameterType="com.smhrd.model.MyBoard">
+       UPDATE TB_FREE_BOARD
+       SET FR_TITLE = #{title},
+           FR_CONTENT = #{content}
+       WHERE FR_NO = #{No}
+   </update>
+       
     <!-- 페이징 -->
-	<select id="getFrBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
-	        SELECT * 
-	        FROM (
-	            SELECT ROWNUM AS rnum, c.*
-	            FROM (
-	                SELECT a.FR_NO, a.FR_TITLE, a.FR_CONTENT, a.FR_WRITEDATE, a.FR_HIT, a.FR_LIKE, b.us_nick 
-	                FROM TB_FREE_BOARD a, tb_user_info b
-	                where a.us_email = b.us_email
-	                ORDER BY a.FR_WRITEDATE DESC
-	            ) c
-	            WHERE ROWNUM &lt;= #{endRow}
-	        )
-	        WHERE rnum &gt;= #{startRow}
-	    </select>
+   <select id="getFrBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
+           SELECT * 
+           FROM (
+               SELECT ROWNUM AS rnum, c.*
+               FROM (
+                   SELECT a.FR_NO, a.FR_TITLE, a.FR_CONTENT, a.FR_WRITEDATE, a.FR_HIT, a.FR_LIKE, b.us_nick 
+                   FROM TB_FREE_BOARD a, tb_user_info b
+                   where a.us_email = b.us_email
+                   ORDER BY a.FR_WRITEDATE DESC
+               ) c
+               WHERE ROWNUM &lt;= #{endRow}
+           )
+           WHERE rnum &gt;= #{startRow}
+       </select>
 
 
     <!-- 전체 게시글 수 조회 -->
@@ -262,96 +262,96 @@
         FROM TB_FREE_BOARD
     </select>
     
-	<!-- 댓글 또는 답글 추가 -->
-	<insert id="insertFrComment">
-	    INSERT INTO fr_comments (board_id, parent_comment_id, writer, content, us_email)
-	    VALUES (#{boardId}, #{parentCommentId, jdbcType=INTEGER}, #{writer}, #{content}, #{us_email} )
-	</insert>
+   <!-- 댓글 또는 답글 추가 -->
+   <insert id="insertFrComment">
+       INSERT INTO fr_comments (board_id, parent_comment_id, writer, content, us_email)
+       VALUES (#{boardId}, #{parentCommentId, jdbcType=INTEGER}, #{writer}, #{content}, #{us_email} )
+   </insert>
 
     <!-- 특정 게시글의 댓글 및 답글 조회 -->
-	<select id="getFrCommentsByBoardId" resultType="com.smhrd.model.Comment">
-	    SELECT * 
-	    FROM fr_comments 
-	    WHERE board_id = #{boardId}
-	    ORDER BY COALESCE(parent_comment_id, comment_id), comment_id	
-	</select>
-	
-	<!-- 조회수 증가  -->
-	<update id="increaseFrHitCount" parameterType="int">
-    	UPDATE TB_FREE_BOARD
-    	SET FR_HIT = FR_HIT + 1
-    	WHERE FR_NO = #{boardId}
-	</update>
-	
-	<!-- 댓글 수 조회 -->
-	<select id="getFrCommentCountByBoardId" parameterType="int" resultType="int">
-	    SELECT COUNT(*) FROM fr_comments WHERE board_id = #{boardId}
-	</select>
-	
-	<!-- 댓글 삭제 -->
-	<delete id="deleteFrComment" parameterType="int">
+   <select id="getFrCommentsByBoardId" resultType="com.smhrd.model.Comment">
+       SELECT * 
+       FROM fr_comments 
+       WHERE board_id = #{boardId}
+       ORDER BY COALESCE(parent_comment_id, comment_id), comment_id   
+   </select>
+   
+   <!-- 조회수 증가  -->
+   <update id="increaseFrHitCount" parameterType="int">
+       UPDATE TB_FREE_BOARD
+       SET FR_HIT = FR_HIT + 1
+       WHERE FR_NO = #{boardId}
+   </update>
+   
+   <!-- 댓글 수 조회 -->
+   <select id="getFrCommentCountByBoardId" parameterType="int" resultType="int">
+       SELECT COUNT(*) FROM fr_comments WHERE board_id = #{boardId}
+   </select>
+   
+   <!-- 댓글 삭제 -->
+   <delete id="deleteFrComment" parameterType="int">
     DELETE FROM fr_comments WHERE COMMENT_ID = #{commentId}
-	</delete>
-	
+   </delete>
+   
 <!--________________________________________자유_____________________________________________________  -->
-	<!-- 인증 게시글 정보 -->
-	<select id="shSelect" resultType="com.smhrd.model.MyBoard">
-		select * from TB_SHOW_BOARD a, tb_user_info b where a.us_email = b.us_email order by a.SH_WRITEDATE DESC
-	</select>
-	
-	<!-- 인증 게시판 글작성  -->
-	<insert id="shWrite" parameterType="com.smhrd.model.MyBoard">
-		insert into TB_SHOW_BOARD(SH_TITLE,SH_CONTENT,US_EMAIL)
-		values (#{title},#{content},#{usEmail})
-	</insert>
-	
-	<!-- 인증 게시판(이미지) 글작성  -->
-	<insert id="shimgwrite" parameterType="com.smhrd.model.MyBoard">
-	insert into TB_SHOW_BOARD(SH_TITLE,SH_CONTENT,SH_FILENAME,US_EMAIL)
-	values (#{title},#{content},#{img},#{usEmail})
-	</insert>
-	
-	<!-- 인증글작성 완료뷰 -->
-	<select id="getshow" parameterType="int" resultType="com.smhrd.model.MyBoard">
-		select * from TB_SHOW_BOARD a, tb_user_info b where a.us_email = b.us_email and a.SH_NO=#{No}
-	</select>	
-	
-	   <!-- 특정 글 조회 (수정할 글 불러오기) -->
+   <!-- 인증 게시글 정보 -->
+   <select id="shSelect" resultType="com.smhrd.model.MyBoard">
+      select * from TB_SHOW_BOARD a, tb_user_info b where a.us_email = b.us_email order by a.SH_WRITEDATE DESC
+   </select>
+   
+   <!-- 인증 게시판 글작성  -->
+   <insert id="shWrite" parameterType="com.smhrd.model.MyBoard">
+      insert into TB_SHOW_BOARD(SH_TITLE,SH_CONTENT,US_EMAIL)
+      values (#{title},#{content},#{usEmail})
+   </insert>
+   
+   <!-- 인증 게시판(이미지) 글작성  -->
+   <insert id="shimgwrite" parameterType="com.smhrd.model.MyBoard">
+   insert into TB_SHOW_BOARD(SH_TITLE,SH_CONTENT,SH_FILENAME,US_EMAIL)
+   values (#{title},#{content},#{img},#{usEmail})
+   </insert>
+   
+   <!-- 인증글작성 완료뷰 -->
+   <select id="getshow" parameterType="int" resultType="com.smhrd.model.MyBoard">
+      select * from TB_SHOW_BOARD a, tb_user_info b where a.us_email = b.us_email and a.SH_NO=#{No}
+   </select>   
+   
+      <!-- 특정 글 조회 (수정할 글 불러오기) -->
     <select id="selectShBoard" parameterType="int" resultType="com.smhrd.model.MyBoard">
         SELECT SH_NO, SH_TITLE, US_EMAIL, SH_CONTENT
         FROM TB_SHOW_BOARD
         WHERE SH_NO = #{No}
     </select>
 
-	 <!-- 게시글 삭제 -->
-	<delete id="deleteSh">
-		delete from TB_SHOW_BOARD where SH_NO=#{No}
-	</delete>
+    <!-- 게시글 삭제 -->
+   <delete id="deleteSh">
+      delete from TB_SHOW_BOARD where SH_NO=#{No}
+   </delete>
 
     <!-- 글 수정 (Update) -->
-	<update id="updateShBoard" parameterType="com.smhrd.model.MyBoard">
-	    UPDATE TB_SHOW_BOARD
-	    SET SH_TITLE = #{title},
-	        SH_CONTENT = #{content},
-	        SH_FILENAME = #{img}
-	    WHERE SH_NO = #{No}
-	</update>
-	    
+   <update id="updateShBoard" parameterType="com.smhrd.model.MyBoard">
+       UPDATE TB_SHOW_BOARD
+       SET SH_TITLE = #{title},
+           SH_CONTENT = #{content},
+           SH_FILENAME = #{img}
+       WHERE SH_NO = #{No}
+   </update>
+       
     <!-- 페이징 -->
-	<select id="getShBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
-	        SELECT * 
-	        FROM (
-	            SELECT ROWNUM AS rnum, c.*
-	            FROM (
-	                SELECT a.SH_NO, a.SH_TITLE, a.SH_CONTENT, a.SH_WRITEDATE, a.SH_HIT, a.SH_LIKE, b.us_nick 
-	                FROM TB_SHOW_BOARD a, tb_user_info b
-	                where a.us_email = b.us_email
-	                ORDER BY a.SH_WRITEDATE DESC
-	            ) c
-	            WHERE ROWNUM &lt;= #{endRow}
-	        )
-	        WHERE rnum &gt;= #{startRow}
-	    </select>
+   <select id="getShBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
+           SELECT * 
+           FROM (
+               SELECT ROWNUM AS rnum, c.*
+               FROM (
+                   SELECT a.SH_NO, a.SH_TITLE, a.SH_CONTENT, a.SH_WRITEDATE, a.SH_HIT, a.SH_LIKE, b.us_nick 
+                   FROM TB_SHOW_BOARD a, tb_user_info b
+                   where a.us_email = b.us_email
+                   ORDER BY a.SH_WRITEDATE DESC
+               ) c
+               WHERE ROWNUM &lt;= #{endRow}
+           )
+           WHERE rnum &gt;= #{startRow}
+       </select>
 
 
     <!-- 전체 게시글 수 조회 -->
@@ -360,36 +360,36 @@
         FROM TB_SHOW_BOARD
     </select>
     
-	<!-- 댓글 또는 답글 추가 -->
-	<insert id="insertShComment">
-	    INSERT INTO sh_comments (board_id, parent_comment_id, writer, content, us_email)
-	    VALUES (#{boardId}, #{parentCommentId, jdbcType=INTEGER}, #{writer}, #{content}, #{us_email} )
-	</insert>
+   <!-- 댓글 또는 답글 추가 -->
+   <insert id="insertShComment">
+       INSERT INTO sh_comments (board_id, parent_comment_id, writer, content, us_email)
+       VALUES (#{boardId}, #{parentCommentId, jdbcType=INTEGER}, #{writer}, #{content}, #{us_email} )
+   </insert>
 
     <!-- 특정 게시글의 댓글 및 답글 조회 -->
-	<select id="getShCommentsByBoardId" resultType="com.smhrd.model.Comment">
-	    SELECT * 
-	    FROM sh_comments 
-	    WHERE board_id = #{boardId}
-	    ORDER BY COALESCE(parent_comment_id, comment_id), comment_id	
-	</select>
-	
-	<!-- 조회수 증가  -->
-	<update id="increaseShHitCount" parameterType="int">
-    	UPDATE TB_SHOW_BOARD
-    	SET SH_HIT = SH_HIT + 1
-    	WHERE SH_NO = #{boardId}
-	</update>
-	
-	<!-- 댓글 수 조회 -->
-	<select id="getShCommentCountByBoardId" parameterType="int" resultType="int">
-	    SELECT COUNT(*) FROM sh_comments WHERE board_id = #{boardId}
-	</select>
-	
-	<!-- 댓글 삭제 -->
-	<delete id="deleteShComment" parameterType="int">
+   <select id="getShCommentsByBoardId" resultType="com.smhrd.model.Comment">
+       SELECT * 
+       FROM sh_comments 
+       WHERE board_id = #{boardId}
+       ORDER BY COALESCE(parent_comment_id, comment_id), comment_id   
+   </select>
+   
+   <!-- 조회수 증가  -->
+   <update id="increaseShHitCount" parameterType="int">
+       UPDATE TB_SHOW_BOARD
+       SET SH_HIT = SH_HIT + 1
+       WHERE SH_NO = #{boardId}
+   </update>
+   
+   <!-- 댓글 수 조회 -->
+   <select id="getShCommentCountByBoardId" parameterType="int" resultType="int">
+       SELECT COUNT(*) FROM sh_comments WHERE board_id = #{boardId}
+   </select>
+   
+   <!-- 댓글 삭제 -->
+   <delete id="deleteShComment" parameterType="int">
     DELETE FROM sh_comments WHERE COMMENT_ID = #{commentId}
-	</delete>
-<!--________________________________________인증_____________________________________________________  -->	
-	
+   </delete>
+<!--________________________________________인증_____________________________________________________  -->   
+   
 </mapper>

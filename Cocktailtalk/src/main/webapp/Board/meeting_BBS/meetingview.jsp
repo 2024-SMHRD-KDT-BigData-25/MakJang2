@@ -84,6 +84,7 @@ textarea{
 /* 댓글 삭제 버튼 스타일 */
 .btn-danger {
     float: right;
+    margin-top: -10px;
 }
 
 /* 텍스트 영역 스타일 */
@@ -204,7 +205,7 @@ strong {
 	
 
 	
-	
+	<jsp:include page="${contextPath }/header/header.jsp" />	
     <div class="board_wrap">
         <div class="board_title">
             <Strong>모임 게시글</Strong>
@@ -331,7 +332,8 @@ strong {
             
         </div>
     </div>
-    
+    <jsp:include page="${contextPath }/footer/footer.jsp" />
+        
 <script>
     // 답글 폼을 토글하는 함수
     function toggleReplyForm(commentId, event) {

@@ -10,66 +10,66 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.smhrd.database.SqlSessionManager;
 
 public class BoardDAO {
-	
-	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
-	
-	public List<MyBoard> getimgList() {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		List<MyBoard> res = sqlSession.selectList("BoardMapper.getimgList");
-		sqlSession.close();
-		return res;
-	}
-	
-	public int writeimgBoard(MyBoard b) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.insert("BoardMapper.imgwrite",b);
-		sqlSession.close();
-		return res;
-	}
-	
-	public MyBoard getimgBoard(int idx) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		MyBoard res = sqlSession.selectOne("BoardMapper.getimgBoard",idx);
-		sqlSession.close();
-		return res;
-	}
-	
-	public int deleteimgBoard(int idx) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.delete("BoardMapper.imgdelete",idx);
-		sqlSession.close();
-		return res;
-		
-	}
-	
-	// 모임게시판
-	
-	
-	//모임게시글가져오기
-	public List<MyBoard> getList() {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		List<MyBoard> res = sqlSession.selectList("BoardMapper.meSelect");
-		sqlSession.close();
-		return res;
-	}
-	
-	//모임글작성 완료뷰
-	public MyBoard getmeBoard(int idx) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		MyBoard res = sqlSession.selectOne("BoardMapper.getmeet", idx);
-		sqlSession.close();
-		return res;
-	}		
-	
-	//모임게시판 글작성
-	public int writeBoard(MyBoard b) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.insert("BoardMapper.meWrite", b);
-		sqlSession.close();
-		return res;
-	}
-	
-	 // 특정 게시글 조회 (수정할 글 불러오기)
+   
+   SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
+   
+   public List<MyBoard> getimgList() {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      List<MyBoard> res = sqlSession.selectList("BoardMapper.getimgList");
+      sqlSession.close();
+      return res;
+   }
+   
+   public int writeimgBoard(MyBoard b) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      int res = sqlSession.insert("BoardMapper.imgwrite",b);
+      sqlSession.close();
+      return res;
+   }
+   
+   public MyBoard getimgBoard(int idx) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      MyBoard res = sqlSession.selectOne("BoardMapper.getimgBoard",idx);
+      sqlSession.close();
+      return res;
+   }
+   
+   public int deleteimgBoard(int idx) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      int res = sqlSession.delete("BoardMapper.imgdelete",idx);
+      sqlSession.close();
+      return res;
+      
+   }
+   
+   // 모임게시판
+   
+   
+   //모임게시글가져오기
+   public List<MyBoard> getList() {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      List<MyBoard> res = sqlSession.selectList("BoardMapper.meSelect");
+      sqlSession.close();
+      return res;
+   }
+   
+   //모임글작성 완료뷰
+   public MyBoard getmeBoard(int idx) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      MyBoard res = sqlSession.selectOne("BoardMapper.getmeet", idx);
+      sqlSession.close();
+      return res;
+   }      
+   
+   //모임게시판 글작성
+   public int writeBoard(MyBoard b) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      int res = sqlSession.insert("BoardMapper.meWrite", b);
+      sqlSession.close();
+      return res;
+   }
+   
+    // 특정 게시글 조회 (수정할 글 불러오기)
     public MyBoard geteditBoard(int meNo) {
         SqlSession session = sqlSessionFactory.openSession(true);
         MyBoard board = null;
@@ -82,12 +82,12 @@ public class BoardDAO {
     }
     
     // 모임게시글 삭제 
-	public int deleteBoard(int meNo) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.delete("BoardMapper.delete",meNo);
-		sqlSession.close();
-		return res;
-	}
+   public int deleteBoard(int meNo) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      int res = sqlSession.delete("BoardMapper.delete",meNo);
+      sqlSession.close();
+      return res;
+   }
 
     // 모임게시글 수정 메서드
     public int updateBoard(MyBoard board) {
@@ -138,32 +138,32 @@ public class BoardDAO {
 //모임끝
     
 //창작
-	   
-	//창작게시글가져오기
-	public List<MyBoard> getCrList() {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		List<MyBoard> res = sqlSession.selectList("BoardMapper.crSelect");
-		sqlSession.close();
-		return res;
-	}
-	
-	//창작글작성 완료뷰
-	public MyBoard getcrBoard(int idx) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		MyBoard res = sqlSession.selectOne("BoardMapper.getcreate", idx);
-		sqlSession.close();
-		return res;
-	}		
-	
-	//창작게시판 글작성
-	public int writecrBoard(MyBoard b) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.insert("BoardMapper.crWrite", b);
-		sqlSession.close();
-		return res;
-	}
-	
-	 // 특정 게시글 조회 (수정할 글 불러오기)
+      
+   //창작게시글가져오기
+   public List<MyBoard> getCrList() {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      List<MyBoard> res = sqlSession.selectList("BoardMapper.crSelect");
+      sqlSession.close();
+      return res;
+   }
+   
+   //창작글작성 완료뷰
+   public MyBoard getcrBoard(int idx) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      MyBoard res = sqlSession.selectOne("BoardMapper.getcreate", idx);
+      sqlSession.close();
+      return res;
+   }      
+   
+   //창작게시판 글작성
+   public int writecrBoard(MyBoard b) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      int res = sqlSession.insert("BoardMapper.crWrite", b);
+      sqlSession.close();
+      return res;
+   }
+   
+    // 특정 게시글 조회 (수정할 글 불러오기)
     public MyBoard geteditcrBoard(int meNo) {
         SqlSession session = sqlSessionFactory.openSession(true);
         MyBoard board = null;
@@ -176,12 +176,12 @@ public class BoardDAO {
     }
     
     // 창작게시글 삭제 
-	public int deletecrBoard(int meNo) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.delete("BoardMapper.crdelete",meNo);
-		sqlSession.close();
-		return res;
-	}
+   public int deletecrBoard(int meNo) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      int res = sqlSession.delete("BoardMapper.crdelete",meNo);
+      sqlSession.close();
+      return res;
+   }
 
     // 창작게시글 수정 메서드
     public int updatecrBoard(MyBoard board) {
@@ -231,33 +231,33 @@ public class BoardDAO {
     
   //창작끝    
  
-	//자유
-	   
-	//자유게시글가져오기
-	public List<MyBoard> getFrList() {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		List<MyBoard> res = sqlSession.selectList("BoardMapper.frSelect");
-		sqlSession.close();
-		return res;
-	}
-	
-	//자유글작성 완료뷰
-	public MyBoard getfrBoard(int idx) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		MyBoard res = sqlSession.selectOne("BoardMapper.getfree", idx);
-		sqlSession.close();
-		return res;
-	}		
-	
-	//자유게시판 글작성
-	public int writefrBoard(MyBoard b) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.insert("BoardMapper.frWrite", b);
-		sqlSession.close();
-		return res;
-	}
-	
-	 // 특정 게시글 조회 (수정할 글 불러오기)
+   //자유
+      
+   //자유게시글가져오기
+   public List<MyBoard> getFrList() {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      List<MyBoard> res = sqlSession.selectList("BoardMapper.frSelect");
+      sqlSession.close();
+      return res;
+   }
+   
+   //자유글작성 완료뷰
+   public MyBoard getfrBoard(int idx) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      MyBoard res = sqlSession.selectOne("BoardMapper.getfree", idx);
+      sqlSession.close();
+      return res;
+   }      
+   
+   //자유게시판 글작성
+   public int writefrBoard(MyBoard b) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      int res = sqlSession.insert("BoardMapper.frWrite", b);
+      sqlSession.close();
+      return res;
+   }
+   
+    // 특정 게시글 조회 (수정할 글 불러오기)
     public MyBoard geteditfrBoard(int meNo) {
         SqlSession session = sqlSessionFactory.openSession(true);
         MyBoard board = null;
@@ -270,12 +270,12 @@ public class BoardDAO {
     }
     
     // 자유게시글 삭제 
-	public int deletefrBoard(int meNo) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.delete("BoardMapper.deleteFr",meNo);
-		sqlSession.close();
-		return res;
-	}
+   public int deletefrBoard(int meNo) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      int res = sqlSession.delete("BoardMapper.deleteFr",meNo);
+      sqlSession.close();
+      return res;
+   }
 
     // 자유게시글 수정 메서드
     public int updatefrBoard(MyBoard board) {
@@ -326,32 +326,32 @@ public class BoardDAO {
   //자유끝
     
   //인증
-	   
-	//인증게시글가져오기
-	public List<MyBoard> getShList() {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		List<MyBoard> res = sqlSession.selectList("BoardMapper.shSelect");
-		sqlSession.close();
-		return res;
-	}
-	
-	//인증글작성 완료뷰
-	public MyBoard getshBoard(int idx) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		MyBoard res = sqlSession.selectOne("BoardMapper.getshow", idx);
-		sqlSession.close();
-		return res;
-	}		
-	
-	//인증게시판 글작성
-	public int writeshBoard(MyBoard b) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.insert("BoardMapper.shWrite", b);
-		sqlSession.close();
-		return res;
-	}
-	
-	 // 특정 게시글 조회 (수정할 글 불러오기)
+      
+   //인증게시글가져오기
+   public List<MyBoard> getShList() {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      List<MyBoard> res = sqlSession.selectList("BoardMapper.shSelect");
+      sqlSession.close();
+      return res;
+   }
+   
+   //인증글작성 완료뷰
+   public MyBoard getshBoard(int idx) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      MyBoard res = sqlSession.selectOne("BoardMapper.getshow", idx);
+      sqlSession.close();
+      return res;
+   }      
+   
+   //인증게시판 글작성
+   public int writeshBoard(MyBoard b) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      int res = sqlSession.insert("BoardMapper.shWrite", b);
+      sqlSession.close();
+      return res;
+   }
+   
+    // 특정 게시글 조회 (수정할 글 불러오기)
     public MyBoard geteditshBoard(int meNo) {
         SqlSession session = sqlSessionFactory.openSession(true);
         MyBoard board = null;
@@ -364,12 +364,12 @@ public class BoardDAO {
     }
     
     // 인증게시글 삭제 
-	public int deleteshBoard(int meNo) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.delete("BoardMapper.deleteSh",meNo);
-		sqlSession.close();
-		return res;
-	}
+   public int deleteshBoard(int meNo) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      int res = sqlSession.delete("BoardMapper.deleteSh",meNo);
+      sqlSession.close();
+      return res;
+   }
 
     // 인증게시글 수정 메서드
     public int updateshBoard(MyBoard board) {
@@ -418,12 +418,12 @@ public class BoardDAO {
     }
     
     //인증게시글 작성 이미지 업로드 테스트
-	public int writeshimgBoard(MyBoard b) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.insert("BoardMapper.shimgwrite",b);
-		sqlSession.close();
-		return res;
-	}  
+   public int writeshimgBoard(MyBoard b) {
+      SqlSession sqlSession = sqlSessionFactory.openSession(true);
+      int res = sqlSession.insert("BoardMapper.shimgwrite",b);
+      sqlSession.close();
+      return res;
+   }  
   //인증끝  
     
     

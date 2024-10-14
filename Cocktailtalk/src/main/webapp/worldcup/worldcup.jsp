@@ -8,33 +8,33 @@
     <title>이상형 월드컵</title>
     <style>
     
-    	*{	
-		    margin: 0;
-		    padding: 0;
-		    
-		}
-		    
+       *{   
+          margin: 0;
+          padding: 0;
+          
+      }
+          
         body {
             font-family: Arial, sans-serif;
             align-items: center;
             background-color: white;
-            				
+                        
         }
         
         .worldcup-wrap{
         
-        	border: 3px solid #333;
+           border: 3px solid #333;
             background-color: #333;
             width: 70%;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-        	margin: 100px auto 100px auto;
-        	
+           margin: 100px auto 100px auto;
+           
         }
         
         .worldcup-wrap2{
-        	width: 90%;
+           width: 90%;
             background-color: white;
             margin: auto;
             padding: 20px;
@@ -44,12 +44,12 @@
         }
         
         .worldcup-title{
-        	text-align: center;
-        	background-color: rgba(0, 0, 0, 0.2);
-        	height: 60px;
-        	font-size:36px;
-        	color: white;
-        	display: flex;
+           text-align: center;
+           background-color: rgba(0, 0, 0, 0.2);
+           height: 60px;
+           font-size:36px;
+           color: white;
+           display: flex;
             align-items: center;
             justify-content: center;
         }
@@ -60,21 +60,21 @@
         }
         
         .round-wrap{
-        	background-color: rgba(243, 190, 155, 0.2);
-        	margin: 20px 0;
+           background-color: rgba(243, 190, 155, 0.2);
+           margin: 20px 0;
             padding: 10px;     
         }
         
         #round-title {
-		    display: block; !important;/* 요소가 보여지도록 설정 */
-		    color: orange;
-		    font-size: 24px;
-		}
-		        
+          display: block; !important;/* 요소가 보여지도록 설정 */
+          color: orange;
+          font-size: 24px;
+      }
+              
         .image-wrap{
-        	background-color: white;
-        	border-top: 3px solid black;
-        	padding: 20px 0;
+           background-color: white;
+           border-top: 3px solid black;
+           padding: 20px 0;
         }
                 
         .image-container {
@@ -92,8 +92,8 @@
         }        
         
         .img {
-            max-width: 300px;
-            max-height: 300px;
+            max-width: 10px;
+            max-height: 10px;
             height: auto;
             cursor: pointer;
             border-radius: 8px; /* 이미지 모서리 둥글게 */
@@ -112,7 +112,9 @@
         }
         
         #winner-image {
-            max-width: 300px;
+            max-width: 500px;
+            width : 300px;
+            height: auto;
             border-radius: 8px; /* 우승자 이미지 모서리 둥글게 */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
         }
@@ -121,30 +123,35 @@
             color: #2c3e50;
             margin: 30px 0;
         }
+        
+        img{
+        width:300px;
+        height:300px;
+        }
     </style>
 </head>
 <body>
 <jsp:include page="${contextPath }/header/header.jsp" />
 <div class="worldcup-wrap">
-	<div class="worldcup-wrap2">
-		<div class="worldcup-title">
-			<div>칵테일 월드컵</div>
-		</div>
-		<div id="loader">Loading...</div>
-		<div class="container" id="content">
-		    <div class="round-wrap">
-		    	<h1 id="round-title" style="display: block;">Round 1</h1>
-		    </div>
-		    <div class="image-wrap">
-		    	<div class="image-container" id="image-container"></div>
-			    <div class="winner" id="winner">
-			        <h2>최종 우승자!</h2>
-			        <img id="winner-image" src="" alt="Winner" class="img">
-			        <div id="winner-name" class="image-name"></div>
-			    </div>
-		    </div> 
-		</div>		
-	</div>
+   <div class="worldcup-wrap2">
+      <div class="worldcup-title">
+         <div>칵테일 월드컵</div>
+      </div>
+      <div id="loader">Loading...</div>
+      <div class="container" id="content">
+          <div class="round-wrap">
+             <h1 id="round-title" style="display: blocimk;">Round 1</h1>
+          </div>
+          <div class="image-wrap">
+             <div class="image-container" id="image-container"></div>
+             <div class="winner" id="winner">
+                 <h2>최종 우승자!</h2>
+                 <img id="winner-image" src="" alt="Winner" class="img">
+                 <div id="winner-name" class="image-name"></div>
+             </div>
+          </div> 
+      </div>      
+   </div>
 </div>
 
 <jsp:include page="${contextPath }/footer/footer.jsp" />
@@ -159,19 +166,28 @@
     let shownImages = []; // 이미 출력된 이미지 기록
 
     // 초기 데이터 로드
-    function loadImages() {
-        fetch('getImages.jsp')
-            .then(response => response.json())
-            .then(data => {
-                initialImages = data.images;
-                currentImages = [...initialImages];
-                if (currentImages.length !== 8) {
-                    alert('8개의 이미지를 준비해 주세요!');
-                    return;
-                }
-                renderImages();
-            });
-    }
+function loadImages() {
+    fetch('getImages.jsp')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            initialImages = data.images;
+            currentImages = [...initialImages];
+            if (currentImages.length !== 8) {
+                alert('8개의 이미지를 준비해 주세요!');
+                return;
+            }
+            renderImages();
+        })
+        .catch(error => {
+            console.error('Error loading images:', error);
+            alert('이미지 로드 중 오류가 발생했습니다.');
+        });
+}
 
     function renderImages() {
         document.getElementById('loader').style.display = 'none';
@@ -281,6 +297,25 @@
 
     // 페이지 로드 시 이미지 가져오기
     loadImages();
+    
+    function createImageElement(image, container) {
+        const imgWrapper = document.createElement('div');
+        imgWrapper.className = 'image-wrapper';
+        const imgElement = document.createElement('img');
+        imgElement.src = image.src; // 경로가 올바른지 확인
+        imgElement.alt = image.name;
+        imgElement.onerror = () => {
+            console.error('Image failed to load:', imgElement.src);
+        }; // 이미지 로딩 실패 시 로그를 찍음
+        imgElement.onclick = () => selectImage(image);
+        const nameElement = document.createElement('div');
+        nameElement.className = 'image-name';
+        nameElement.innerText = image.name;
+
+        imgWrapper.appendChild(imgElement);
+        imgWrapper.appendChild(nameElement);
+        container.appendChild(imgWrapper);
+    }
     
     </script>
 
