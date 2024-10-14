@@ -1,3 +1,4 @@
+<%@page import="com.smhrd.model.MemberPartyDAO"%>
 <%@page import="com.smhrd.model.MyMember"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.CommentDAO"%>
@@ -116,6 +117,9 @@
                     
                     <%for(MyBoard b:list){ 
                     	 int commentCount = commentDao.getCommentCountByBoardId(b.getME_NO());  // 댓글 개수 조회
+                    	// 참여인원 확인
+                    	 MemberPartyDAO daoo = new MemberPartyDAO();
+                    	 int totalparty = daoo.totalparty(b.getME_NO());	
                     %>
                    
                     <div>
@@ -125,7 +129,7 @@
                         <div class="writer"><%= b.getUS_NICK()%></div>
                         <div class="date"><%= b.getME_WRITEDATE().substring(0,11) %></div>
                         <div class="count"><%= b.getME_HIT() %></div>
-                        <div class="people">(<%= b.getME_CLICK()%>/<%= b.getME_PEOPLE() %>)</div>
+                        <div class="people">(<%=1 + totalparty %>/<%= b.getME_PEOPLE() %>)</div>
                     </div>
                     <% } %>
                 </div>
@@ -137,15 +141,15 @@
                                     <!-- 페이지 번호 표시 -->
 			<div class="board_page">
 				<% if (startPage > 1) { %>
-				<a href="crList.jsp?pageNum=<%= startPage - 1 %>" class="bt pre" ><<</a>
+				<a href="meList.jsp?pageNum=<%= startPage - 1 %>" class="bt pre" ><<</a>
 				<% } %>
 					
 				<% for (int i = startPage; i <= endPage; i++) { %>
-				<a href="crList.jsp?pageNum=<%= i %>" <%= (i == pageNum) ? "class='num on'" : "class='num'" %> ><%= i %></a>
+				<a href="meList.jsp?pageNum=<%= i %>" <%= (i == pageNum) ? "class='num on'" : "class='num'" %> ><%= i %></a>
 				<% } %>
 					
 				<% if (endPage < pageCount) { %>
-				<a href="crList.jsp?pageNum=<%= endPage + 1 %>"class="bt last">>></a>
+				<a href="meList.jsp?pageNum=<%= endPage + 1 %>"class="bt last">>></a>
 				<% } %>
 					    
 			</div>

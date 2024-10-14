@@ -16,19 +16,39 @@
     /* main */
 
     .main_bg{
-        background-image: url("../image/test.png");
-        background-size : 400px 400px;
-        background-repeat : no-repeat;
+        background-size: cover;
         background-position: center;
         width:100%;
-        height: 400px;
-        margin: auto;
+        height: 600px;
+        margin: 0 auto;
+        display: flex;
+        position: relative; /* 자식 요소를 절대 위치 지정할 수 있도록 설정 */
+    	overflow: hidden; /* 자식 요소가 흐리게 된 배경을 벗어나지 않도록 설정 */
+        background-image: 
+	    linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, 0.6)),
+	    url('../image/bg6.jpg'); /* 배경 이미지 */
+	    background-size: cover;
+	    background-position: center;
+	    z-index: -2; 
     }
+    
 
     .main_text{
         text-align: center;
         margin: auto;
     }
+    
+    .main_text> .comecome{
+    	font-size: 50px;
+    	font-weight: bold;
+    	color:white;
+    }
+    
+    .main_text > p {
+        font-size: 30px;
+        color:white;
+    }
+
 
     /* main_text1 */
 

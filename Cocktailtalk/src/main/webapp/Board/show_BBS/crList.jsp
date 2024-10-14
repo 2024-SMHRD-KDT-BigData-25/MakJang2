@@ -109,6 +109,7 @@
                         <div class="writer">글쓴이</div>
                         <div class="date">작성일</div>
                         <div class="count">조회</div>
+                        <div class="like">좋아요</div>
                     </div>
                     
                     <!-- DB에서 게시글 목록 출력 -->
@@ -124,6 +125,7 @@
                         <div class="writer"><%= b.getUS_NICK()%></div>
                         <div class="date"><%= b.getSH_WRITEDATE().substring(0,11) %></div>
                         <div class="count"><%= b.getSH_HIT() %></div>
+                        <div class="like">좋아요수</div>
                     </div>
                     <% } %>
                     

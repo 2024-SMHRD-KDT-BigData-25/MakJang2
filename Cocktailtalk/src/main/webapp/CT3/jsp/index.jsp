@@ -15,12 +15,12 @@
     <div class="wrap">
       <jsp:include page="${contextPath }/header/header.jsp" />
         
-        <div>
-            <div class=main_bg>
-            </div>
+        <div class=main_bg>
             <div class="main_text">
-                <h1>칵테일 톡에 오신걸 환영합니다!</h1>
-                <h2> 홈페이지 소개 </h2>
+                <p class="comecome">칵테일 톡에 오신걸 환영합니다!</p>
+                <br>
+                <p>여러분의 특별한 순간을 함께 나누고, 새로운 친구를 만나며,</p>
+                <p>나만의 칵테일 레시피를 자랑할 수 있는 공간이 바로 여기에 있습니다!</p>
             </div>
         </div>
 

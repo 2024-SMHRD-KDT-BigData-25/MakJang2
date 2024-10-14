@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.smhrd.model.BoardDAO;
 
-@WebServlet("/Board/free_BBS/meWrite/deleteBoard.do")
+@WebServlet("/Board/free_BBS/deleteBoard.do")
 public class FrDeleteBoardServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int No = Integer.parseInt(request.getParameter("No"));

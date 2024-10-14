@@ -1,3 +1,5 @@
+<%@page import="com.smhrd.model.TB_SHOW_LIKES"%>
+<%@page import="com.smhrd.model.MemberPartyDAO"%>
 <%@page import="com.smhrd.model.MyMember"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.Comment"%>
@@ -82,6 +84,7 @@ textarea{
 /* 댓글 삭제 버튼 스타일 */
 .btn-danger {
     float: right;
+    margin-top: -10px;
 }
 
 /* 텍스트 영역 스타일 */
@@ -189,10 +192,20 @@ strong {
         return;
     }
     //System.out.print(pnum);
-%>		
+%>	
+
+<%
+	// 참여버튼에 들어갈 정보
+    MemberPartyDAO daoo = new MemberPartyDAO();
+    int totalparty = daoo.totalparty(board.getME_NO());
+    TB_SHOW_LIKES ress = new TB_SHOW_LIKES(board.getME_NO(), email);
+    int check = daoo.checkparty(ress);
+%>
 
 	
+
 	
+	<jsp:include page="${contextPath }/header/header.jsp" />	
     <div class="board_wrap">
         <div class="board_title">
             <Strong>모임 게시글</Strong>
@@ -222,7 +235,7 @@ strong {
                     </dl>
                     <dl>
                         <dt>참여인원</dt>
-                        <dd>(<%=board.getME_CLICK() %>/<%=board.getME_PEOPLE() %>)</dd>
+                        <dd>(<span class="people"><%=1+ totalparty %></span><span>/<%= board.getME_PEOPLE() %>)</span></dd>
                     </dl>
 
                   <% if (board.getUS_EMAIL().equals(email)){ %>
@@ -230,13 +243,13 @@ strong {
 				    	<dt>
 					        <!-- 게시물 삭제 버튼 -->
 					        <form action="deleteBoard.do" method="post" onsubmit="return confirmDelete();">
-					            <input type="hidden" name="No" value="<%= board.getFR_NO() %>">
+					            <input type="hidden" name="meNo" value="<%= board.getME_NO() %>">
 					            <dt><button type="submit" class="delete">삭제</button></dt>
 					        </form>
 				        </dt>
 				    </dl>
 				    <dl>
-				    	<dt><button class="modify"><a href="updateBoardForm.jsp?No=<%= board.getFR_NO() %>">수정</a></button></dt>
+				    	<dt><button class="modify"><a href="updateBoardForm.jsp?ME_NO=<%= board.getME_NO() %>">수정</a></button></dt>
 				    </dl>
 				<% } %>
 
@@ -250,14 +263,14 @@ strong {
             
             <div class="bt_wrap">
                 <a href="meList.jsp?pageNum=<%=pageNum%>" class="on">목록</a>
-                <a href="">참여</a>
+                <span class="party-button <%= check > 0 ? "active" : "" %>"><a id="partyText"><%= check > 0 ? "참여취소" : "참여" %></a></span>
             </div>
    
 <div class="comment-wrap">
    		<h3>댓글 작성</h3>
 	
 	<form action="insertComment.do" method="post">
-	    <input type="hidden" name="boardId" value="<%= board.getFR_NO()%>">
+	    <input type="hidden" name="boardId" value="<%= board.getME_NO()%>">
 	    <input type="hidden" name="parentCommentId" value="">
 	    
 	    <div class="form-group">
@@ -319,7 +332,8 @@ strong {
             
         </div>
     </div>
-    
+    <jsp:include page="${contextPath }/footer/footer.jsp" />
+        
 <script>
     // 답글 폼을 토글하는 함수
     function toggleReplyForm(commentId, event) {
@@ -345,6 +359,41 @@ strong {
     function confirmDeletereply() {
         return confirm("정말로 이 댓글을 삭제하시겠습니까?");
     }
+    
+ // 참여버튼
+    const partyButton = document.querySelector('.party-button');
+    const partyCountDisplay = document.querySelector('.people'); // 참여인원 표시하는 요소
+    const partyTextDisplay = document.getElementById('partyText');
+
+    partyButton.addEventListener('click', function() {
+        const isActive = this.classList.toggle('active'); // 버튼의 상태 토글
+        const xhr = new XMLHttpRequest();
+        const url = isActive ? "../../PartyInsertController" : "../../PartyDeleteController";
+
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // 성공 시 총 참여 인원 수 업데이트
+                if (partyCountDisplay) { // partyCountDisplay가 null인지 확인
+                    const currentparty = parseInt(partyCountDisplay.textContent.match(/\d+/)[0]); // 현재 참여 인원 수 추출
+                    partyCountDisplay.textContent = isActive ? currentparty + 1 : currentparty - 1; // 화면에 참여인원 수 업데이트
+                }
+
+                // 버튼 텍스트 변경
+                partyTextDisplay.textContent = isActive ? "참여취소" : "참여"; 
+            } else {
+                console.error("요청에 실패했습니다.");
+            }
+        };
+
+        // 서버로 보낼 데이터 설정
+        xhr.send("email=" + encodeURIComponent("<%=email%>") + "&ME_NO=" + encodeURIComponent("<%=board.getME_NO()%>"));
+    });
+
+    
+    
+    
 </script>
 
 </body>

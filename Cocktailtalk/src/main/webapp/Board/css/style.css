@@ -43,13 +43,37 @@ a{
 .bt_wrap a{
     display: inline-block;
     min-width: 80px;
-    margin-left: 10px;
     padding: 10px;
     border: 1px solid #000;
     border-radius: 2px;
     font-size: 1.4rem;
 }
 
+.bt_wrap a:nth-child(2){
+	margin-left: 20px;
+}
+
+.bt_wrap .btn-primary{
+	display: inline-block;
+    min-width: 105px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    font-size: 1.4rem;
+    background-color: white;
+    cursor: pointer;
+}
+
+.com{
+		display: inline-block;
+    min-width: 30px;
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    font-size: 1.4rem;
+    background-color: white;
+    cursor: pointer;
+}
 
 .bt_wrap a.on{
     background: #000;
@@ -341,4 +365,12 @@ a{
     
 }
 
+.party-button {
+    display: inline-block; /* 블록 형태로 만들어줌 */
+    padding: 10px; /* 클릭 영역을 넓혀줌 */
+    color: black; /* 글자 색상 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 클릭 커서 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+}
 
