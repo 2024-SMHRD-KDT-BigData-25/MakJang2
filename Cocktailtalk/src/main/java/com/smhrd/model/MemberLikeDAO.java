@@ -20,11 +20,11 @@ public class MemberLikeDAO {
 		return res;
 	}
 	
-	public TB_SHOW_LIKES totallike(int sh_no) {
+	public int totallike(int sh_no) {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		TB_SHOW_LIKES res = sqlSession.selectOne("likeMapper.totallike", sh_no);
+		Integer res = sqlSession.selectOne("likeMapper.totallike", sh_no);
 		sqlSession.close();
-		return res;
+		return (res != null) ? res : 0;
 	}
 	
 	public int deletelike(TB_SHOW_LIKES t) {
@@ -35,11 +35,12 @@ public class MemberLikeDAO {
 	}
 	
 	public int checklike(TB_SHOW_LIKES t) {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int res = sqlSession.selectOne("likeMapper.checklike",t);
-		sqlSession.close();
-		return res;
+	    try (SqlSession sqlSession = sqlSessionFactory.openSession(true)) {
+	        Integer res = sqlSession.selectOne("likeMapper.checklike", t); // Integer로 받기
+	        return (res != null) ? res : 0; // null 체크 후 반환
+	    } // try 블록이 끝나면 자동으로 sqlSession이 닫힘
 	}
+
 
 	
 }

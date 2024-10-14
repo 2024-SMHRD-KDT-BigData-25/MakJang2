@@ -35,8 +35,9 @@
     .main_text1{
         width: 100%;
         height: 659px;
-        border-top: 1px solid #000;
+        
         margin-top: 50px;
+        
     }
     
     .main_text1 > h1{
@@ -57,16 +58,39 @@
     
     .service > .cock_photo > img {
         border-radius: 5%;
-        width:600px;        
+        width:400px;
+        margin-left: 100px;       
+    }
+    
+    .service > .cock_photo {
+    	flex:1;
+        opacity: 0; /* 초기 상태에서 투명 */
+        transform: translateX(-100%); /* 왼쪽으로 이동 */
+        transition: transform 0.5s ease, opacity 0.5s ease; /* 애니메이션 효과 */        
+    }
+    
+    .service > .cock_photo.visible{
+        opacity: 1; /* 보이게 */
+        transform: translateX(0); /* 원래 위치로 이동 */
     }
 
-    .service > .px18{
+    .service > .cock_info{
         flex: 1;
         padding : 20px;
         margin: auto;
+        text-align:center;
+        opacity: 0; /* 초기 상태에서 투명 */
+        transform: translateX(100%); /* 오른쪽으로 이동 */
+        transition: transform 0.5s ease, opacity 0.5s ease; /* 애니메이션 효과 */        
     }
     
-    .service > .px18 > h2{
+    .service > .cock_info.visible{
+      	opacity: 1; /* 보이게 */
+        transform: translateX(0); /* 원래 위치로 이동 */
+    }
+    
+    .service > .cock_info > h2,
+    .service > .cock_info > h3{
         margin-bottom : 27px;
     }
 
@@ -75,8 +99,8 @@
     .main_text2{
         width: 100%;
         height: 659px;
-        margin-top: 150px;
-        border-top: 1px solid #000;
+        margin-bottom: 100px;
+        
     }
     
     .main_text2 > h1{
@@ -84,28 +108,217 @@
         text-align: center;
     }
     
-    .main_text2 .px24{
+    .main_text2 > .px24{
         text-align: center;
     }
     
-    .ranking{
+    .main_text2 .rank-info{
+        text-align: center;
+    }
+    
+    .ranking-wrap{
         width:1280px;
         display: flex;
         margin: 49px auto;
         height: 427px;
     }
     
-    .ranking > .rank > img {
+    .ranking-wrap > .rank > img {
         border-radius: 5%;
-        width:600px;        
+        margin-left: 100px;
+        margin-top: 100px;
+        width:400px;               
+    }
+    
+    .ranking-wrap > .rank {
+        flex: 1;               
     }
 
-    .ranking > .px18{
+    .ranking-wrap > .rank-info{
         flex: 1;
         padding : 20px;
         margin: auto;
+        text-align:center;
     }
     
-    .ranking > .px18 > h2{
+    .ranking-wrap > .rank-info > h2{
         margin-bottom : 27px;
     }
+    
+        .ranking-container {
+            border: 1px solid #ccc;
+            padding: 45px;
+            background-color: #fff;
+            border-radius: 5px;
+            display: inline-block;
+            overflow: hidden;
+            width: 400px;
+        }
+        
+        .ranking {
+            border: 1px solid #ccc;
+            padding: 6px;
+            margin: 5px 0;
+            background-color: white;
+            border-radius: 8.8px;
+            animation: scaleAnimation 9s infinite;
+            position: relative;
+            overflow: hidden;            
+        }
+        
+        .percentage-bar {
+            height: 28px;
+            background-color: rgba(0, 123, 255, 0.7); /* 반투명 파란색 */
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        
+        
+        /* 애니메이션 키프레임 */
+        @keyframes scaleAnimation {
+            0%, 12.5% { transform: scale(1); }
+            15%, 27.5% { transform: scale(1.2); }
+            30%, 100% { transform: scale(1); }
+        }
+
+        /* 각 순위에 대해 애니메이션 시작 시점 조정 */
+        .ranking:nth-child(1) { animation-delay: 0s; }
+        .ranking:nth-child(2) { animation-delay: 1.1s; }
+        .ranking:nth-child(3) { animation-delay: 2.2s; }
+        .ranking:nth-child(4) { animation-delay: 3.3s; }
+        .ranking:nth-child(5) { animation-delay: 4.4s; }
+        .ranking:nth-child(6) { animation-delay: 5.5s; }
+        .ranking:nth-child(7) { animation-delay: 6.6s; }
+        .ranking:nth-child(8) { animation-delay: 7.7s; }
+    
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.ranking-container,
+.rank {
+    opacity: 0; /* 초기 상태 */
+    transition: opacity 0.5s ease; /* 부드러운 전환 효과 */
+}
+
+.visible-ranking {
+    opacity: 1; /* 보일 때의 상태 */
+    animation: slideInLeft 0.7s forwards; /* 왼쪽에서 들어오는 애니메이션 */
+}
+
+.visible-rank {
+    opacity: 1; /* 보일 때의 상태 */
+    animation: slideInRight 0.7s forwards; /* 오른쪽에서 들어오는 애니메이션 */
+}
+
+
+/* 행사 */
+
+.event-wrap{
+	width: 100%;
+    height: 659px;
+    margin-bottom: 100px;
+
+}
+
+.event-wrap> h1{
+    padding-top : 50px;
+    text-align: center;	
+}
+
+.event-wrap > .px24{
+    text-align: center;
+    margin-bottom : 50px;
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.arrow {
+    background-color: white;
+    color: darkgray;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 50px;
+    margin: 0 auto;
+}
+    
+
+.event-container {
+    display: flex;
+    overflow-x: hidden; /* 가로 스크롤 숨기기 */
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    align-items: center; /* 세로 정렬 */
+    padding: 20px;
+    gap: 20px; /* 카드 사이의 간격 */
+    max-width: calc(200px * 5 + 80px); /* 최대 너비 설정 */
+    position: relative; /* 자식 요소에 절대 위치 설정 */
+   	margin: 0 auto;
+}
+
+.event-card {
+    flex: 0 0 auto; /* 카드가 자동으로 늘어나지 않도록 */
+    width: 200px; /* 카드 너비 */
+    height: 380px; /* 카드 높이 */
+    color: white; /* 카드 글자 색상 */
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; /* 카드 모서리 둥글게 */
+    transition: transform 0.3s ease; /* 확대 효과 전환 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    
+}
+
+.event-card:hover {
+    transform: scale(1.1); /* 마우스 오버 시 확대 */
+}
+
+.event-card.active {
+    transform: scale(1.1); /* 가운데 카드 확대 */
+}
+
+.event-image {
+    width: 100%; /* 이미지 너비 조정 */
+    height: 200px; /* 이미지 높이를 더 넓게 조정 */
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto 5px auto; /* 이미지와 내용 간격 */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.event-info{
+	padding: 0 5px;
+	box-sizing: border-box;
+	background-color: white;
+	width: 100%;
+    height: 150px;
+    text-align: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+    

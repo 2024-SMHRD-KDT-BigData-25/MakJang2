@@ -1,4 +1,4 @@
-package com.smhrd.conrtroller.LikeController;
+package com.smhrd.conrtroller;
 
 import java.io.IOException;
 
@@ -30,12 +30,12 @@ public class LikeInsertController extends HttpServlet {
 		
 		if(res>0) {
 			System.out.println("성공!");
-			RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("Board/injeung/jsp/view2.jsp");
 			rd.forward(request, response);
 
 		} else {
 			System.out.println("실패!");
-			RequestDispatcher rd = request.getRequestDispatcher("main.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("Board/injeung/jsp/view2.jsp");
 			rd.forward(request, response);
 		}
 		

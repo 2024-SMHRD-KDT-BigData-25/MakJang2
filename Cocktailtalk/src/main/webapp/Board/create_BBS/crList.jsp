@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모임 게시판</title>
+    <title>창작 게시판</title>
     <link rel="stylesheet" href="../css/css.css">
 </head>
 <body>
@@ -28,7 +28,7 @@
 		int pageNum = (pageNumStr == null) ? 1 : Integer.parseInt(pageNumStr);
 		
 		// 전체 게시글 수
-		int totalCount = dao.getBoardCount();
+		int totalCount = dao.getcrBoardCount();
 		
 		// 전체 페이지 수 계산
 		int pageCount = (totalCount / pageSize) + ((totalCount % pageSize == 0) ? 0 : 1);
@@ -42,7 +42,7 @@
 		int endRow = pageNum * pageSize;
 		
 		// 해당 페이지의 데이터 가져오기
-		List<MyBoard> list = dao.getBoardListPaging(startRow, endRow);
+		List<MyBoard> list = dao.getcrBoardListPaging(startRow, endRow);
 		
 	    // 게시물 번호 계산 (페이지 내에서 역순으로 번호를 표시)
 	    int listNo = totalCount - (pageNum - 1) * pageSize;
@@ -95,12 +95,12 @@
     }
 %>	
 
-	<jsp:include page="${contextPath }/header/header.jsp" />
-    <div class="board_wrap">
-        <div class="board_title">
-            <Strong>모임 게시판</Strong>
-            <p>취향이 맞는 다른 사람들과 함께 마시기 원한다면 방을 만들어보세요!</p>
-        </div>
+ 	<jsp:include page="${contextPath }/header/header.jsp" />
+        <div class="board_wrap">
+            <div class="board_title">
+                <Strong><a href="crList.jsp">창작 게시판</a></Strong>
+                <p>취향이 맞는 다른 사람들과 함께 마시기 원한다면 방을 만들어보세요!</p>
+            </div>
             <div class="board_list_wrap">
                 <div class="board_list">
                     <div class="top">
@@ -109,42 +109,38 @@
                         <div class="writer">글쓴이</div>
                         <div class="date">작성일</div>
                         <div class="count">조회</div>
-                        <div class="people">참여인원</div>
                     </div>
                     
                     <!-- DB에서 게시글 목록 출력 -->
                     
                     <%for(MyBoard b:list){ 
-                    	 int commentCount = commentDao.getCommentCountByBoardId(b.getME_NO());  // 댓글 개수 조회
+                    	 int commentCount = commentDao.getcrCommentCountByBoardId(b.getCR_NO());  // 댓글 개수 조회
                     %>
                    
                     <div>
                         <div class="num"><%=listNo--%></div>
-                        <div class="title"><a href="viewBoard.do?ME_NO=<%=b.getME_NO()%>&pageNum=<%=pageNum%>"><%= b.getME_TITLE().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
+                        <div class="title"><a href="viewBoard.do?No=<%=b.getCR_NO()%>&pageNum=<%=pageNum%>"><%= b.getCR_TITLE().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
                         <%if(commentCount!=0){ %><span style="color:gray;">[<%= commentCount %>]</span> <!-- 댓글 개수 표시 --><%} %></a> </div>
                         <div class="writer"><%= b.getUS_NICK()%></div>
-                        <div class="date"><%= b.getME_WRITEDATE().substring(0,11) %></div>
-                        <div class="count"><%= b.getME_HIT() %></div>
-                        <div class="people">(<%= b.getME_CLICK()%>/<%= b.getME_PEOPLE() %>)</div>
+                        <div class="date"><%= b.getCR_WRITEDATE().substring(0,11) %></div>
+                        <div class="count"><%= b.getCR_HIT() %></div>
                     </div>
                     <% } %>
                     
-             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="제목 또는 작성자를 검색하세요">
-                <button id="searchButton">검색</button>                   
-             </div>     
+                    
+                    
                     <!-- 페이지 번호 표시 -->
 					<div class="board_page">
 					    <% if (startPage > 1) { %>
-					    <a href="meList.jsp?pageNum=<%= startPage - 1 %>" class="bt pre" ><<</a>
+					    <a href="crList.jsp?pageNum=<%= startPage - 1 %>" class="bt pre" ><<</a>
 					    <% } %>
 					
 					    <% for (int i = startPage; i <= endPage; i++) { %>
-					    <a href="meList.jsp?pageNum=<%= i %>" <%= (i == pageNum) ? "class='num on'" : "class='num'" %> ><%= i %></a>
+					    <a href="crList.jsp?pageNum=<%= i %>" <%= (i == pageNum) ? "class='num on'" : "class='num'" %> ><%= i %></a>
 					    <% } %>
 					
 					    <% if (endPage < pageCount) { %>
-					    <a href="meList.jsp?pageNum=<%= endPage + 1 %>"class="bt last">>></a>
+					    <a href="crList.jsp?pageNum=<%= endPage + 1 %>"class="bt last">>></a>
 					    <% } %>
 					    
 					</div>	
@@ -159,7 +155,7 @@
             </div>
         </div>
         
-     <jsp:include page="${contextPath }/footer/footer.jsp" />       
+       <jsp:include page="${contextPath }/footer/footer.jsp" />        
      
     
     

@@ -1,4 +1,4 @@
-package com.smhrd.conrtroller.PartyController;
+package com.smhrd.conrtroller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -21,9 +21,9 @@ public class PartyDeleteController extends HttpServlet {
 		int SH_NO = 1 ;
 		String US_EMAIL = request.getParameter("email");
 		MemberPartyDAO dao = new MemberPartyDAO();
-		TB_SHOW_LIKES deleteLikes = new TB_SHOW_LIKES(SH_NO,US_EMAIL);
-		int res = dao.deletelike(deleteLikes);
-		response.sendRedirect("main.jsp");
+		TB_SHOW_LIKES deleteparty = new TB_SHOW_LIKES(SH_NO,US_EMAIL);
+		int res = dao.deleteparty(deleteparty);
+		response.sendRedirect("Board/moim/jsp/view2.jsp");
 	}
 
 }
