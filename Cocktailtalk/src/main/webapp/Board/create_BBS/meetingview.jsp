@@ -227,13 +227,13 @@ strong {
 				    	<dt>
 					        <!-- 게시물 삭제 버튼 -->
 					        <form action="deleteBoard.do" method="post" onsubmit="return confirmDelete();">
-					            <input type="hidden" name="No" value="<%= board.getFR_NO() %>">
+					            <input type="hidden" name="No" value="<%= board.getCR_NO() %>">
 					            <dt><button type="submit" class="delete">삭제</button></dt>
 					        </form>
 				        </dt>
 				    </dl>
 				    <dl>
-				    	<dt><button class="modify"><a href="updateBoardForm.jsp?No=<%= board.getFR_NO() %>">수정</a></button></dt>
+				    	<dt><button class="modify"><a href="updateBoardForm.jsp?No=<%= board.getCR_NO() %>">수정</a></button></dt>
 				    </dl>
 				<% } %>
 
@@ -254,7 +254,7 @@ strong {
    		<h3>댓글 작성</h3>
 	
 	<form action="insertComment.do" method="post">
-	    <input type="hidden" name="boardId" value="<%= board.getFR_NO()%>">
+	    <input type="hidden" name="boardId" value="<%= board.getCR_NO()%>">
 	    <input type="hidden" name="parentCommentId" value="">
 	    
 	    <div class="form-group">
