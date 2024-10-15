@@ -7,17 +7,17 @@
  
  
  <insert id="insertlike" parameterType="com.smhrd.model.TB_SHOW_LIKES">
-	insert into AB values (#{ME_NO},#{US_EMAIL})
+	insert into TB_SHOW_LIKES values (#{ME_NO},#{US_EMAIL})
  </insert>
  <select id="totallike" resultType="java.lang.Integer">
- 	select count(*) as SH_NO from AB where SH_NO=#{ME_NO}
+ 	select count(*) as SH_NO from TB_SHOW_LIKES where SH_NO=#{ME_NO}
  </select>
   <delete id="deletelike" parameterType="com.smhrd.model.TB_SHOW_LIKES">
- 	delete from AB where SH_NO=#{ME_NO} and US_EMAIL=#{US_EMAIL}
+ 	delete from TB_SHOW_LIKES where SH_NO=#{ME_NO} and US_EMAIL=#{US_EMAIL}
  </delete>
  
  <select id="checklike" parameterType="com.smhrd.model.TB_SHOW_LIKES" resultType="int">
- 	select * from AB where SH_NO=#{ME_NO} and US_EMAIL=#{US_EMAIL}
+ 	select * from TB_SHOW_LIKES where SH_NO=#{ME_NO} and US_EMAIL=#{US_EMAIL}
  </select>
  
  
