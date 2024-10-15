@@ -76,7 +76,7 @@
 				    <div class="ranking"><%= i++ %>등: <%=w.getWINNER_NAME()%> (<%= (int)((double)rank / (double)totalCount * 100.0) %>%)
 				    		<%int a = (int)((double)rank / (double)totalCount * 100.0); %>
 				        <div class="percentage-bar" style="width: <%=a%>%;"></div>
-				    </div> <%} %>
+				    </div> <%if(i==8){break;}} %>
 				    <!-- <div class="ranking">2등: 화이트 러시안 (25%)
 				        <div class="percentage-bar" style="width: 25%;"></div>
 				    </div>

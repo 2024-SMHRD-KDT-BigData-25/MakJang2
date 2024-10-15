@@ -35,7 +35,7 @@ public class testShowBoardWrite extends HttpServlet {
 		//		}
 		
 		MultipartRequest multi = new MultipartRequest(request,uploadPath,maxSize,
-				"UTF-8", new DefaultFileRenamePolicy());		
+				"UTF-8");		
 		
 
 
