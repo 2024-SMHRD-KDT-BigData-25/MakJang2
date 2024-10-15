@@ -26,7 +26,7 @@ public class testShowBoardWrite extends HttpServlet {
 		
 		//파일저장경로(절대경로)
 		//ServletContext context = request.getServletContext();
-		String uploadPath = "//C:/Users/smart/git/MakJang2/Cocktailtalk/src/main/webapp/upload";
+		String uploadPath = "//C:/Users/smhrd/git/MakJang2/Cocktailtalk/src/main/webapp/upload";
 		System.out.println("uploadPath는? "+ uploadPath);
 		// 디렉토리가 존재하지 않으면 생성
 		//		File uploadDir = new File(uploadPath);

@@ -44,7 +44,7 @@
     }
 %>
 	<jsp:include page="${contextPath }/header/header.jsp" />
-    <form class="board_write" action="Write" method="post" enctype="multipart/form-data" onsubmit="return submitForm();">
+    <form class="board_write" action="meWrite" method="post" onsubmit="return submitForm();">
     <div class="board_wrap">
         <div class="board_title">
             <Strong>인증 게시글 작성</Strong>
