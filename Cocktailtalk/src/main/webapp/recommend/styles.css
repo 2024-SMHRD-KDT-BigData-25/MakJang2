@@ -245,6 +245,11 @@ input[type="text"] {
     border : 1px solid #000;
 }
 
+.modal-title-info > h2{
+	color: red;
+	margin-bottom: 10px;
+}
+
 .modal-recipe-info{
     flex:1;
     border : 1px solid #000;
