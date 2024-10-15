@@ -57,6 +57,7 @@
  		
 	   .main_wrap{
 	   		background-color:#f1f1f1;
+	   		width: 100%;
 	   		}
 	   		
    		.main_container{
@@ -65,7 +66,7 @@
    			width: 350px;
    			height: 600px;
    			text-align: center;
-   			margin: 50px auto;
+   			margin: 85px auto;
    		}
    		
    		.main_container .main_img{
