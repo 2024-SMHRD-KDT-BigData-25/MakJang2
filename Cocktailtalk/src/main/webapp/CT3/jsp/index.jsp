@@ -1,3 +1,7 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
+<%@page import="com.smhrd.model.Winner"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smhrd.model.WinnerDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
    
@@ -12,6 +16,17 @@
 
 </head>
 <body>
+<% 
+	WinnerDAO dao = new WinnerDAO();
+
+	int totalCount = dao.CountWinnertb();
+	
+	List<Winner> list = dao.CountWinner();
+	
+	int i = 1;
+%>
+
+
     <div class="wrap">
       <jsp:include page="${contextPath }/header/header.jsp" />
         
@@ -53,11 +68,16 @@
         <div class="ranking-wrap">
             <div class="rank-info">
                 <h2>칵테일 이상형 월드컵 결과</h2>
+                
 				<div class="ranking-container">
-				    <div class="ranking">1등: 블랙 러시안 (30%)
-				        <div class="percentage-bar" style="width: 30%;"></div>
-				    </div>
-				    <div class="ranking">2등: 화이트 러시안 (25%)
+				<%for(Winner w:list){ 
+                	int rank = Integer.parseInt(w.getWINNER_IMAGE());
+                %>
+				    <div class="ranking"><%= i++ %>등: <%=w.getWINNER_NAME()%> (<%= (int)((double)rank / (double)totalCount * 100.0) %>%)
+				    		<%int a = (int)((double)rank / (double)totalCount * 100.0); %>
+				        <div class="percentage-bar" style="width: <%=a%>%;"></div>
+				    </div> <%} %>
+				    <!-- <div class="ranking">2등: 화이트 러시안 (25%)
 				        <div class="percentage-bar" style="width: 25%;"></div>
 				    </div>
 				    <div class="ranking">3등: 올드 패션드 (20%)
@@ -77,7 +97,7 @@
 				    </div>
 				    <div class="ranking">8등: 블루 하와이 (1%)
 				        <div class="percentage-bar" style="width: 1%;"></div>
-				    </div>
+				    </div> -->
 				</div>
 
             </div>

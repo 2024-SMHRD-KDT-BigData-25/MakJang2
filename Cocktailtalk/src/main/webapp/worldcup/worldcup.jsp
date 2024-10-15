@@ -283,8 +283,30 @@ function loadImages() {
             renderImages();
         }
     }
+    
+ // 우승자를 저장하는 함수
+    function saveWinnerToDB(winnerName, winnerImage) {
+        fetch('saveWinner.do', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                winnerName: winnerName,
+                winnerImage: winnerImage
+            })
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to save winner');
+            }
+            return response.json();  // 응답을 JSON으로 파싱
+        }).then(data => {
+        }).catch(error => {
+            console.error('Error:', error);
+        });
+    }
 
-    // 최종 우승자를 표시하는 함수
+    // 최종 우승자를 표시하고 DB에 저장하는 함수
     function showWinner(winner) {
         document.getElementById('loader').style.display = 'none';
         document.getElementById('content').style.display = 'block';
@@ -293,8 +315,11 @@ function loadImages() {
         document.getElementById('image-container').style.display = 'none';
         document.getElementById('winner-image').src = winner.src;
         document.getElementById('winner-name').innerText = winner.name;
-    }
 
+        // 우승자를 DB에 저장
+        saveWinnerToDB(winner.name, winner.src);
+    }
+    
     // 페이지 로드 시 이미지 가져오기
     loadImages();
     
