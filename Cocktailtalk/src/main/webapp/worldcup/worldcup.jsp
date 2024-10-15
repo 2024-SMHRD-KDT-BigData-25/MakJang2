@@ -92,8 +92,8 @@
         }        
         
         .img {
-            max-width: 10px;
-            max-height: 10px;
+            max-width: 300px;
+            max-height: 300px;
             height: auto;
             cursor: pointer;
             border-radius: 8px; /* 이미지 모서리 둥글게 */

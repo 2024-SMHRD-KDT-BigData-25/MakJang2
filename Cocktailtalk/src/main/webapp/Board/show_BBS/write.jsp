@@ -41,7 +41,7 @@
     }
 %>
 	<jsp:include page="${contextPath }/header/header.jsp" />
-    <form class="board_write" action="meWrite" method="post" onsubmit="return submitForm();">
+    <form class="board_write" action="Write" method="post" enctype="multipart/form-data" onsubmit="return submitForm();">
     <div class="board_wrap">
         <div class="board_title">
             <Strong>인증 게시글 작성</Strong>
@@ -68,22 +68,18 @@
                     <dl>
                         <dt>이미지</dt>
                         <dd>
-                            <form action="#" method="post" enctype="multipart/form-data"> <!-- 이미지 파일 데이터를 받아야 하기 때문에 enctype을 "multipart/form-data"로 설정 -->
-                                <input type="file" name="image" accept="image/*" multiple required> <!-- accept 속성을 "image/*" 로 설정하면 이미지 파일만 선택, 여러개 파일 업로드 가능-->
-                            </form>
+                                <input type="file" name="image" accept="image/*" multiple="multiple" required> <!-- accept 속성을 "image/*" 로 설정하면 이미지 파일만 선택, 여러개 파일 업로드 가능-->
                         </dd>
                     </dl>
                 </div>
                 <div class="cont">
-                    <textarea placeholder="내용 입력">
-
-                    </textarea>
+                    <textarea name="meContent" placeholder="내용 입력"></textarea>
                 </div>
             </div>
             
             <div class="bt_wrap">
-                <a href="view.jsp" class="on">등록</a>
-                <a href="list.jsp">취소</a>
+                <button type="submit"><a class="on">등록</a></button>
+                <a href="crlist.jsp">취소</a>
             </div>
         </div>
     </div>
