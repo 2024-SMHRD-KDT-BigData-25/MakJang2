@@ -10,7 +10,7 @@
 	BoardDAO dao = new BoardDAO();
 	List<MyBoard> allImages = dao.getimgList();
     try {
-        File uploadDir = new File("C:\\Users\\smart\\git\\MakJang2\\Cocktailtalk\\src\\main\\webapp\\upload");
+        File uploadDir = new File("C:\\Users\\smhrd\\git\\MakJang2\\Cocktailtalk\\src\\main\\webapp\\upload");
         File[] files = uploadDir.listFiles();
         List<Map<String, String>> images = new ArrayList<>();
         

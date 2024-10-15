@@ -121,12 +121,14 @@
 
         h2 {
             color: #2c3e50;
-            margin: 30px 0;
+            margin-top: -20px;
+            margin-bottom: 10px;
         }
         
-        img{
-        width:300px;
-        height:300px;
+        .image-wrapper > img,
+        .winner > img{
+        	max-height:300px;
+        	min-width:300px;
         }
     </style>
 </head>

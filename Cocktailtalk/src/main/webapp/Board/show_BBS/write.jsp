@@ -9,9 +9,6 @@
 <title>인증 게시글 작성</title>
 <link rel="stylesheet" href="../css/css.css">
 
-<!-- Quill CSS 및 JS CDN 추가 -->
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 </head>
 <body>
 <%
@@ -68,73 +65,30 @@
                             <input type="hidden" name="usEmail" value="<%=email%>">
                         </dd>
                     </dl>
-               </div>
-                <!-- Quill 에디터가 적용될 영역 -->
+                    <dl>
+                        <dt>이미지</dt>
+                        <dd>
+                                <input type="file" name="image" accept="image/*" multiple="multiple" required> <!-- accept 속성을 "image/*" 로 설정하면 이미지 파일만 선택, 여러개 파일 업로드 가능-->
+                        </dd>
+                    </dl>
+                </div>
                 <div class="cont">
-                    <div id="editor-container" style="height: 200px;"></div>
+                    <textarea name="meContent" placeholder="내용 입력"></textarea>
                 </div>
             </div>
+            
             <div class="bt_wrap">
                 <button type="submit"><a class="on">등록</a></button>
-                <a href="crList.jsp">취소</a>
+                <a href="crlist.jsp">취소</a>
             </div>
         </div>
     </div>
-    
-    <!-- Quill 데이터가 저장될 히든 필드 -->
-    <input type="hidden" name="meContent" id="meContent">
     
 </form>
     <jsp:include page="${contextPath }/footer/footer.jsp" />
     
 <script>
-    // Quill 에디터 초기화
-    var quill = new Quill('#editor-container', {
-        theme: 'snow',
-        modules: {
-            toolbar: {
-                container: [
-                    [{ 'header': [1, 2, false] }],
-                    ['bold', 'italic', 'underline'],
-                    ['image']  // 이미지 버튼 추가
-                ],
-                handlers: {
-                    'image': imageHandler
-                }
-            }
-        }
-    });
 
-    // 이미지 삽입 핸들러 함수
-    function imageHandler() {
-        var input = document.createElement('input');
-        input.setAttribute('type', 'file');
-        input.setAttribute('accept', 'image/*');
-        input.click();
-
-        input.onchange = () => {
-            var file = input.files[0];
-
-            if (file) {
-                var formData = new FormData();
-                formData.append('image', file);
-
-                // 서버에 이미지 업로드 요청
-                fetch('uploadImage', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(result => {
-                    var range = quill.getSelection(); // 현재 커서 위치 가져오기
-                    quill.insertEmbed(range.index, 'image', result.url); // 이미지 URL 삽입
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            }
-        };
-    }
 
     // 폼 제출 시 Quill 에디터에서 작성된 데이터를 hidden input에 저장
     function submitForm() {

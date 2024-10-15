@@ -1,5 +1,5 @@
 <%@page import="com.smhrd.model.TB_SHOW_LIKES"%>
-<%@page import="com.smhrd.model.MemberPartyDAO"%>
+<%@page import="com.smhrd.model.MemberLikeDAO"%>
 <%@page import="com.smhrd.model.MyMember"%>
 <%@page import="com.smhrd.model.MemberDAO"%>
 <%@page import="com.smhrd.model.Comment"%>
@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모임 게시글</title>
+    <title>인증 게시글</title>
     <link rel="stylesheet" href="../css/css.css"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     
@@ -148,19 +148,19 @@ strong {
 </head>
 <body>
 <%
-	int idx = Integer.parseInt(request.getParameter("ME_NO"));  // 게시글 ID 가져오기
+	int idx = Integer.parseInt(request.getParameter("No"));  // 게시글 ID 가져오기
 	String pageNumStr = request.getParameter("pageNum");
 	int pageNum = (pageNumStr == null) ? 1 : Integer.parseInt(pageNumStr);
 	BoardDAO dao = new BoardDAO();
 	
 	// 조회수 증가
-    dao.increaseHitCount(idx);
+    dao.increaseshHitCount(idx);
 	
-	MyBoard board = dao.getmeBoard(idx);  // 게시글 정보 가져오기
+	MyBoard board = dao.getshBoard(idx);  // 게시글 정보 가져오기
 	
 	// 댓글 리스트 가져오기
 	CommentDAO commentDAO = new CommentDAO();
-	List<Comment> commentList = commentDAO.getCommentsByBoardId(idx);  // 게시글 ID로 댓글 목록 가져오기
+	List<Comment> commentList = commentDAO.getshCommentsByBoardId(idx);  // 게시글 ID로 댓글 목록 가져오기  
 	
 	%>
 <%
@@ -195,12 +195,13 @@ strong {
 %>	
 
 <%
-	// 참여버튼에 들어갈 정보
-    MemberPartyDAO daoo = new MemberPartyDAO();
-    int totalparty = daoo.totalparty(board.getME_NO());
-    TB_SHOW_LIKES ress = new TB_SHOW_LIKES(board.getME_NO(), email);
-    int check = daoo.checkparty(ress);
+	// 좋아요 수 카운트
+    MemberLikeDAO daoo = new MemberLikeDAO();
+    int totalLikes = daoo.totallike(board.getSH_NO());
+    TB_SHOW_LIKES ress = new TB_SHOW_LIKES(board.getSH_NO(), email);
+    int check = daoo.checklike(ress);
 %>
+
 
 	
 
@@ -208,18 +209,18 @@ strong {
 	<jsp:include page="${contextPath }/header/header.jsp" />	
     <div class="board_wrap">
         <div class="board_title">
-            <Strong>모임 게시글</Strong>
+            <Strong>인증 게시글</Strong>
             <p>취향이 맞는 다른 사람들과 함께 마시기 원한다면 방을 만들어보세요!</p>
         </div>
         <div class="board_view_wrap">
             <div class="board_view">
                 <div class="title">
-                    <%=board.getME_TITLE().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %> <!-- input-->
+                    <%=board.getSH_TITLE().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %> <!-- input-->
                 </div>
                 <div class="info">
                     <dl>
                         <dt>번호</dt>
-                        <dd><%=board.getME_NO() %></dd>
+                        <dd><%=board.getSH_NO() %></dd>
                     </dl>
                     <dl>
                         <dt>글쓴이</dt>
@@ -227,15 +228,19 @@ strong {
                     </dl>
                     <dl>
                         <dt>작성일</dt>
-                        <dd><%=board.getME_WRITEDATE() %></dd>
+                        <dd><%=board.getSH_WRITEDATE() %></dd>
                     </dl>
                     <dl>
                         <dt>조회</dt>
-                        <dd><%=board.getME_HIT() %></dd>
+                        <dd><%=board.getSH_HIT() %></dd>
                     </dl>
-                    <dl>
-                        <dt>참여인원</dt>
-                        <dd>(<span class="people"><%=1+ totalparty %></span><span>/<%= board.getME_PEOPLE() %>)</span></dd>
+                   	<dl>
+                    <dt>
+                        <button class="like-button <%= check > 0 ? "active" : "" %>">
+                            <span id="likeText"><%= check > 0 ? "좋아요 ♥" : "좋아요 ♡" %></span>
+                            <span id="likeCount"><%= totalLikes %></span>
+                        </button>
+                    </dt>
                     </dl>
 
                   <% if (board.getUS_EMAIL().equals(email)){ %>
@@ -243,13 +248,13 @@ strong {
 				    	<dt>
 					        <!-- 게시물 삭제 버튼 -->
 					        <form action="deleteBoard.do" method="post" onsubmit="return confirmDelete();">
-					            <input type="hidden" name="meNo" value="<%= board.getME_NO() %>">
+					            <input type="hidden" name="No" value="<%= board.getSH_NO() %>">
 					            <dt><button type="submit" class="delete">삭제</button></dt>
 					        </form>
 				        </dt>
 				    </dl>
 				    <dl>
-				    	<dt><button class="modify"><a href="updateBoardForm.jsp?ME_NO=<%= board.getME_NO() %>">수정</a></button></dt>
+				    	<dt><button class="modify"><a href="updateBoardForm.jsp?No=<%= board.getSH_NO() %>">수정</a></button></dt>
 				    </dl>
 				<% } %>
 
@@ -257,20 +262,29 @@ strong {
 
                 </div>
                 <div class="cont">
-                    <%=board.getME_CONTENT() %>
+                	<% 
+       				 String imgPath = board.getSH_FILENAME(); // DB에 저장된 이미지 경로
+        			 if (imgPath != null && !imgPath.isEmpty()) { 
+					%>
+					<!-- 이미지 표시 -->
+				        <img src="../../upload/<%= board.getSH_FILENAME() %>" alt="게시글 이미지" style="max-width:100%;">	<br>
+				        <%=board.getSH_CONTENT() %>
+				    <% } else { %>
+                    	<%=board.getSH_CONTENT() %>
+				    <% } %>
                 </div>
             </div>
             
             <div class="bt_wrap">
-                <a href="meList.jsp?pageNum=<%=pageNum%>" class="on">목록</a>
-                <span class="party-button <%= check > 0 ? "active" : "" %>"><a id="partyText"><%= check > 0 ? "참여취소" : "참여" %></a></span>
+                <a href="crList.jsp?pageNum=<%=pageNum%>" class="on">목록</a>
+             
             </div>
    
 <div class="comment-wrap">
    		<h3>댓글 작성</h3>
 	
 	<form action="insertComment.do" method="post">
-	    <input type="hidden" name="boardId" value="<%= board.getME_NO()%>">
+	    <input type="hidden" name="boardId" value="<%= board.getSH_NO()%>">
 	    <input type="hidden" name="parentCommentId" value="">
 	    
 	    <div class="form-group">
@@ -301,7 +315,7 @@ strong {
         <!-- 댓글 삭제 버튼 -->
         <form action="deleteComment.do" method="post" onsubmit="return confirmDeletereply();">
             <input type="hidden" name="commentId" value="<%= comment.getCommentId() %>">
-            <input type="hidden" name="boardId" value="<%= board.getME_NO() %>">
+            <input type="hidden" name="boardId" value="<%= board.getSH_NO() %>">
             <button type="submit" class="btn btn-sm btn-danger com">댓글 삭제</button>
         </form>
         <% } %>
@@ -311,7 +325,7 @@ strong {
         <!-- 답글 작성 폼 (기본적으로 숨김) -->
          <% if (comment.getParentCommentId() == null) { %>
          <form action="insertComment.do" method="post" style="display:none;" id="replyForm<%= comment.getCommentId() %>">
-            <input type="hidden" name="boardId" value="<%= board.getME_NO() %>">
+            <input type="hidden" name="boardId" value="<%= board.getSH_NO() %>">
             <input type="hidden" name="parentCommentId" value="<%= comment.getCommentId() %>">
             <div class="form-group">
                 <label for="writer"><%= nick %></label>
@@ -359,38 +373,39 @@ strong {
     function confirmDeletereply() {
         return confirm("정말로 이 댓글을 삭제하시겠습니까?");
     }
-    
- // 참여버튼
-    const partyButton = document.querySelector('.party-button');
-    const partyCountDisplay = document.querySelector('.people'); // 참여인원 표시하는 요소
-    const partyTextDisplay = document.getElementById('partyText');
+ 
+    // 좋아요 추가, 카운트
+    const likeButton = document.querySelector('.like-button');
+    const likeCountDisplay = document.getElementById('likeCount');
+    const likeTextDisplay = document.getElementById('likeText');
 
-    partyButton.addEventListener('click', function() {
+    likeButton.addEventListener('click', function() {
         const isActive = this.classList.toggle('active'); // 버튼의 상태 토글
         const xhr = new XMLHttpRequest();
-        const url = isActive ? "../../PartyInsertController" : "../../PartyDeleteController";
+        const url = isActive ? "../../LikeInsertController" : "../../LikeDeleteController";
 
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onload = function() {
             if (xhr.status === 200) {
-                // 성공 시 총 참여 인원 수 업데이트
-                if (partyCountDisplay) { // partyCountDisplay가 null인지 확인
-                    const currentparty = parseInt(partyCountDisplay.textContent.match(/\d+/)[0]); // 현재 참여 인원 수 추출
-                    partyCountDisplay.textContent = isActive ? currentparty + 1 : currentparty - 1; // 화면에 참여인원 수 업데이트
-                }
+                // 성공 시 총 좋아요 수 업데이트
+                const currentLikes = parseInt(likeCountDisplay.textContent);
+                likeCountDisplay.textContent = isActive ? currentLikes + 1 : currentLikes - 1; // 화면에 좋아요 수 업데이트
 
                 // 버튼 텍스트 변경
-                partyTextDisplay.textContent = isActive ? "참여취소" : "참여"; 
+                if (isActive) {
+                    likeTextDisplay.textContent = "좋아요 ♥"; // 좋아요 추가
+                } else {
+                    likeTextDisplay.textContent = "좋아요 ♡"; // 좋아요 제거
+                } 
             } else {
-                console.error("요청에 실패했습니다.");
+                console.log("요청에 실패했습니다.");
             }
         };
 
         // 서버로 보낼 데이터 설정
-        xhr.send("email=" + encodeURIComponent("<%=email%>") + "&ME_NO=" + encodeURIComponent("<%=board.getME_NO()%>"));
-    });
-
+        xhr.send("email=" + encodeURIComponent("<%=email%>") + "&SH_NO=" + encodeURIComponent("<%=board.getSH_NO()%>") + "&No=" + encodeURIComponent("<%= idx %>") );
+    });    
     
     
     

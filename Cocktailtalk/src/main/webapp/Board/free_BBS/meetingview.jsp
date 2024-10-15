@@ -269,7 +269,7 @@ strong {
 	        <br>
 	        <textarea class="form-control" id="content" name="content" required></textarea>
 	    </div>
-	    <button type="submit" class="btn btn-primary">댓글 작성</button>
+	    <button type="submit" class="btn btn-primary com">댓글 작성</button>
 	</form>         
      <br>
      <br>
@@ -286,7 +286,7 @@ strong {
         <form action="deleteComment.do" method="post" onsubmit="return confirmDeletereply();">
             <input type="hidden" name="commentId" value="<%= comment.getCommentId() %>">
             <input type="hidden" name="boardId" value="<%= board.getFR_NO() %>">
-            <button type="submit" class="btn btn-sm btn-danger">댓글 삭제</button>
+            <button type="submit" class="btn btn-sm btn-danger com">댓글 삭제</button>
         </form>
         <% } %>
         <br>
