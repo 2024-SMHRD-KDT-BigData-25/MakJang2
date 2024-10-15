@@ -18,7 +18,7 @@ public class FrImageUploadServlet extends HttpServlet {
         // 클라이언트에서 전송된 이미지 파일을 처리
         Part filePart = request.getPart("image"); // "image"는 클라이언트에서 보내온 필드명
         String fileName = getFileName(filePart);
-        String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
+        String uploadPath = "//C:/Users/smhrd/git/MakJang2/Cocktailtalk/src/main/webapp/upload";
 
         // 업로드 디렉토리가 없으면 생성
         File uploadDir = new File(uploadPath);
@@ -28,7 +28,7 @@ public class FrImageUploadServlet extends HttpServlet {
         filePart.write(uploadPath + File.separator + fileName);
 
         // 클라이언트에게 이미지 URL 반환
-        String imageUrl = request.getContextPath() + "/uploads/" + fileName;
+        String imageUrl = request.getContextPath() + "/upload/" + fileName;
         response.setContentType("application/json");
         response.getWriter().print("{\"url\": \"" + imageUrl + "\"}");
     }
