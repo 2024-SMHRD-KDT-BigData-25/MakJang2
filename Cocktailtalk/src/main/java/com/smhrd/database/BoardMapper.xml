@@ -399,15 +399,22 @@
 	
 	    <!-- 전체 값 조회 -->
      <select id="CountWinnertb" resultType="int">
-        SELECT COUNT(*) 
-        FROM TB_WINNER
+		SELECT sum(winner_count)
+		FROM (
+		    SELECT count(*) as winner_count
+		    FROM TB_WINNER
+		    group by WINNER_NAME
+		    order by count(*) DESC
+		) 
+		WHERE ROWNUM &lt;= 8
+		
     </select>
     
     <select id="CountWinner" resultType="com.smhrd.model.Winner">
-    select winner_name, count(*) as WINNER_IMAGE
-	from tb_winner
-	group by winner_name
-	order by count(*) desc
+    select WINNER_NAME, count(*) as WINNER_IMAGE
+	from TB_WINNER
+	group by WINNER_NAME
+	order by count(*) DESC
 	</select>
 	
    
