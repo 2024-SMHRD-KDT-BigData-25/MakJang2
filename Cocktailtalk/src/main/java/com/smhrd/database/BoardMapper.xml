@@ -3,7 +3,7 @@
 <mapper namespace="BoardMapper">
    
    <select id = "getimgList" resultType="com.smhrd.model.MyBoard">
-      select * from tb_show_board ORDER BY sh_no DESC
+      select * from tb_show_board ORDER BY sh_like DESC
    </select>
    
    <insert id="imgwrite" parameterType="com.smhrd.model.MyBoard">
