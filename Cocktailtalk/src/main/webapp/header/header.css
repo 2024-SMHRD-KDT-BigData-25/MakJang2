@@ -79,6 +79,8 @@ body {
     border-radius: 8px; /* 둥근 모서리 */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 드롭다운 그림자 */
     margin-top: 10px;
+    min-width: 160px;
+    text-align: center;
 }
 
 .dropdown li {
