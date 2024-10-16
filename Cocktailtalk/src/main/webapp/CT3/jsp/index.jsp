@@ -64,7 +64,7 @@
     
     <div class="main_text2">
         <h1>월드컵</h1>
-        <div class="px24">이번주 웝드컵에 참여하세요!</div>
+        <div class="px24">이번주 월드컵에 참여하세요!</div>
         <div class="ranking-wrap">
             <div class="rank-info">
                 <h2>칵테일 이상형 월드컵 결과</h2>
@@ -240,41 +240,37 @@
 	    cards[2].classList.add('active'); // 3번 카드 (인덱스 0)
 	}
 	
-	// 모든 카드에서 active 클래스 제거
 	function updateActiveCard() {
-	    cards.forEach(card => card.classList.remove('active'));
-	
-	    // 현재 가운데 카드 인덱스 계산
-	    const centerIndex = scrollIndex + 2; // 가운데 카드 인덱스 (5개 중 가운데 카드)
-	    if (centerIndex < cards.length) {
-	        cards[centerIndex].classList.add('active'); // 가운데 카드에 active 클래스 추가
-	    }
+	    cards.forEach(card => card.classList.remove('active')); // 모든 카드에서 active 클래스 제거
+
+	    // 현재 스크롤 인덱스 기준으로 카드 활성화
+	    const activeCardIndex = scrollIndex; // 현재 인덱스
+	    cards[activeCardIndex].classList.add('active'); // 현재 카드에 active 클래스 추가
 	}
 	
 	function scrollCards(direction) {
 	    const cardWidth = 200; // 카드 너비
-	    const visibleCards = 5; // 보이는 카드 수
-	
+
 	    // 스크롤할 인덱스 계산
 	    if (direction === 'right') {
 	        scrollIndex++;
-	        if (scrollIndex >= cards.length - visibleCards + 1) {
+	        if (scrollIndex >= cards.length) {
 	            scrollIndex = 0; // 처음으로 리셋
 	        }
 	    } else if (direction === 'left') {
 	        scrollIndex--;
 	        if (scrollIndex < 0) {
-	            scrollIndex = cards.length - visibleCards; // 마지막으로 리셋
+	            scrollIndex = cards.length - 1; // 마지막으로 리셋
 	        }
 	    }
-	
+
 	    // 카드 컨테이너의 스크롤 위치 조정
 	    eventContainer.scrollTo({
 	        left: scrollIndex * cardWidth,
 	        behavior: 'smooth' // 부드러운 스크롤
 	    });
-	
-	    updateActiveCard(); // 현재 가운데 카드 업데이트
+
+	    updateActiveCard(); // 현재 카드 업데이트
 	}
 	
 	// 화살표 클릭 이벤트 리스너
