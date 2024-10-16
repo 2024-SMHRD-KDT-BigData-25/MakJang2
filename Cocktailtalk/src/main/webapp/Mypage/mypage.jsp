@@ -113,6 +113,7 @@
                             	<p>-------------------------------------------------------</p>
                             	<div class="ingredients">레시피(RECIPE)</div>
                 				<div class="ingredients"><%= cocktail.getCOCKTAIL_RECIPE() %></div>
+                				
                             </div>
                             <%
                                 }
