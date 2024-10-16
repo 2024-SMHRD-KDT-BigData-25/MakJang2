@@ -22,7 +22,12 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
 }
+
 
 .logo a {
     text-decoration: none;
@@ -51,6 +56,11 @@ footer {
     .people span {
         font-size: 10px;
     }
+}
+
+.logo img {
+    width: 150px; /* 원하는 너비로 설정 */
+    height: auto; /* 비율 유지 */
 }
    
     

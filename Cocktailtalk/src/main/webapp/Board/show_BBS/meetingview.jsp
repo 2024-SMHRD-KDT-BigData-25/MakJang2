@@ -200,6 +200,9 @@ strong {
     int totalLikes = daoo.totallike(board.getSH_NO());
     TB_SHOW_LIKES ress = new TB_SHOW_LIKES(board.getSH_NO(), email);
     int check = daoo.checklike(ress);
+    TB_SHOW_LIKES inserttotallike  = new TB_SHOW_LIKES(totalLikes, board.getSH_NO());
+    int chhhhh = daoo.inserttotallike(inserttotallike);
+    System.out.println(chhhhh);
 %>
 
 
