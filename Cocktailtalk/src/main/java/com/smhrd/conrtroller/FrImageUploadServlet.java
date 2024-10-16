@@ -15,6 +15,11 @@ import javax.servlet.http.Part;
 public class FrImageUploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json; charset=UTF-8");
+        
         // 클라이언트에서 전송된 이미지 파일을 처리
         Part filePart = request.getPart("image"); // "image"는 클라이언트에서 보내온 필드명
         String fileName = getFileName(filePart);

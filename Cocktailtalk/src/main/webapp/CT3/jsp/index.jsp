@@ -18,11 +18,14 @@
 <body>
 <% 
 	WinnerDAO dao = new WinnerDAO();
-
+	
+	// 총 카운트 가져오기
 	int totalCount = dao.CountWinnertb();
 	
+	// Winner 목록 가져오기
 	List<Winner> list = dao.CountWinner();
 	
+	// 순위 초기화
 	int i = 1;
 %>
 
@@ -70,15 +73,32 @@
                 <h2>칵테일 이상형 월드컵 결과</h2>
                 
 				<div class="ranking-container">
-				<%for(Winner w:list){ 
-                	int rank = Integer.parseInt(w.getWINNER_IMAGE());
-                %>
-				    <div class="ranking"><%= i++ %>등: <%=w.getWINNER_NAME()%> (<%= String.format("%.1f",(double)rank / (double)totalCount * 100.0) %>%)
-				    		<%int a = (int)((double)rank / (double)totalCount * 100.0); %>
-				        <div class="percentage-bar" style="width: <%=a%>%;"></div>
-				    </div> <%if(i==9){break;}} %>
-
-				</div>
+				
+   <%
+        // list가 null이 아니고 비어 있지 않은 경우에만 실행
+        if (list != null && !list.isEmpty()) {
+            for (Winner w : list) { 
+                int rank = Integer.parseInt(w.getWINNER_IMAGE()); // WINNER_IMAGE 값으로 rank 계산
+    %>
+                <div class="ranking">
+                    <%= i++ %>등: <%= w.getWINNER_NAME() %> (<%= String.format("%.1f", (double) rank / (double) totalCount * 100.0) %>%)
+                    <%
+                        int a = (int) ((double) rank / (double) totalCount * 100.0);  // 퍼센트 계산
+                    %>
+                    <div class="percentage-bar" style="width: <%= a %>%;"></div>
+                </div>
+                <% if (i == 9) { break; }  // 8등까지 출력하고 중단
+            }
+        } else {
+    %>
+        <!-- 데이터가 없을 경우 처리 -->
+        <div class="no-data">
+            칵테일 월드컵을 통해 결과를 알려주세요!
+        </div>
+    <%
+        }
+    %>
+</div>
 
             </div>
             <div class="rank" id="cocktail-description">

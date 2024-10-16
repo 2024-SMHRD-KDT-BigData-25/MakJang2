@@ -43,7 +43,6 @@ public class SaveWinnerServlet extends HttpServlet {
         JSONObject jsonObj = new JSONObject(jsonBuffer.toString());
         String winnerName = jsonObj.getString("winnerName");
         String winnerImage = winnerName+".png";
-        System.out.println(winnerName+"-"+winnerImage);
         Winner win = new Winner(winnerName,winnerImage);
         
         // 데이터베이스에 저장 (DAO를 사용)
@@ -52,7 +51,7 @@ public class SaveWinnerServlet extends HttpServlet {
         int result = dao.insertWinner(win);
         
         if(result>0) {
-        	System.out.println(result);
+        	
 		}else {
 			System.out.println(result);
 		}
