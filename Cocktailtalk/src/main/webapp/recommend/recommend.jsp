@@ -67,7 +67,7 @@
     
 
             <div class="tag-selection">
-                <h3>태그로 필터링:</h3>
+                <h3>맛 태그로 필터링:</h3>
                 <button class="tag-button" data-tag="상큼">상큼</button>
                 <button class="tag-button" data-tag="짭짤">짭짤</button>
                 <button class="tag-button" data-tag="상쾌">상쾌</button>

@@ -48,7 +48,7 @@
 			display:flex;
 			justify-content: center;
 			align-items: center;
-    		margin-top: 120px;
+    		margin-top: 100px;
 		}
 		
 		.logincheck-success{

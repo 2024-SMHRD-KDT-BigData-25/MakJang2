@@ -77,7 +77,31 @@
 				    		<%int a = (int)((double)rank / (double)totalCount * 100.0); %>
 				        <div class="percentage-bar" style="width: <%=a%>%;"></div>
 				    </div> <%if(i==9){break;}} %>
+<<<<<<< HEAD
 				    
+=======
+				    <!-- <div class="ranking">2등: 화이트 러시안 (25%)
+				        <div class="percentage-bar" style="width: 25%;"></div>
+				    </div>
+				    <div class="ranking">3등: 올드 패션드 (20%)
+				        <div class="percentage-bar" style="width: 20%;"></div>
+				    </div>
+				    <div class="ranking">4등: 네그로니 (10%)
+				        <div class="percentage-bar" style="width: 10%;"></div>
+				    </div>
+				    <div class="ranking">5등: 마가리타 (5%)
+				        <div class="percentage-bar" style="width: 5%;"></div>
+				    </div>
+				    <div class="ranking">6등: 피나 콜라다 (3%)
+				        <div class="percentage-bar" style="width: 3%;"></div>
+				    </div>
+				    <div class="ranking">7등: 다이키리 (2%)
+				        <div class="percentage-bar" style="width: 2%;"></div>
+				    </div>
+				    <div class="ranking">8등: 블루 하와이 (1%)
+				        <div class="percentage-bar" style="width: 1%;"></div>
+				    </div> -->
+>>>>>>> branch 'master' of https://github.com/2024-SMHRD-KDT-BigData-25/MakJang2
 				</div>
 
             </div>
