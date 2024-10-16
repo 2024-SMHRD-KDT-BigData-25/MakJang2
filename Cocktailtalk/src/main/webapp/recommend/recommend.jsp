@@ -82,28 +82,58 @@
 			List<Cocktail_Info> Info = dao.Cockinfo();
 		%>
 		
- 	<div class="cocktail-list">
-		<%for(Cocktail_Info c:Info){ %>
-            <div class="cocktail-item">
-        			<input type="hidden" name="COCKTAIL_NO" value="<%= c.getCOCKTAIL_NO() %>">
-        			<button class="wishlist-button" data-cocktail-no="<%= c.getCOCKTAIL_NO() %>" data-us-email="<%= US_EMAIL %>">
-    					<%= bookmarkList.stream().anyMatch(bookmark -> bookmark.getCOCKTAIL_NO() == c.getCOCKTAIL_NO()) ? "✔ 찜됨" : "♡ 찜" %>
-					</button>
-                    <h2><%=c.getCOCKTAIL_NAME() %></h2>
-                    <div class="clickable-div" data-title="<%=c.getCOCKTAIL_NAME() %>"  data-recipe="<%=c.getCOCKTAIL_RECIPE() %>" data-history="<%=c.getCOCKTAIL_HIS() %>" data-image="../CocokTail_Img/<%=c.getCOCKTAIL_IMG() %>">>
-                    <img src="../CocokTail_Img/<%=c.getCOCKTAIL_IMG() %>">
-                    <p><%=c.getCOCKTAILS_POINT() %></p>
-                    <div class="ingredients"><%=c.getCOCKTAIL_BASE() %></div>
-                    <div class="tags">
-                        <span class="tag"><%=c.getCOCKTAIL_TAG_1() %></span>
-                    <%if(c.getCOCKTAIL_TAG_2()!=null){ %>   
-                        <span class="tag"><%=c.getCOCKTAIL_TAG_2() %></span>
-                       <%} %>
-                    </div>
+<%
+    int itemsPerPage = 9; // 페이지당 아이템 수
+    int totalItems = Info.size(); // 전체 아이템 수
+    int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage); // 전체 페이지 수
+    int currentPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+    int startIndex = (currentPage - 1) * itemsPerPage;
+    int endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+%>
+
+<div class="cocktail-list">
+    <% for (int i = startIndex; i < endIndex; i++) { 
+        Cocktail_Info c = Info.get(i); %>
+        <div class="cocktail-item">
+            <input type="hidden" name="COCKTAIL_NO" value="<%= c.getCOCKTAIL_NO() %>">
+            <button class="wishlist-button" data-cocktail-no="<%= c.getCOCKTAIL_NO() %>" data-us-email="<%= US_EMAIL %>">
+                <%= bookmarkList.stream().anyMatch(bookmark -> bookmark.getCOCKTAIL_NO() == c.getCOCKTAIL_NO()) ? "✔ 찜됨" : "♡ 찜" %>
+            </button>
+            <h2><%= c.getCOCKTAIL_NAME() %></h2>
+            <div class="clickable-div" data-title="<%= c.getCOCKTAIL_NAME() %>" data-recipe="<%= c.getCOCKTAIL_RECIPE() %>" data-history="<%= c.getCOCKTAIL_HIS() %>" data-image="../CocokTail_Img/<%= c.getCOCKTAIL_IMG() %>">
+                <img src="../CocokTail_Img/<%= c.getCOCKTAIL_IMG() %>">
+                <p><%= c.getCOCKTAILS_POINT() %></p>
+                <div class="ingredients"><%= c.getCOCKTAIL_BASE() %></div>
+                <div class="tags">
+                    <span class="tag"><%= c.getCOCKTAIL_TAG_1() %></span>
+                    <% if (c.getCOCKTAIL_TAG_2() != null) { %>
+                        <span class="tag"><%= c.getCOCKTAIL_TAG_2() %></span>
+                    <% } %>
                 </div>
             </div>
-         <%} %>
-   </div>
+        </div>
+    <% } %>
+</div>
+
+<div class="pagination">
+    <% if (currentPage > 1) { %>
+        <a href="?page=<%= currentPage - 1 %>" class="pagination-link">◀ 이전</a>
+    <% } %>
+
+    <% 
+    int startPage = Math.max(1, currentPage - 2); // 시작 페이지
+    int endPage = Math.min(totalPages, startPage + 4); // 끝 페이지
+    
+    for (int i = startPage; i <= endPage; i++) { %>
+        <a href="?page=<%= i %>" class="pagination-link <%= (i == currentPage) ? "active" : "" %>"><%= i %></a>
+    <% } %>
+
+    <% if (currentPage < totalPages) { %>
+        <a href="?page=<%= currentPage + 1 %>" class="pagination-link">다음 ▶</a>
+    <% } %>
+</div>
+
+   
            
             <!--모달-->
         
@@ -130,6 +160,22 @@
         
     </div>
    	<jsp:include page="${contextPath }/footer/footer.jsp" />
+   	
+   	<!-- 페이징 -->
+   	<script>
+	// 페이지 전환 시 스크롤 위치를 유지
+	window.addEventListener('beforeunload', function() {
+	    sessionStorage.setItem('scrollPosition', window.scrollY);
+	});
+	
+	window.addEventListener('load', function() {
+	    const scrollPosition = sessionStorage.getItem('scrollPosition');
+	    if (scrollPosition) {
+	        window.scrollTo(0, parseInt(scrollPosition));
+	        sessionStorage.removeItem('scrollPosition'); // 스크롤 위치를 한 번만 유지
+	    }
+	});
+	</script>
 
      <!-- 자바스크립트를 이용한 필터링 기능 -->
      <script>
