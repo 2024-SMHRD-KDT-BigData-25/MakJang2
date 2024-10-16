@@ -85,8 +85,12 @@ input[type="text"] {
 	margin-top: 35px;
     margin-bottom: 10px;
     color: #007bff;
-    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
+
 
 .cocktail-item img{
     touch-action: manipulation;
@@ -105,6 +109,9 @@ input[type="text"] {
     margin-bottom: 10px;
     font-style: italic;
     color: #555;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .tags {
