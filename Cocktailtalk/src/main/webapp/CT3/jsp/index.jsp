@@ -64,7 +64,7 @@
     
     <div class="main_text2">
         <h1>월드컵</h1>
-        <div class="px24">이번주 웝드컵에 참여하세요!</div>
+        <div class="px24">이번주 월드컵에 참여하세요!</div>
         <div class="ranking-wrap">
             <div class="rank-info">
                 <h2>칵테일 이상형 월드컵 결과</h2>

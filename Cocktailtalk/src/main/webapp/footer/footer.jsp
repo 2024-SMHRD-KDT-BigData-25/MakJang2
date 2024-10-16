@@ -14,7 +14,11 @@
 <body>
 	<footer>
 		<div class=inner>
-			<div class="logo"><a href="">칵테일톡</a></div>
+			<div class="logo">
+				<a href="#">
+					<img src="${contextPath}/images/logo7.png" alt="칵테일톡 로고" />
+				</a>
+			</div>
 			<div class="list">
 	            <div class ="people">
 	            	<span>제작자 :</span>
