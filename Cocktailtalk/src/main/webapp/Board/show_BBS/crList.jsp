@@ -154,7 +154,7 @@
                <!-- 검색 폼 추가 -->
                 <div class="search-bar">
                     <form action="crList.jsp" method="get">
-                        <select name="searchType">
+                        <select name="searchType" class="custom-select">
                             <option value="title" <%= "title".equals(searchType) ? "selected" : "" %>>제목</option>
                             <option value="writer" <%= "writer".equals(searchType) ? "selected" : "" %>>작성자</option>
                         </select>
