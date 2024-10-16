@@ -79,7 +79,7 @@
             
             <div class="bt_wrap">
                 <button type="submit"><a class="on">등록</a></button>
-                <a href="crlist.jsp">취소</a>
+                <a href="crList.jsp">취소</a>
             </div>
         </div>
     </div>

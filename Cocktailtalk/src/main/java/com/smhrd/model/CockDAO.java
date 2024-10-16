@@ -20,5 +20,7 @@ public class CockDAO {
 		sqlSession.close();
 		return res;
 	}
+	
+	
 		
 }
