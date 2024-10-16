@@ -40,6 +40,13 @@ public class MemberLikeDAO {
 	        return (res != null) ? res : 0; // null 체크 후 반환
 	    } // try 블록이 끝나면 자동으로 sqlSession이 닫힘
 	}
+	
+	public int inserttotallike(TB_SHOW_LIKES t) {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int res = sqlSession.update("likeMapper.inserttotallike", t);
+		sqlSession.close();
+		return res;
+	}
 
 
 	

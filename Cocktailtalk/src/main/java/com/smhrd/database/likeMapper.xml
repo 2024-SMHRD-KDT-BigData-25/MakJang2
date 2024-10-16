@@ -20,6 +20,9 @@
  	select * from TB_SHOW_LIKES where SH_NO=#{ME_NO} and US_EMAIL=#{US_EMAIL}
  </select>
  
+ <update id="inserttotallike" parameterType="com.smhrd.model.TB_SHOW_LIKES">
+ 	update TB_SHOW_BOARD SET SH_LIKE = #{totallike} where SH_NO=#{ME_NO}
+ </update>
  
  
 </mapper>

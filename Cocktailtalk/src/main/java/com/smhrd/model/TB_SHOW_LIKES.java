@@ -5,9 +5,9 @@ import lombok.Getter;
 @Getter
 public class TB_SHOW_LIKES {
 
-	private int SH_NO;
 	private int ME_NO;
 	private String US_EMAIL;
+	private int totallike;
 	
 
 	public TB_SHOW_LIKES(String uS_EMAIL) {
@@ -26,9 +26,11 @@ public class TB_SHOW_LIKES {
 		US_EMAIL = uS_EMAIL;
 	}
 
-
-
-
+	public TB_SHOW_LIKES(int totallike, int mE_NO) {
+		super();
+		this.totallike = totallike;
+		ME_NO = mE_NO;
+	}
 
 	
 	
