@@ -27,9 +27,21 @@
 		// 현재 페이지 번호
 		String pageNumStr = request.getParameter("pageNum");
 		int pageNum = (pageNumStr == null) ? 1 : Integer.parseInt(pageNumStr);
+
+		// 검색 조건 처리
+		String searchType = request.getParameter("searchType");
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+		// 검색어가 없을 경우 기본 값 설정
+		boolean isSearch = (searchKeyword != null && !searchKeyword.trim().isEmpty());		
 		
 		// 전체 게시글 수
-		int totalCount = dao.getBoardCount();
+		int totalCount;
+		if (isSearch) {
+		    totalCount = dao.getSearchMeBoardCount(searchType, searchKeyword); // 검색어에 맞는 게시글 수 조회
+		} else {
+		    totalCount = dao.getBoardCount(); // 전체 게시글 수 조회
+		}
 		
 		// 전체 페이지 수 계산
 		int pageCount = (totalCount / pageSize) + ((totalCount % pageSize == 0) ? 0 : 1);
@@ -43,7 +55,12 @@
 		int endRow = pageNum * pageSize;
 		
 		// 해당 페이지의 데이터 가져오기
-		List<MyBoard> list = dao.getBoardListPaging(startRow, endRow);
+		List<MyBoard> list;
+		if (isSearch) {
+		    list = dao.searchMeBoardListPaging(searchType, searchKeyword, startRow, endRow); // 검색된 게시글 가져오기
+		} else {
+		    list = dao.getBoardListPaging(startRow, endRow); // 전체 게시글 가져오기
+		}
 		
 	    // 게시물 번호 계산 (페이지 내에서 역순으로 번호를 표시)
 	    int listNo = totalCount - (pageNum - 1) * pageSize;
@@ -134,25 +151,32 @@
                     <% } %>
                 </div>
                 
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="제목 또는 작성자를 검색하세요">
-                <button id="searchButton">검색</button>
-            </div>
-                                    <!-- 페이지 번호 표시 -->
-			<div class="board_page">
-				<% if (startPage > 1) { %>
-				<a href="meList.jsp?pageNum=<%= startPage - 1 %>" class="bt pre" ><<</a>
-				<% } %>
-					
-				<% for (int i = startPage; i <= endPage; i++) { %>
-				<a href="meList.jsp?pageNum=<%= i %>" <%= (i == pageNum) ? "class='num on'" : "class='num'" %> ><%= i %></a>
-				<% } %>
-					
-				<% if (endPage < pageCount) { %>
-				<a href="meList.jsp?pageNum=<%= endPage + 1 %>"class="bt last">>></a>
-				<% } %>
-					    
-			</div>
+               <!-- 검색 폼 추가 -->
+                <div class="search-bar">
+                    <form action="meList.jsp" method="get">
+                        <select name="searchType" class="custom-select">
+                            <option value="title" <%= "title".equals(searchType) ? "selected" : "" %>>제목</option>
+                            <option value="writer" <%= "writer".equals(searchType) ? "selected" : "" %>>작성자</option>
+                        </select>
+                        <input type="text" name="searchKeyword" id="searchInput" value="<%= (searchKeyword != null) ? searchKeyword : "" %>" placeholder="검색어를 입력하세요">
+                        <button type="submit" id="searchButton">검색</button>
+                    </form>
+                </div>
+                
+                <!-- 페이지 번호 표시 -->
+				<div class="board_page">
+					<% if (startPage > 1) { %>
+					<a href="meList.jsp?pageNum=<%= startPage - 1 %>&searchType=<%= searchType %>&searchKeyword=<%= searchKeyword %>" class="bt pre" ><<</a>
+					<% } %>
+						
+					<% for (int i = startPage; i <= endPage; i++) { %>
+					<a href="meList.jsp?pageNum=<%= i %>&searchType=<%= searchType %>&searchKeyword=<%= searchKeyword %>" <%= (i == pageNum) ? "class='num on'" : "class='num'" %> ><%= i %></a>
+					<% } %>
+						
+					<% if (endPage < pageCount) { %>
+					<a href="meList.jsp?pageNum=<%= endPage + 1 %>&searchType=<%= searchType %>&searchKeyword=<%= searchKeyword %>" class="bt last">>></a>
+					<% } %>
+				</div>
                     <div class="bt_wrap">
                         <a href="write.jsp" class="on">등록</a>
                     </div>
