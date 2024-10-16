@@ -124,6 +124,42 @@ public class BoardDAO {
         return totalCount;
     }
     
+    // 검색 기능을 포함한 페이징 처리된 모임 게시글 목록 조회 메서드
+    public List<MyBoard> searchMeBoardListPaging(String searchType, String searchKeyword, int startRow, int endRow) {
+        SqlSession session = sqlSessionFactory.openSession();
+        List<MyBoard> boardList = null;
+        try {
+            // 검색 조건을 Map에 담아 MyBatis에 전달
+            Map<String, Object> params = new HashMap<>();
+            params.put("searchType", searchType);
+            params.put("searchKeyword", "%" + searchKeyword + "%");  // LIKE 연산자를 위한 포맷
+            params.put("startRow", startRow);
+            params.put("endRow", endRow);
+            
+            boardList = session.selectList("BoardMapper.searchMeBoardListPaging", params);
+        } finally {
+            session.close();
+        }
+        return boardList;
+    }
+
+    // 검색된 게시글의 총 개수를 조회하는 메서드
+    public int getSearchMeBoardCount(String searchType, String searchKeyword) {
+        SqlSession session = sqlSessionFactory.openSession();
+        int totalCount = 0;
+        try {
+            // 검색 조건을 Map에 담아 MyBatis에 전달
+            Map<String, Object> params = new HashMap<>();
+            params.put("searchType", searchType);
+            params.put("searchKeyword", "%" + searchKeyword + "%");  // LIKE 연산자를 위한 포맷
+            
+            totalCount = session.selectOne("BoardMapper.getSearchMeBoardCount", params);
+        } finally {
+            session.close();
+        }
+        return totalCount;
+    }    
+    
     // 모임게시물 조회수 증가 메서드
     public void increaseHitCount(int boardId) {
         SqlSession session = sqlSessionFactory.openSession();
@@ -217,6 +253,43 @@ public class BoardDAO {
         }
         return totalCount;
     }
+
+    // 검색 기능을 포함한 페이징 처리된 창작 게시글 목록 조회 메서드
+    public List<MyBoard> searchCrBoardListPaging(String searchType, String searchKeyword, int startRow, int endRow) {
+        SqlSession session = sqlSessionFactory.openSession();
+        List<MyBoard> boardList = null;
+        try {
+            // 검색 조건을 Map에 담아 MyBatis에 전달
+            Map<String, Object> params = new HashMap<>();
+            params.put("searchType", searchType);
+            params.put("searchKeyword", "%" + searchKeyword + "%");  // LIKE 연산자를 위한 포맷
+            params.put("startRow", startRow);
+            params.put("endRow", endRow);
+            
+            boardList = session.selectList("BoardMapper.searchCrBoardListPaging", params);
+        } finally {
+            session.close();
+        }
+        return boardList;
+    }
+
+    // 검색된 게시글의 총 개수를 조회하는 메서드
+    public int getSearchCrBoardCount(String searchType, String searchKeyword) {
+        SqlSession session = sqlSessionFactory.openSession();
+        int totalCount = 0;
+        try {
+            // 검색 조건을 Map에 담아 MyBatis에 전달
+            Map<String, Object> params = new HashMap<>();
+            params.put("searchType", searchType);
+            params.put("searchKeyword", "%" + searchKeyword + "%");  // LIKE 연산자를 위한 포맷
+            
+            totalCount = session.selectOne("BoardMapper.getSearchCrBoardCount", params);
+        } finally {
+            session.close();
+        }
+        return totalCount;
+    }
+
     
     // 창작게시물 조회수 증가 메서드
     public void increasecrHitCount(int boardId) {
@@ -284,8 +357,8 @@ public class BoardDAO {
         sqlSession.close();
         return result;
     }
-    
- // 페이징을 위한 자유게시글 목록 조회
+ 
+    // 페이징을 위한 자유게시글 목록 조회
     public List<MyBoard> getfrBoardListPaging(int startRow, int endRow) {
         SqlSession session = sqlSessionFactory.openSession();
         List<MyBoard> boardList = null;
@@ -299,7 +372,7 @@ public class BoardDAO {
         }
         return boardList;
     }
-
+    
     // 전체 자유게시글 수 카운트
     public int getfrBoardCount() {
         SqlSession session = sqlSessionFactory.openSession();
@@ -310,7 +383,44 @@ public class BoardDAO {
             session.close();
         }
         return totalCount;
+    }   
+    
+    // 검색 기능을 포함한 페이징 처리된 자유 게시글 목록 조회 메서드
+    public List<MyBoard> searchFrBoardListPaging(String searchType, String searchKeyword, int startRow, int endRow) {
+        SqlSession session = sqlSessionFactory.openSession();
+        List<MyBoard> boardList = null;
+        try {
+            // 검색 조건을 Map에 담아 MyBatis에 전달
+            Map<String, Object> params = new HashMap<>();
+            params.put("searchType", searchType);
+            params.put("searchKeyword", "%" + searchKeyword + "%");  // LIKE 연산자를 위한 포맷
+            params.put("startRow", startRow);
+            params.put("endRow", endRow);
+            
+            boardList = session.selectList("BoardMapper.searchFrBoardListPaging", params);
+        } finally {
+            session.close();
+        }
+        return boardList;
     }
+
+    // 검색된 게시글의 총 개수를 조회하는 메서드
+    public int getSearchFrBoardCount(String searchType, String searchKeyword) {
+        SqlSession session = sqlSessionFactory.openSession();
+        int totalCount = 0;
+        try {
+            // 검색 조건을 Map에 담아 MyBatis에 전달
+            Map<String, Object> params = new HashMap<>();
+            params.put("searchType", searchType);
+            params.put("searchKeyword", "%" + searchKeyword + "%");  // LIKE 연산자를 위한 포맷
+            
+            totalCount = session.selectOne("BoardMapper.getSearchFrBoardCount", params);
+        } finally {
+            session.close();
+        }
+        return totalCount;
+    }
+
     
     // 자유게시물 조회수 증가 메서드
     public void increasefrHitCount(int boardId) {
@@ -400,6 +510,42 @@ public class BoardDAO {
         int totalCount = 0;
         try {
             totalCount = session.selectOne("BoardMapper.getShBoardCount");
+        } finally {
+            session.close();
+        }
+        return totalCount;
+    }
+    
+    // 검색 기능을 포함한 페이징 처리된 자유 게시글 목록 조회 메서드
+    public List<MyBoard> searchShBoardListPaging(String searchType, String searchKeyword, int startRow, int endRow) {
+        SqlSession session = sqlSessionFactory.openSession();
+        List<MyBoard> boardList = null;
+        try {
+            // 검색 조건을 Map에 담아 MyBatis에 전달
+            Map<String, Object> params = new HashMap<>();
+            params.put("searchType", searchType);
+            params.put("searchKeyword", "%" + searchKeyword + "%");  // LIKE 연산자를 위한 포맷
+            params.put("startRow", startRow);
+            params.put("endRow", endRow);
+            
+            boardList = session.selectList("BoardMapper.searchShBoardListPaging", params);
+        } finally {
+            session.close();
+        }
+        return boardList;
+    }
+
+    // 검색된 게시글의 총 개수를 조회하는 메서드
+    public int getSearchShBoardCount(String searchType, String searchKeyword) {
+        SqlSession session = sqlSessionFactory.openSession();
+        int totalCount = 0;
+        try {
+            // 검색 조건을 Map에 담아 MyBatis에 전달
+            Map<String, Object> params = new HashMap<>();
+            params.put("searchType", searchType);
+            params.put("searchKeyword", "%" + searchKeyword + "%");  // LIKE 연산자를 위한 포맷
+            
+            totalCount = session.selectOne("BoardMapper.getSearchShBoardCount", params);
         } finally {
             session.close();
         }

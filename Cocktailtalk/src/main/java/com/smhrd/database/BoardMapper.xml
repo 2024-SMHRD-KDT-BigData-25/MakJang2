@@ -79,6 +79,49 @@
         FROM TB_MEETING_BOARD
     </select>
     
+           <!-- 검색 기능을 포함한 페이징 처리된 모임 게시글 목록 조회 -->
+    <select id="searchMeBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
+        SELECT * 
+        FROM (
+            SELECT ROWNUM AS rnum, c.* 
+            FROM (
+                SELECT a.ME_NO, a.ME_TITLE, a.ME_CONTENT, a.ME_WRITEDATE, a.ME_HIT, a.ME_LIKE, b.us_nick 
+                FROM TB_MEETING_BOARD a
+                JOIN tb_user_info b ON a.us_email = b.us_email
+                WHERE 
+                <if test="searchType == 'title'">
+                    a.ME_TITLE LIKE #{searchKeyword}
+                </if>
+                <if test="searchType == 'writer'">
+                    b.us_nick LIKE #{searchKeyword}
+                </if>
+                <if test="searchType == 'content'">
+                    a.ME_CONTENT LIKE #{searchKeyword}
+                </if>
+                ORDER BY a.ME_WRITEDATE DESC
+            ) c
+            WHERE ROWNUM &lt;= #{endRow}
+        )
+        WHERE rnum &gt;= #{startRow}
+    </select>
+ 
+    <!-- 전체 게시글 수 조회 -->
+    <select id="getSearchMeBoardCount" parameterType="map" resultType="int">
+        SELECT COUNT(*) 
+        FROM TB_MEETING_BOARD a
+        JOIN tb_user_info b ON a.us_email = b.us_email
+        WHERE 
+        <if test="searchType == 'title'">
+            a.ME_TITLE LIKE #{searchKeyword}
+        </if>
+        <if test="searchType == 'writer'">
+            b.us_nick LIKE #{searchKeyword}
+        </if>
+        <if test="searchType == 'content'">
+            a.ME_CONTENT LIKE #{searchKeyword}
+        </if>
+    </select>
+    
    <!-- 댓글 또는 답글 추가 -->
    <insert id="insertComment">
        INSERT INTO comments (board_id, parent_comment_id, writer, content, us_email)
@@ -170,6 +213,49 @@
         FROM TB_CREATE_BOARD
     </select>
     
+        <!-- 검색 기능을 포함한 페이징 처리된 자유 게시글 목록 조회 -->
+    <select id="searchCrBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
+        SELECT * 
+        FROM (
+            SELECT ROWNUM AS rnum, c.* 
+            FROM (
+                SELECT a.CR_NO, a.CR_TITLE, a.CR_CONTENT, a.CR_WRITEDATE, a.CR_HIT, a.CR_LIKE, b.us_nick 
+                FROM TB_CREATE_BOARD a
+                JOIN tb_user_info b ON a.us_email = b.us_email
+                WHERE 
+                <if test="searchType == 'title'">
+                    a.CR_TITLE LIKE #{searchKeyword}
+                </if>
+                <if test="searchType == 'writer'">
+                    b.us_nick LIKE #{searchKeyword}
+                </if>
+                <if test="searchType == 'content'">
+                    a.CR_CONTENT LIKE #{searchKeyword}
+                </if>
+                ORDER BY a.CR_WRITEDATE DESC
+            ) c
+            WHERE ROWNUM &lt;= #{endRow}
+        )
+        WHERE rnum &gt;= #{startRow}
+    </select>
+ 
+    <!-- 전체 게시글 수 조회 -->
+    <select id="getSearchCrBoardCount" parameterType="map" resultType="int">
+        SELECT COUNT(*) 
+        FROM TB_CREATE_BOARD a
+        JOIN tb_user_info b ON a.us_email = b.us_email
+        WHERE 
+        <if test="searchType == 'title'">
+            a.CR_TITLE LIKE #{searchKeyword}
+        </if>
+        <if test="searchType == 'writer'">
+            b.us_nick LIKE #{searchKeyword}
+        </if>
+        <if test="searchType == 'content'">
+            a.CR_CONTENT LIKE #{searchKeyword}
+        </if>
+    </select>
+    
    <!-- 댓글 또는 답글 추가 -->
    <insert id="insertCrComment">
        INSERT INTO cr_comments (board_id, parent_comment_id, writer, content, us_email)
@@ -238,8 +324,8 @@
            FR_CONTENT = #{content}
        WHERE FR_NO = #{No}
    </update>
-       
-    <!-- 페이징 -->
+ 
+  <!-- 페이징 -->
    <select id="getFrBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
            SELECT * 
            FROM (
@@ -260,6 +346,49 @@
      <select id="getFrBoardCount" resultType="int">
         SELECT COUNT(*) 
         FROM TB_FREE_BOARD
+    </select>
+       
+    <!-- 검색 기능을 포함한 페이징 처리된 자유 게시글 목록 조회 -->
+    <select id="searchFrBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
+        SELECT * 
+        FROM (
+            SELECT ROWNUM AS rnum, c.* 
+            FROM (
+                SELECT a.FR_NO, a.FR_TITLE, a.FR_CONTENT, a.FR_WRITEDATE, a.FR_HIT, a.FR_LIKE, b.us_nick 
+                FROM TB_FREE_BOARD a
+                JOIN tb_user_info b ON a.us_email = b.us_email
+                WHERE 
+                <if test="searchType == 'title'">
+                    a.FR_TITLE LIKE #{searchKeyword}
+                </if>
+                <if test="searchType == 'writer'">
+                    b.us_nick LIKE #{searchKeyword}
+                </if>
+                <if test="searchType == 'content'">
+                    a.FR_CONTENT LIKE #{searchKeyword}
+                </if>
+                ORDER BY a.FR_WRITEDATE DESC
+            ) c
+            WHERE ROWNUM &lt;= #{endRow}
+        )
+        WHERE rnum &gt;= #{startRow}
+    </select>
+ 
+    <!-- 전체 게시글 수 조회 -->
+    <select id="getSearchFrBoardCount" parameterType="map" resultType="int">
+        SELECT COUNT(*) 
+        FROM TB_FREE_BOARD a
+        JOIN tb_user_info b ON a.us_email = b.us_email
+        WHERE 
+        <if test="searchType == 'title'">
+            a.FR_TITLE LIKE #{searchKeyword}
+        </if>
+        <if test="searchType == 'writer'">
+            b.us_nick LIKE #{searchKeyword}
+        </if>
+        <if test="searchType == 'content'">
+            a.FR_CONTENT LIKE #{searchKeyword}
+        </if>
     </select>
     
    <!-- 댓글 또는 답글 추가 -->
@@ -360,6 +489,49 @@
         FROM TB_SHOW_BOARD
     </select>
     
+        <!-- 검색 기능을 포함한 페이징 처리된 자유 게시글 목록 조회 -->
+    <select id="searchShBoardListPaging" parameterType="map" resultType="com.smhrd.model.MyBoard">
+        SELECT * 
+        FROM (
+            SELECT ROWNUM AS rnum, c.* 
+            FROM (
+                SELECT a.SH_NO, a.SH_TITLE, a.SH_CONTENT, a.SH_WRITEDATE, a.SH_HIT, a.SH_LIKE, b.us_nick 
+                FROM TB_SHOW_BOARD a
+                JOIN tb_user_info b ON a.us_email = b.us_email
+                WHERE 
+                <if test="searchType == 'title'">
+                    a.SH_TITLE LIKE #{searchKeyword}
+                </if>
+                <if test="searchType == 'writer'">
+                    b.us_nick LIKE #{searchKeyword}
+                </if>
+                <if test="searchType == 'content'">
+                    a.SH_CONTENT LIKE #{searchKeyword}
+                </if>
+                ORDER BY a.SH_WRITEDATE DESC
+            ) c
+            WHERE ROWNUM &lt;= #{endRow}
+        )
+        WHERE rnum &gt;= #{startRow}
+    </select>
+ 
+    <!-- 전체 게시글 수 조회 -->
+    <select id="getSearchShBoardCount" parameterType="map" resultType="int">
+        SELECT COUNT(*) 
+        FROM TB_SHOW_BOARD a
+        JOIN tb_user_info b ON a.us_email = b.us_email
+        WHERE 
+        <if test="searchType == 'title'">
+            a.SH_TITLE LIKE #{searchKeyword}
+        </if>
+        <if test="searchType == 'writer'">
+            b.us_nick LIKE #{searchKeyword}
+        </if>
+        <if test="searchType == 'content'">
+            a.SH_CONTENT LIKE #{searchKeyword}
+        </if>
+    </select>
+    
    <!-- 댓글 또는 답글 추가 -->
    <insert id="insertShComment">
        INSERT INTO sh_comments (board_id, parent_comment_id, writer, content, us_email)
@@ -399,15 +571,22 @@
 	
 	    <!-- 전체 값 조회 -->
      <select id="CountWinnertb" resultType="int">
-        SELECT COUNT(*) 
-        FROM TB_WINNER
+		SELECT sum(winner_count)
+		FROM (
+		    SELECT count(*) as winner_count
+		    FROM TB_WINNER
+		    group by WINNER_NAME
+		    order by count(*) DESC
+		) 
+		WHERE ROWNUM &lt;= 8
+		
     </select>
     
     <select id="CountWinner" resultType="com.smhrd.model.Winner">
-    select winner_name, count(*) as WINNER_IMAGE
-	from tb_winner
-	group by winner_name
-	order by count(*) desc
+    select WINNER_NAME, count(*) as WINNER_IMAGE
+	from TB_WINNER
+	group by WINNER_NAME
+	order by count(*) DESC
 	</select>
 	
    

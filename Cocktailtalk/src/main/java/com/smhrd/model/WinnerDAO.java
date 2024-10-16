@@ -12,6 +12,7 @@ public class WinnerDAO {
     
     SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSessionFactory();
 
+    // 우승 칵테일 저장
     public int insertWinner(Winner w) {
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
         int res = sqlSession.insert("BoardMapper.insertWinner",w);
