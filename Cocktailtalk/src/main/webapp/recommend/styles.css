@@ -300,3 +300,30 @@ input[type="text"] {
     text-decoration: none;
     cursor: pointer;
 }
+
+
+/*페이징*/
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    margin: 0 5px;
+    padding: 8px 10px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.pagination a.active {
+    background-color: gray;
+    color: white;
+}
+
+.pagination a:hover {
+    background-color: #e0e0e0;
+}
