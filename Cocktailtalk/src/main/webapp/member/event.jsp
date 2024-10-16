@@ -22,6 +22,8 @@
         margin-top: 100px;
         color: #333333; /* 부드러운 검정색 */
     }
+    
+    
     .event-container {
         margin: 20px auto 100px auto;
     }
@@ -45,7 +47,7 @@
         background-size: cover;
         background-position: center;
         border-radius: 10px;
-        margin-right: 20px;
+        margin-right: 40px;
     }
     .event-details {
         text-align: left;
@@ -61,11 +63,19 @@
         margin: 5px 0; /* 문단 간격 조정 */
         white-space: normal; /* 자동 줄바꿈 활성화 */
     }
+    
+     .event-top{
+    	display:flex;
+    	
+    }
+    
     .button-container {
+    	flex: 1;
         display: flex;
         justify-content: flex-end;
-        margin-top: 10px;
+        margin-bottom: 10px;
     }
+    
     button {
         background-color: #1abc9c; /* 민트색 */
         color: white;
@@ -80,6 +90,8 @@
         background-color: #16a085; /* 더 진한 민트 */
         transform: scale(1.05); /* hover 시 확대 효과 */
     }
+    
+
 </style>
 <script>
         function sendKakaoMessage(event) {
@@ -156,13 +168,19 @@
         <div class="event">
             <div class="event-image" style="background-image: url('https://applications-media.feverup.com/image/upload/f_auto,w_720,h_720/fever2/plan/photo/fd19336a-5b6e-11ee-acdb-52daca66eded.png');"></div>
             <div class="event-details">
-                <h2 class="event-name">취중 드로잉 바, 싶 디 (Sip D)</h2>
+            	<div class="event-top">
+            		<div>
+            			<a href="https://feverup.com/m/140432?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7"><h2 class="event-name">취중 드로잉 바, 싶 디 (Sip D)</h2></a>
+                	</div>
+                	<div class="button-container">
+                    	<button data-event="drawingBar" onclick="sendKakaoMessage(event)">알림 보내기</button>
+                	</div>
+            	</div>
+            	<a href="https://feverup.com/m/140432?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7">
                 <p>일시: 화요일 ~ 일요일 19:00 ~ 4:00(라스트 오더 3:30)</p>
                 <p>장소: 서울 중구 충무로 40 3층</p>
                 <p>힙지로의 감성, 예술인들이 모이는 공간. 그림을 그리면서 술을 마신다고요? 우리나라 최초 취중 드로잉 바입니다.</p>
-                <div class="button-container">
-                    <button data-event="drawingBar" onclick="sendKakaoMessage(event)">알림 보내기</button>
-                </div>
+                </a>
             </div>
         </div>
 
@@ -170,13 +188,21 @@
         <div class="event">
             <div class="event-image" style="background-image: url('https://applications-media.feverup.com/image/upload/fever2/plan/photo/e63d5b16-2d25-11ee-8540-f235ab335555.jpg');"></div>
             <div class="event-details">
-                <h2 class="event-name">티 하우스 절기</h2>
+            	<div class="event-top">
+            	<a href="https://feverup.com/m/136579?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7">
+            		<div>
+            			<h2 class="event-name">티 하우스 절기</h2>
+            		</div>
+            	</a>
+            		<div class="button-container">
+                    	<button data-event="teaCocktail" onclick="sendKakaoMessage(event)">알림 보내기</button>
+                	</div>
+            	</div>
+                <a href="https://feverup.com/m/136579?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7">
                 <p>일시: 매주 화요일~수요일 19시 </p>
                 <p>장소: 서울 강남구 봉은사로 306 1층 티하우스 절기</p>
                 <p>티 칵테일 클래스에서는 좋아하는 티로 칵테일을 만들어보며, 집에서도 언제든 활용하실 수 있는 티 시럽과 칵테일 레시피를 알려드립니다. </p>
-                <div class="button-container">
-                    <button data-event="teaCocktail" onclick="sendKakaoMessage(event)">알림 보내기</button>
-                </div>
+				</a>
             </div>
         </div>
 
@@ -184,13 +210,21 @@
         <div class="event">
             <div class="event-image" style="background-image: url('https://applications-media.feverup.com/image/upload/fever2/plan/photo/4e9abe1c-3458-11ef-97d1-569c383ac591.jpg');"></div>
             <div class="event-details">
-                <h2 class="event-name">예술을 마시는 밤</h2>
+	            <div class="event-top">
+	            	<a href="https://feverup.com/m/143133?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7">
+	            	<div>
+	            		<h2 class="event-name">예술을 마시는 밤</h2>
+	            	</div>
+	            	</a>
+	            	<div class="button-container">
+	                    <button data-event="artNight" onclick="sendKakaoMessage(event)">알림 보내기</button>
+	                </div>
+	            </div>
+	            <a href="https://feverup.com/m/143133?srsltid=AfmBOorCBtnFKMmGaPGgeOAyTEbs9t1JSHS2gz5efT9Fl7oEBNt51vA7">
                 <p>일시: 월 ~ 목: 19:00 ~ 02:00, 금 ~ 토: 19:00 ~ 03:00, 일: 19:00 ~ 24:00</p>
                 <p>장소: 피그먼트 바 (서울 중구 퇴계로6가길 12-2)</p>
                 <p>그림 그리고 술, 두 개의 예술작품을 만날 수 있는 회현동의 스피크 이지 갤러리 바, 갤러리 피그먼트입니다. 마치 갤러리로 들어가는 듯한 입구부터 시즌별로 변경되는 시그니처 칵테일까지 갤러리 피그먼트에서 전하는 신비롭고 독특한 경험을 놓치지 마세요!</p>
-                <div class="button-container">
-                    <button data-event="artNight" onclick="sendKakaoMessage(event)">알림 보내기</button>
-                </div>
+                </a>
             </div>
         </div>
     </div>

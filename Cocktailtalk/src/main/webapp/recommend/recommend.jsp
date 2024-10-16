@@ -77,6 +77,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD
       <%
          CockDAO dao = new CockDAO();
          List<Cocktail_Info> Info = dao.Cockinfo();
@@ -89,6 +90,20 @@
                  <button class="wishlist-button" data-cocktail-no="<%= c.getCOCKTAIL_NO() %>" data-us-email="<%= US_EMAIL %>">
                    <%= bookmarkList.stream().anyMatch(bookmark -> bookmark.getCOCKTAIL_NO() == c.getCOCKTAIL_NO()) ? "✔ 찜됨" : "♡ 찜" %>
                </button>
+=======
+		<%
+			CockDAO dao = new CockDAO();
+			List<Cocktail_Info> Info = dao.Cockinfo();
+		%>
+		
+ 	<div class="cocktail-list">
+		<%for(Cocktail_Info c:Info){ %>
+            <div class="cocktail-item">
+        			<input type="hidden" name="COCKTAIL_NO" value="<%= c.getCOCKTAIL_NO() %>">
+        			<button class="wishlist-button" data-cocktail-no="<%= c.getCOCKTAIL_NO() %>" data-us-email="<%= US_EMAIL %>">
+    					<%= bookmarkList.stream().anyMatch(bookmark -> bookmark.getCOCKTAIL_NO() == c.getCOCKTAIL_NO()) ? "✔ 찜됨" : "♡ 찜" %>
+					</button>
+>>>>>>> branch 'master' of https://github.com/2024-SMHRD-KDT-BigData-25/MakJang2
                     <h2><%=c.getCOCKTAIL_NAME() %></h2>
                     <div class="clickable-div" data-title="<%=c.getCOCKTAIL_NAME() %>"  data-recipe="<%=c.getCOCKTAIL_RECIPE() %>" data-history="<%=c.getCOCKTAIL_HIS() %>" data-image="../CocokTail_Img/<%=c.getCOCKTAIL_IMG() %>">>
                     <img src="../CocokTail_Img/<%=c.getCOCKTAIL_IMG() %>">
@@ -129,7 +144,11 @@
        </div>
         
     </div>
+<<<<<<< HEAD
       <jsp:include page="${contextPath }/footer/footer.jsp" />
+=======
+   	<jsp:include page="${contextPath }/footer/footer.jsp" />
+>>>>>>> branch 'master' of https://github.com/2024-SMHRD-KDT-BigData-25/MakJang2
 
      <!-- 자바스크립트를 이용한 필터링 기능 -->
      <script>
