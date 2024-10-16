@@ -31,8 +31,6 @@
     int cocktailNo = 2; // 예시로 사용할 칵테일 번호
     boolean isBookmarked = bookmarkList.stream()
         .anyMatch(cocktail -> cocktail.getCOCKTAIL_NO() == cocktailNo);
-    
-    
 %>
 
 
@@ -106,7 +104,6 @@
             </div>
          <%} %>
    </div>
-   
            
             <!--모달-->
         
