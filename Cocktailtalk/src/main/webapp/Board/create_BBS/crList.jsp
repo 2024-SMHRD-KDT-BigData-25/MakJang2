@@ -117,7 +117,20 @@
             <div class="board_title">
                 <Strong><a href="crList.jsp">창작 게시판</a></Strong>
                 <p>취향이 맞는 다른 사람들과 함께 마시기 원한다면 방을 만들어보세요!</p>
+                <!-- 검색 폼 추가 -->
+                <div class="search-bar">
+                    <form action="crList.jsp" method="get">
+                        <select name="searchType" class="custom-select">
+                            <option value="title" <%= "title".equals(searchType) ? "selected" : "" %>>제목</option>
+                            <option value="writer" <%= "writer".equals(searchType) ? "selected" : "" %>>작성자</option>
+                        </select>
+                        <input type="text" name="searchKeyword" id="searchInput" value="<%= (searchKeyword != null) ? searchKeyword : "" %>" placeholder="검색어를 입력하세요">
+                        <button type="submit" id="searchButton">검색</button>
+                    </form>
+                </div>
             </div>
+           
+                
             <div class="board_list_wrap">
                 <div class="board_list">
                     <div class="top">
@@ -144,17 +157,6 @@
                     </div>
                     <% } %>             
               
-                </div>
-             <!-- 검색 폼 추가 -->
-                <div class="search-bar">
-                    <form action="crList.jsp" method="get">
-                        <select name="searchType" class="custom-select">
-                            <option value="title" <%= "title".equals(searchType) ? "selected" : "" %>>제목</option>
-                            <option value="writer" <%= "writer".equals(searchType) ? "selected" : "" %>>작성자</option>
-                        </select>
-                        <input type="text" name="searchKeyword" id="searchInput" value="<%= (searchKeyword != null) ? searchKeyword : "" %>" placeholder="검색어를 입력하세요">
-                        <button type="submit" id="searchButton">검색</button>
-                    </form>
                 </div>
                 
                		<!-- 페이지 번호 표시 -->
